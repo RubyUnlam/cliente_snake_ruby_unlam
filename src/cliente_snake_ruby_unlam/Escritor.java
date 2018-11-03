@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class Escritor implements Observador {
+public class Escritor {
 	
 	private DataOutputStream salida;
 
@@ -13,7 +13,6 @@ public class Escritor implements Observador {
 		this.salida = new DataOutputStream(socket.getOutputStream());
 	}
 
-	@Override
 	public void enviarAlServidor(String direccion) {
 		try {
 			salida.writeUTF(direccion);

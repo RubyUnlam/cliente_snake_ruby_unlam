@@ -11,7 +11,7 @@ public class Ui extends JPanel implements ObservadorLectura {
 
     private ImageIcon fondoDefault;
     private String fondoPath = "src/imagenes/fondo.png"; //TODO HACERLO VARIABLE
-    private List<Ubicacion> ubicacionesSerpientes = new ArrayList<>();
+    private List<List<Ubicacion>> ubicacionesSerpientes = new ArrayList<>();
     private List<Ubicacion> ubicacionesComestibles= new ArrayList<>();
 
     Ui(Jugador jugador) {
@@ -21,10 +21,9 @@ public class Ui extends JPanel implements ObservadorLectura {
     }
     
     @Override
-	public void notificarUbicaciones(List<Ubicacion> ubicaciones) {
-	    
-    	ubicacionesSerpientes.addAll(ubicaciones);
-//        ubicacionesComestibles.addAll(ubicaciones);
+	public void notificarUbicaciones(UbicacionesDTO ubicaciones) {
+    	ubicacionesSerpientes.addAll(ubicaciones.getSerpientes());
+        ubicacionesComestibles.addAll(ubicaciones.getComestibles());
         repaint();
 	}
 
@@ -41,9 +40,13 @@ public class Ui extends JPanel implements ObservadorLectura {
     }
 
     private void pintarSerpientes(Graphics g) {
-        g.setColor(Color.BLUE); //TODO VER SI USAMOS IMAGENES EN VEZ DE CIRCULOS
-        for (Ubicacion serpiente : ubicacionesSerpientes){
-            g.fillOval(serpiente.getX(), serpiente.getY(), 20, 20);
+        for (List<Ubicacion> serpiente : ubicacionesSerpientes){
+        	g.setColor(Color.BLUE);
+        	g.fillOval(serpiente.get(0).getX(), serpiente.get(0).getY(), 20, 20);
+        	for (int i = 1; i < serpiente.size(); i++) {
+        		g.setColor(Color.BLUE.darker());
+        		g.fillOval(serpiente.get(i).getX(), serpiente.get(i).getY(), 20, 20);
+        	}
         }
         ubicacionesSerpientes.clear();
     }

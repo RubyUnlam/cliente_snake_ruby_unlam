@@ -1,7 +1,5 @@
 package cliente_snake_ruby_unlam;
 
-import java.util.List;
-
 import javax.swing.JFrame;
 
 public class Juego {
@@ -15,11 +13,13 @@ public class Juego {
 		ventana.setResizable(false);
 		ventana.setLocationRelativeTo(null);
 		
-		Jugador jugador = new Cliente("123", 1213).obtenerJugador();
+		Cliente cliente = new Cliente("123", 1213);
 		
-		Ui ui = new Ui(jugador);
+		Ui ui = new Ui(cliente.obtenerJugador());
 		
-        ventana.setContentPane(ui); //TODO NO CREAR SERPIENTE A LO CABEZA
+		cliente.obtenerLector().agregarObservador(ui);
+		
+        ventana.setContentPane(ui);
 		ventana.setVisible(true);
 	}
 }
