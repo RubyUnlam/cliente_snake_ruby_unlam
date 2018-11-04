@@ -4,8 +4,6 @@ import javax.swing.JFrame;
 
 public class Juego {
 
-    public static long initTime;
-
 	public static void main(String[] args) {
 		JFrame ventana = new JFrame("Snake");
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

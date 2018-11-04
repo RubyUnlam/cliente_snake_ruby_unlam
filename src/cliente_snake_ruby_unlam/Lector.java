@@ -2,10 +2,7 @@ package cliente_snake_ruby_unlam;
 
 import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.net.Socket;
-import java.util.Arrays;
-import java.util.List;
 
 import com.google.gson.Gson;
 
@@ -28,18 +25,17 @@ public class Lector extends Thread implements ObservadoLectura {
             boolean conectado = true;
 
             while (conectado) {
-            	UbicacionesDTO ubicaciones = gson.fromJson(entrada.readUTF(), UbicacionesDTO.class);
+				String json = entrada.readUTF();
+				UbicacionesDTO ubicaciones = gson.fromJson(json, UbicacionesDTO.class);
                 observador.notificarUbicaciones(ubicaciones);
             }
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
             try {
 				entrada.close();
 				socket.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
