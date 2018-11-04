@@ -13,7 +13,7 @@ public class Juego {
 		ventana.setResizable(false);
 		ventana.setLocationRelativeTo(null);
 		
-		Cliente cliente = new Cliente("123", 1213);
+		Cliente cliente = new Cliente("localhost", 12000);
 		
 		Ui ui = new Ui(cliente.obtenerJugador());
 		
