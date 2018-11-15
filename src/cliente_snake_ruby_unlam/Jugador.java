@@ -1,5 +1,7 @@
 package cliente_snake_ruby_unlam;
 
+import Observables.Escritor;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -22,13 +24,13 @@ public class Jugador implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		int teclaPresionada = e.getKeyCode();
 		if (teclaPresionada == keyEventUP) {
-			escritor.enviarAlServidor("arriba");
+			escritor.enviarMovimiento("arriba");
 		} else if (teclaPresionada == keyEventDOWN) {
-			escritor.enviarAlServidor("abajo");
+			escritor.enviarMovimiento("abajo");
 		} else if (teclaPresionada == keyEventRIGTH) {
-			escritor.enviarAlServidor("derecha");
+			escritor.enviarMovimiento("derecha");
 		} else if (teclaPresionada == keyEventLEFT) {
-			escritor.enviarAlServidor("izquierda");
+			escritor.enviarMovimiento("izquierda");
 		}
 		
 	}

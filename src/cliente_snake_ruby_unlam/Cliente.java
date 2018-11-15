@@ -1,5 +1,8 @@
 package cliente_snake_ruby_unlam;
 
+import Observables.Escritor;
+import Observables.Lector;
+
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -14,7 +17,6 @@ public class Cliente {
             this.socket = new Socket(ip, puerto);
 
             System.out.print("Connection accepted");
-            
 
             this.escritor = new Escritor(this.socket);
 
@@ -33,5 +35,9 @@ public class Cliente {
         Lector lector = new Lector(this.socket);
         lector.start();
         return lector;
+    }
+
+    public Escritor obtenerEscritor(){
+        return this.escritor;
     }
 }
