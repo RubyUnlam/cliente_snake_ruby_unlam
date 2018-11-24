@@ -1,4 +1,4 @@
-package Observables;
+package observables;
 
 import cliente_snake_ruby_unlam.Dibujable;
 

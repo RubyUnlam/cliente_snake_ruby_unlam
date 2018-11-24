@@ -1,7 +1,6 @@
 package cliente_snake_ruby_unlam;
 
-import Observables.Escritor;
-import Observables.Lector;
+import manejadores.ManejadorLogin;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,17 +21,16 @@ public class Registro extends JDialog {
 	private JButton btnRegistrarse;
 	private Login ventanaLogin;
 	private RegistroUsuario respuesta = new RegistroUsuario("", false);;
-	private Escritor escritor;
-	private Lector lector;
+	private ManejadorLogin manejador;
 
 	/**
 	 * Cuadro de dialogo para el registro de usuarios.
-	 * 
+	 *
 	 * @param login para poder acceder a los componentes del Login.
+	 * @param manejador
 	 */
-	public Registro(Login login, Escritor escritor, Lector lector) {
-		this.escritor = escritor;
-		this.lector = lector;
+	public Registro(Login login, ManejadorLogin manejador) {
+		this.manejador = manejador;
 
 		ventanaLogin = login;
 		// Propiedades del JDialog para el registro.
@@ -132,15 +130,14 @@ public class Registro extends JDialog {
 	 * @return verdadero o falso segun el exito del registro.
 	 */
 	public boolean registrarUsuario(String nombreUsuario, char[] contrasenia, String email) {
-		do {
-			escritor.enviarLogin(new Usuario(nombreUsuario, String.valueOf(contrasenia), email));
-			if (!respuesta.esRegistroEfectivo()) {
-				lblInformativo.setText(respuesta.getMensaje());
-				txtContrasenia.setText("");
-				lblInformativo.setForeground(Color.RED);
-			}
-		} while (!respuesta.esRegistroEfectivo());
-		return true;
+		this.respuesta = manejador.enviarUsuario(new Usuario(nombreUsuario, String.valueOf(contrasenia), email));
+		if (!respuesta.esRegistroEfectivo()) {
+			lblInformativo.setText(respuesta.getMensaje());
+			txtContrasenia.setText("");
+			lblInformativo.setForeground(Color.RED);
+			lblInformativo.setVisible(true);
+		}
+		return respuesta.esRegistroEfectivo();
 	}
 	
 	/**

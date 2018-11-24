@@ -1,36 +1,34 @@
 package cliente_snake_ruby_unlam;
 
-import Observables.Escritor;
+import manejadores.ManejadorMovimientos;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Jugador implements KeyListener {
+public class Controlador implements KeyListener {
 
-	private int id;
-	private Escritor escritor;
+	private ManejadorMovimientos manejadorMovimientos;
 	
 	private int keyEventUP = KeyEvent.VK_UP;
 	private int keyEventDOWN = KeyEvent.VK_DOWN;
 	private int keyEventRIGTH = KeyEvent.VK_RIGHT;
 	private int keyEventLEFT = KeyEvent.VK_LEFT;
 	
-	public Jugador(int id, Escritor escritor) {
-		this.id = id;
-		this.escritor = escritor;
+	public Controlador(ManejadorMovimientos manejadorMovimientos) {
+		this.manejadorMovimientos = manejadorMovimientos;
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int teclaPresionada = e.getKeyCode();
 		if (teclaPresionada == keyEventUP) {
-			escritor.enviarMovimiento("arriba");
+			manejadorMovimientos.enviarMovimiento("arriba");
 		} else if (teclaPresionada == keyEventDOWN) {
-			escritor.enviarMovimiento("abajo");
+			manejadorMovimientos.enviarMovimiento("abajo");
 		} else if (teclaPresionada == keyEventRIGTH) {
-			escritor.enviarMovimiento("derecha");
+			manejadorMovimientos.enviarMovimiento("derecha");
 		} else if (teclaPresionada == keyEventLEFT) {
-			escritor.enviarMovimiento("izquierda");
+			manejadorMovimientos.enviarMovimiento("izquierda");
 		}
 		
 	}

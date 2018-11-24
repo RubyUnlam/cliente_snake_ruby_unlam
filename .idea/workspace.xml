@@ -2,28 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25b764f8-f1ca-4805-8617-50c1cd05dcfd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Observables/ObservadorAcceso.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Observables/ObservadorDibujables.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/CreacionSala.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Dibujable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Login.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Menu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Registro.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/RegistroUsuario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Sala.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/SalasCreadas.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Usuario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imagenes/fondo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utilidades/Constantes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/manejadores/ManejadorLogin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/manejadores/ManejadorSalas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Observables/Escritor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manejadores/ManejadorMovimientos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Observables/Lector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/observables/Lector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Observables/ObservadoLectura.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/observables/ObservadoLectura.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Observables/ObservadorAcceso.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Observables/ObservadorDibujables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/observables/ObservadorDibujables.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Escritor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Observables/Escritor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/CreacionSala.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/CreacionSala.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Juego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Juego.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Jugador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Lector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Observables/Lector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/ObservadoLectura.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Observables/ObservadoLectura.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/ObservadorLectura.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/UbicacionesDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Controlador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Registro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Registro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/SalasCreadas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/SalasCreadas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Ui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Ui.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -37,31 +31,36 @@
     <session id="1177401625">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.2" value="3" />
+          <entry key="project.open.time.28" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="37" />
+          <entry key="class" value="1" />
+          <entry key="java" value="79" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="37" />
+          <entry key="CLASS" value="1" />
+          <entry key="JAVA" value="79" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="845" />
+          <entry key="dummy" value="74" />
+          <entry key="java" value="3072" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="845" />
+          <entry key="JAVA" value="3072" />
+          <entry key="PLAIN_TEXT" value="74" />
         </counts>
       </usages-collector>
     </session>
@@ -69,10 +68,22 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Juego.java">
+        <entry file="file://$PROJECT_DIR$/src/manejadores/ManejadorMovimientos.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="23" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+            <state relative-caret-position="225">
+              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/manejadores/ManejadorSalas.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="30" column="41" lean-forward="true" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -81,39 +92,73 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Observables/Lector.java">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/util/Arrays.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="381">
-              <caret line="34" column="63" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="63" />
+            <state relative-caret-position="170">
+              <caret line="3798" column="26" selection-start-line="3798" selection-start-column="22" selection-end-line="3798" selection-end-column="26" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#426#427#0" expanded="true" />
-                <element signature="e#453#454#0" expanded="true" />
-                <element signature="e#1250#1358#0" expanded="true" />
-                <element signature="e#1357#1358#0" expanded="true" />
-                <element signature="e#1619#1620#0" expanded="true" />
-                <element signature="e#1654#1655#0" expanded="true" />
-                <element signature="e#1651#1652#0" expanded="true" />
-                <element signature="e#1686#1687#0" expanded="true" />
+                <element signature="e#177013#177014#0" expanded="true" />
+                <element signature="e#177054#177055#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Observables/ObservadorAcceso.java">
+        <entry file="file://$PROJECT_DIR$/src/observables/Lector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+            <state relative-caret-position="165">
+              <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/RegistroUsuario.java">
+        <entry file="file://$PROJECT_DIR$/src/observables/ObservadoLectura.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="15" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
+            <state relative-caret-position="30">
+              <caret line="2" column="29" lean-forward="true" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/manejadores/ManejadorLogin.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/SalasCreadas.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="167" column="45" lean-forward="true" selection-start-line="167" selection-start-column="45" selection-end-line="167" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Menu.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="210" column="46" selection-start-line="210" selection-start-column="46" selection-end-line="210" selection-end-column="46" />
+              <folding>
+                <element signature="e#7238#7239#0" expanded="true" />
+                <element signature="e#7289#7290#0" expanded="true" />
+                <element signature="e#7390#7391#0" expanded="true" />
+                <element signature="e#7419#7420#0" expanded="true" />
+                <element signature="e#9394#9395#0" expanded="true" />
+                <element signature="e#9418#9419#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -121,79 +166,16 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Cliente.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="33" column="18" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
+            <state relative-caret-position="469">
+              <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#679#680#0" expanded="true" />
-                <element signature="e#723#724#0" expanded="true" />
-                <element signature="e#910#911#0" expanded="true" />
-                <element signature="e#946#947#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Observables/Escritor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Login.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="33" column="11" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
-              <folding>
-                <element signature="e#5687#5688#0" expanded="true" />
-                <element signature="e#5709#5710#0" expanded="true" />
-                <element signature="e#5755#5756#0" expanded="true" />
-                <element signature="e#5786#5787#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Menu.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="200" column="70" lean-forward="true" selection-start-line="200" selection-start-column="70" selection-end-line="200" selection-end-column="70" />
-              <folding>
-                <element signature="e#5601#5602#0" expanded="true" />
-                <element signature="e#5637#5638#0" expanded="true" />
-                <element signature="e#7096#7097#0" expanded="true" />
-                <element signature="e#7118#7119#0" expanded="true" />
-                <element signature="e#9446#9447#0" expanded="true" />
-                <element signature="e#9513#9514#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Registro.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="129" column="27" lean-forward="true" selection-start-line="129" selection-start-column="27" selection-end-line="129" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/lang/String.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="3007" column="22" selection-start-line="3007" selection-start-column="22" selection-end-line="3007" selection-end-column="22" />
-              <folding>
-                <element signature="e#5687#5688#0" expanded="true" />
-                <element signature="e#5750#5751#0" expanded="true" />
-                <element signature="e#118405#118406#0" expanded="true" />
-                <element signature="e#118444#118445#0" expanded="true" />
+                <element signature="e#848#849#0" expanded="true" />
+                <element signature="e#905#906#0" expanded="true" />
+                <element signature="e#1121#1122#0" expanded="true" />
+                <element signature="e#1153#1154#0" expanded="true" />
+                <element signature="e#1366#1367#0" expanded="true" />
+                <element signature="e#1403#1404#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -201,10 +183,28 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>main</find>
       <find>loginº</find>
+      <find>close</find>
+      <find>new Lect</find>
+      <find>cre</find>
+      <find>crear</find>
+      <find>combo</find>
+      <find>inici</find>
+      <find>lector</find>
+      <find>jugar&quot;</find>
+      <find>login</find>
+      <find>salas</find>
+      <find>new Salas</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -222,14 +222,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Dibujable.java" />
-        <option value="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/CreacionSala.java" />
         <option value="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Sala.java" />
-        <option value="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/SalasCreadas.java" />
         <option value="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/utilidades/Constantes.java" />
         <option value="$PROJECT_DIR$/src/utilidades/Constantes.java" />
         <option value="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Ui.java" />
-        <option value="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Juego.java" />
-        <option value="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Jugador.java" />
         <option value="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/RegistroUsuario.java" />
         <option value="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Usuario.java" />
         <option value="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Escritor.java" />
@@ -238,12 +234,23 @@
         <option value="$PROJECT_DIR$/src/Observables/ObservadorLectura.java" />
         <option value="$PROJECT_DIR$/src/Observables/ObservadorAcceso.java" />
         <option value="$PROJECT_DIR$/src/Observables/ObservadorDibujables.java" />
+        <option value="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Jugador.java" />
+        <option value="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Controlador.java" />
         <option value="$PROJECT_DIR$/src/Observables/ObservadoLectura.java" />
+        <option value="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Juego.java" />
         <option value="$PROJECT_DIR$/src/Observables/Lector.java" />
-        <option value="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Registro.java" />
+        <option value="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/CreacionSala.java" />
         <option value="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Login.java" />
+        <option value="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/ManejadorLogin.java" />
+        <option value="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Registro.java" />
+        <option value="$PROJECT_DIR$/src/Observables/Escritor.java" />
+        <option value="$PROJECT_DIR$/src/observables/Escritor.java" />
+        <option value="$PROJECT_DIR$/src/manejadores/Escritor.java" />
+        <option value="$PROJECT_DIR$/src/manejadores/ManejadorMovimientos.java" />
         <option value="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Cliente.java" />
         <option value="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Menu.java" />
+        <option value="$PROJECT_DIR$/src/cliente_snake_ruby_unlam/SalasCreadas.java" />
+        <option value="$PROJECT_DIR$/src/manejadores/ManejadorSalas.java" />
       </list>
     </option>
   </component>
@@ -262,8 +269,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -282,24 +287,22 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="cliente_snake_ruby_unlam" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="cliente_snake_ruby_unlam" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cliente_snake_ruby_unlam" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Observables" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="Me&#9;FILE&#9;file:///Users/gonrodriguez/Repos/PrograAvanzada/cliente_snake_ruby_unlam/src/cliente_snake_ruby_unlam/Menu.java&#10;Le&#9;FILE&#9;file:///Users/gonrodriguez/Repos/PrograAvanzada/cliente_snake_ruby_unlam/src/Observables/Lector.java&#10;Login&#9;FILE&#9;file:///Users/gonrodriguez/Repos/PrograAvanzada/cliente_snake_ruby_unlam/src/cliente_snake_ruby_unlam/Login.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542245984805" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543094050107" />
     <property name="extract.method.default.visibility" value="private" />
+    <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -310,6 +313,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="manejadores" />
       <recent name="Observables" />
       <recent name="cliente_snake_ruby_unlam" />
       <recent name="cliente_snake_ruby_unlam.utilidades" />
@@ -331,13 +335,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Menu">
     <configuration name="Juego" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cliente_snake_ruby_unlam.Juego" />
       <module name="cliente_snake_ruby_unlam" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Observables.*" />
+          <option name="PATTERN" value="manejadores.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -345,8 +349,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Menu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cliente_snake_ruby_unlam.Menu" />
+      <module name="cliente_snake_ruby_unlam" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="manejadores.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Juego" />
+      <item itemvalue="Application.Menu" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Menu" />
         <item itemvalue="Application.Juego" />
       </list>
     </recent_temporary>
@@ -363,18 +385,21 @@
       <updated>1541291861665</updated>
       <workItem from="1541291871274" duration="2582000" />
       <workItem from="1542149755433" duration="7000" />
-      <workItem from="1542242114279" duration="3846000" />
+      <workItem from="1542242114279" duration="4461000" />
+      <workItem from="1542459878031" duration="8595000" />
+      <workItem from="1542665661180" duration="13000" />
+      <workItem from="1543086320847" duration="5351000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6435000" />
+    <option name="totallyTimeSpent" value="21009000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25679544" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26752505" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -383,14 +408,14 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32891566" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32891566" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.1626506" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32891566" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -414,10 +439,28 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Observables/Lector.java</url>
-          <line>36</line>
+          <url>file://$PROJECT_DIR$/src/observables/Lector.java</url>
+          <line>28</line>
           <properties />
-          <option name="timeStamp" value="3" />
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Registro.java</url>
+          <line>132</line>
+          <properties />
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/SalasCreadas.java</url>
+          <line>167</line>
+          <properties />
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/manejadores/ManejadorSalas.java</url>
+          <line>32</line>
+          <properties />
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -425,27 +468,47 @@
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
       <expression>
-        <expression-string>gson.fromJson(json, UbicacionesDTO.class)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>json</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>gson.fromJson(entrada.readUTF(), UbicacionesDTO.class)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
         <expression-string>entrada.readUTF()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>ui</expression-string>
+        <expression-string>contrasenia.toString()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>contrasenia</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>String.valueOf(contrasenia)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>cmbJugadores.setModel(new DefaultComboBoxModel&lt;Integer&gt;(Arrays.copyOfRange(CANTIDAD_DE_JUGADORES, 0, 3 - opcionSeleccionada)))</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>Arrays.copyOfRange(CANTIDAD_DE_JUGADORES, 0, 5 - 3)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>Arrays.copyOfRange(CANTIDAD_DE_JUGADORES, 0, 5 - 2)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>Arrays.copyOfRange(CANTIDAD_DE_JUGADORES, 0, 5 - opcionSeleccionada)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>e.getActionCommand()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -453,13 +516,7 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/MainCliente.java" />
-    <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/UbicacionesDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/UbicacionesDTO.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/awt/Component.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
@@ -471,33 +528,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/net/Socket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="207" column="11" selection-start-line="207" selection-start-column="11" selection-end-line="207" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/CreacionSala.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Sala.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/SalasCreadas.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utilidades/Constantes.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Jugador.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="26" column="27" lean-forward="true" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -508,141 +542,261 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Usuario.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/lang/String.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="25" lean-forward="true" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+        <state relative-caret-position="43830">
+          <caret line="3007" column="22" selection-start-line="3007" selection-start-column="22" selection-end-line="3007" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/RegistroUsuario.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding>
+            <element signature="e#370#371#0" expanded="true" />
+            <element signature="e#402#403#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/net/Socket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="207" column="11" selection-start-line="207" selection-start-column="11" selection-end-line="207" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/awt/Window.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="1012" column="16" selection-start-line="1012" selection-start-column="16" selection-end-line="1012" selection-end-column="16" />
+          <folding>
+            <element signature="e#35456#35457#0" expanded="true" />
+            <element signature="e#35491#35492#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/util/List.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="144" column="12" selection-start-line="144" selection-start-column="12" selection-end-line="144" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/javax/swing/DefaultComboBoxModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="56" column="11" selection-start-line="56" selection-start-column="11" selection-end-line="56" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Sala.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Ui.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="9" column="42" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
+          <caret line="9" column="48" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Observables/ObservadorDibujables.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Observables/ObservadoLectura.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Observables/ObservadorAcceso.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Observables/Lector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="34" column="63" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="63" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#426#427#0" expanded="true" />
-            <element signature="e#453#454#0" expanded="true" />
-            <element signature="e#1250#1358#0" expanded="true" />
-            <element signature="e#1357#1358#0" expanded="true" />
-            <element signature="e#1619#1620#0" expanded="true" />
-            <element signature="e#1654#1655#0" expanded="true" />
-            <element signature="e#1651#1652#0" expanded="true" />
-            <element signature="e#1686#1687#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/RegistroUsuario.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="15" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="3007" column="22" selection-start-line="3007" selection-start-column="22" selection-end-line="3007" selection-end-column="22" />
-          <folding>
-            <element signature="e#5687#5688#0" expanded="true" />
-            <element signature="e#5750#5751#0" expanded="true" />
-            <element signature="e#118405#118406#0" expanded="true" />
-            <element signature="e#118444#118445#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Registro.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="129" column="27" lean-forward="true" selection-start-line="129" selection-start-column="27" selection-end-line="129" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Observables/ObservadorAcceso.java" />
     <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Juego.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="23" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+        <state relative-caret-position="240">
+          <caret line="21" column="33" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/CreacionSala.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2265">
+          <caret line="162" column="28" selection-start-line="162" selection-start-column="28" selection-end-line="162" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/lang/Integer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/javax/swing/JSpinner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1890">
+          <caret line="165" column="11" selection-start-line="165" selection-start-column="11" selection-end-line="165" selection-end-column="11" />
+          <folding>
+            <element signature="e#5463#5464#0" expanded="true" />
+            <element signature="e#5509#5510#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Controlador.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
+          <folding>
+            <element signature="e#437#438#0" expanded="true" />
+            <element signature="e#468#469#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Usuario.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Login.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="33" column="11" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
+        <state relative-caret-position="306">
+          <caret line="182" column="41" selection-start-line="182" selection-start-column="41" selection-end-line="182" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Registro.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="27" column="6" lean-forward="true" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
           <folding>
-            <element signature="e#5687#5688#0" expanded="true" />
-            <element signature="e#5709#5710#0" expanded="true" />
-            <element signature="e#5755#5756#0" expanded="true" />
-            <element signature="e#5786#5787#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Observables/Escritor.java">
+    <entry file="file://$PROJECT_DIR$/src/observables/ObservadorDibujables.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
+        <state relative-caret-position="90">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/observables/ObservadoLectura.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="29" lean-forward="true" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/observables/Lector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/manejadores/ManejadorLogin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/manejadores/ManejadorMovimientos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="164" column="11" selection-start-line="164" selection-start-column="11" selection-end-line="164" selection-end-column="11" />
+          <folding>
+            <element signature="e#6283#6284#0" expanded="true" />
+            <element signature="e#6351#6352#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/Bibliotecas/gson-2.6.2.jar!/com/google/gson/Gson.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="452" column="17" selection-start-line="452" selection-start-column="17" selection-end-line="452" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/util/Arrays.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="3798" column="26" selection-start-line="3798" selection-start-column="22" selection-end-line="3798" selection-end-column="26" />
+          <folding>
+            <element signature="e#177013#177014#0" expanded="true" />
+            <element signature="e#177054#177055#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Cliente.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="18" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
+        <state relative-caret-position="469">
+          <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#679#680#0" expanded="true" />
-            <element signature="e#723#724#0" expanded="true" />
-            <element signature="e#910#911#0" expanded="true" />
-            <element signature="e#946#947#0" expanded="true" />
+            <element signature="e#848#849#0" expanded="true" />
+            <element signature="e#905#906#0" expanded="true" />
+            <element signature="e#1121#1122#0" expanded="true" />
+            <element signature="e#1153#1154#0" expanded="true" />
+            <element signature="e#1366#1367#0" expanded="true" />
+            <element signature="e#1403#1404#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="200" column="70" lean-forward="true" selection-start-line="200" selection-start-column="70" selection-end-line="200" selection-end-column="70" />
+        <state relative-caret-position="170">
+          <caret line="210" column="46" selection-start-line="210" selection-start-column="46" selection-end-line="210" selection-end-column="46" />
           <folding>
-            <element signature="e#5601#5602#0" expanded="true" />
-            <element signature="e#5637#5638#0" expanded="true" />
-            <element signature="e#7096#7097#0" expanded="true" />
-            <element signature="e#7118#7119#0" expanded="true" />
-            <element signature="e#9446#9447#0" expanded="true" />
-            <element signature="e#9513#9514#0" expanded="true" />
+            <element signature="e#7238#7239#0" expanded="true" />
+            <element signature="e#7289#7290#0" expanded="true" />
+            <element signature="e#7390#7391#0" expanded="true" />
+            <element signature="e#7419#7420#0" expanded="true" />
+            <element signature="e#9394#9395#0" expanded="true" />
+            <element signature="e#9418#9419#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cliente_snake_ruby_unlam/SalasCreadas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="167" column="45" lean-forward="true" selection-start-line="167" selection-start-column="45" selection-end-line="167" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/manejadores/ManejadorSalas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="30" column="41" lean-forward="true" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

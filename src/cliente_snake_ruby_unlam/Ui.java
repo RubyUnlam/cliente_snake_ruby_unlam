@@ -1,6 +1,6 @@
 package cliente_snake_ruby_unlam;
 
-import Observables.ObservadorDibujables;
+import observables.ObservadorDibujables;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,8 +14,8 @@ public class Ui extends JPanel implements ObservadorDibujables {
     private String fondoPath = "src/imagenes/fondo.png"; //TODO HACERLO VARIABLE
     private List<Dibujable> aDibujar = new ArrayList<>();
 
-    Ui(Jugador jugador) {
-        addKeyListener(jugador);
+    Ui(Controlador controlador) {
+        addKeyListener(controlador);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
     }

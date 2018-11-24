@@ -4,10 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.Objects;
+
+import static java.util.Objects.nonNull;
 
 public class CreacionSala extends JDialog {
 
 	private static final long serialVersionUID = 3146453246362725770L;
+	public static final Integer[] CANTIDAD_DE_JUGADORES = {1, 2, 3, 4};
 
 	private Menu ventanaMenu;
 
@@ -84,14 +89,10 @@ public class CreacionSala extends JDialog {
 		lblInformativo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInformativo.setBounds(6, 14, 344, 16);
 
-		cmbIA = new JComboBox<Integer>();
-		cmbIA.setModel(new DefaultComboBoxModel<Integer>(new Integer[] {0, 1, 2, 3}));
-		cmbIA.setBounds(168, 113, 64, 27);
 
-		cmbJugadores = new JComboBox<Integer>();
-		cmbJugadores.setModel(new DefaultComboBoxModel<Integer>(new Integer[] {1, 2, 3, 4}));
-		cmbJugadores.setBounds(168, 85, 64, 27);
-		
+		crearComboJugadores();
+		crearComboIA();
+
 		spinner = new JSpinner();
 		spinner.setBounds(296, 112, 54, 26);
 		SpinnerModel spinnerModel = new SpinnerNumberModel(50, 0, 100, 5);
@@ -117,6 +118,35 @@ public class CreacionSala extends JDialog {
 		getContentPane().add(spinner);
 
 		setVisible(true);
+	}
+
+
+	private void crearComboJugadores() {
+		cmbJugadores = new JComboBox<Integer>();
+		cmbJugadores.setModel(new DefaultComboBoxModel<Integer>(CANTIDAD_DE_JUGADORES));
+		cmbJugadores.setBounds(168, 85, 64, 27);
+
+		//Reduce la cantidad de IA que se puede elegir al seleccionar cantidad de usuarios
+//		cmbJugadores.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				if ("comboBoxChanged".equals(e.getActionCommand())) {
+//					Integer opcionSeleccionada = (Integer) cmbJugadores.getSelectedItem();
+//					if (nonNull(opcionSeleccionada) && opcionSeleccionada != 4){
+//                        cmbIA.setModel(new DefaultComboBoxModel<Integer>(Arrays.copyOfRange(CANTIDAD_DE_JUGADORES, 0, 4 - opcionSeleccionada)));
+//                    } else {
+//					    cmbIA.setModel(new DefaultComboBoxModel<Integer>(new Integer[]{0}));
+//                    }
+//
+//				}
+//			}
+//		});
+	}
+
+	private void crearComboIA() {
+		cmbIA = new JComboBox<Integer>();
+		cmbIA.setModel(new DefaultComboBoxModel<Integer>(Arrays.copyOfRange(CANTIDAD_DE_JUGADORES, 0, 3)));
+		cmbIA.setBounds(168, 113, 64, 27);
 	}
 
 	/**

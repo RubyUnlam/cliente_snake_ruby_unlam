@@ -1,5 +1,7 @@
 package cliente_snake_ruby_unlam;
 
+import observables.Lector;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -148,7 +150,7 @@ public class Menu extends JFrame {
 		btnJugar.setEnabled(false);
 		btnJugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Juego.iniciar(salaActual, cliente);
+				Juego.iniciar(salaActual, cliente, new Lector(cliente.obtenerJugador()));
 			}
 		});
 
@@ -198,7 +200,7 @@ public class Menu extends JFrame {
 	}
 
 	private void abrirLogin() {
-		new Login(this, cliente.obtenerEscritor(), cliente.obtenerLector());
+		new Login(this, cliente.getManejadorLogin());
 	}
 
 	private void abrirCreacionSalas() {
@@ -206,7 +208,7 @@ public class Menu extends JFrame {
 	}
 
 	public void abrirSalasCreadas() {
-		new SalasCreadas(this);
+		new SalasCreadas(this, cliente.getManejadorSalas());
 	}
 
 	public void loggeado(String usuario) {
@@ -283,6 +285,6 @@ public class Menu extends JFrame {
 	 * 
 	 */
 	public static void main(String[] args) {
-		new Menu(new Cliente("192.168.0.8", 12000)).setVisible(true);
-	}
+		new Menu(new Cliente("localhost", 12000)).setVisible(true);
+	} //IP DE MI PC "192.168.0.8"
 }

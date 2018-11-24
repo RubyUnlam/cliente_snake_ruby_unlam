@@ -1,5 +1,7 @@
 package cliente_snake_ruby_unlam;
 
+import manejadores.ManejadorSalas;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,7 +16,9 @@ public class SalasCreadas extends JDialog {
 	private static final long serialVersionUID = -2515309292855432466L;
 
 	private Menu ventanaMenu;
-	private List<Sala> listaSalas;
+	private List<Sala> listaSalas = new ArrayList<>();
+	private ManejadorSalas manejadorSalas;
+
 	private DefaultListModel<String> listModel = new DefaultListModel<>();
 
 	private JLabel lblValorCantidadMaximaJugadores;
@@ -32,10 +36,9 @@ public class SalasCreadas extends JDialog {
 	private JPasswordField pswSala;
 	private JButton btnConectar;
 
-
-	public SalasCreadas(Menu menu) {
-		
+	public SalasCreadas(Menu menu, ManejadorSalas manejadorSalas) {
 		ventanaMenu = menu;
+		this.manejadorSalas = manejadorSalas;
 		setBounds(100, 100, 450, 315);
 		setLocationRelativeTo(menu);
 		
@@ -161,12 +164,12 @@ public class SalasCreadas extends JDialog {
 	}
 
 	private void actualizarSalas() {
-		listaSalas = new ArrayList<Sala>();
-		listaSalas.addAll(ventanaMenu.getListaSalas());
-		for (Sala sala : listaSalas) {
-			listModel.addElement(sala.getNombreSala());
-		}
+		listaSalas.clear();
+		listaSalas.addAll(manejadorSalas.pedirSalas());
 		if (listaSalas.size() > 0) {
+			for (Sala sala : listaSalas) {
+				listModel.addElement(sala.getNombreSala());
+			}
 			lstSalas.setEnabled(true);
 			btnConectar.setEnabled(true);
 		}

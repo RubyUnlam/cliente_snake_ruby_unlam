@@ -1,8 +1,6 @@
 package cliente_snake_ruby_unlam;
 
-import Observables.Escritor;
-import Observables.Lector;
-import Observables.ObservadorAcceso;
+import manejadores.ManejadorLogin;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,9 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import static java.util.Objects.isNull;
-
-public class Login extends JDialog implements ObservadorAcceso {
+public class Login extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField txtNombreUsuario;
@@ -24,102 +20,158 @@ public class Login extends JDialog implements ObservadorAcceso {
 	private boolean loggeado = false;
 	Login login = this;
 	private RegistroUsuario respuesta = new RegistroUsuario("", false);;
-	private Escritor escritor;
-	private Lector lector;
-	
+	private ManejadorLogin manejador;
+
 	/**
 	 * Cuadro de dialogo para el inicio de sesion o registro de usuarios. 
 	 * @param menu para poder acceder a los componentes del JFrame principal.
 	 */
-	public Login(Menu menu, Escritor escritor, Lector lector) {
-		this.escritor = escritor;
-		this.lector = lector;
+	public Login(Menu menu, ManejadorLogin manejador) {
+		this.manejador = manejador;
 
-		ventanaMenu = menu;
-		
-		// Propiedades del JDialog para el login.
-		getContentPane().setLayout(null);
-		setBounds(0, 0, 340, 200);
-		setLocationRelativeTo(menu);
-		setTitle("Login");
-		setVisible(true);
-		
-		// Cuadro de texto para el nombre del usuario.
-		txtNombreUsuario = new JTextField();
-		txtNombreUsuario.setBounds(158, 47, 149, 26);
-		txtNombreUsuario.setColumns(10);
-		
-		// Cuadro de texto para la contrasenia.
-		txtContrasenia = new JPasswordField();
-		txtContrasenia.setBounds(158, 74, 149, 26);
-		txtContrasenia.setColumns(10);
+        ventanaMenu = menu;
+        armarVentanaLogin(menu);
+        armarTextFieldNombreDeUsuario();
+        armarJPasswordFieldContrasenia();
+        JButton btnRegistrarse = armarBotonDeRegistro();
+        armarBotonInicioDeSesion();
+        JLabel lblNombreUsuario = armarLabels("Nombre de Usuario", 52, 140);
+        JLabel lblContrasenia = armarLabels("Password", 79, 117);
+        JLabel lblLogin = armarLabelLogin();
+        armarLabelDeErrores();
+        agregarComponentes(btnRegistrarse, lblNombreUsuario, lblContrasenia, lblLogin);
 
-		// Boton de registro.
-		JButton btnRegistrarse = new JButton("Registrarse");
-		btnRegistrarse.setBounds(27, 120, 117, 29);
-		btnRegistrarse.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new Registro(login, login.escritor, login.lector);
-				
-			}
-		});
-		
-		// Boton de inicio de sesion.
-		btnIniciarSesion = new JButton("Mandale Mecha");
-		btnIniciarSesion.setBounds(168, 120, 140, 29);
-		btnIniciarSesion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				actionIniciarSesion();
-			}
-		});
-		
-		// Labels nombre de usuario, contrasenia y login
-		JLabel lblNombreUsuario = new JLabel("Nombre de Usuario");
-		lblNombreUsuario.setBounds(27, 52, 140, 16);
-
-		JLabel lblContrasenia = new JLabel("Password");
-		lblContrasenia.setBounds(27, 79, 117, 16);
-
-		JLabel lblLogin = new JLabel("Login");
-		lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLogin.setBounds(6, 10, 318, 16);
-		
-		// Label para mostrar errores al registrarse/iniciar sesion
-		lblErrorRegistro = new JLabel();
-		lblErrorRegistro.setHorizontalAlignment(SwingConstants.CENTER);
-		lblErrorRegistro.setBounds(6, 32, 318, 16);
-		lblErrorRegistro.setVisible(false);
-		
-		// Agregando componentes al panel.
-		getContentPane().add(txtNombreUsuario);
-		getContentPane().add(txtContrasenia);
-		getContentPane().add(lblErrorRegistro);
-		getContentPane().add(btnIniciarSesion);
-		getContentPane().add(btnRegistrarse);
-		getContentPane().add(lblNombreUsuario);
-		getContentPane().add(lblContrasenia);
-		getContentPane().add(lblLogin);
-		
-		iniciarSesionConEnter();
+        iniciarSesionConEnter();
 		
 	}
 
-	/**
+    /**
+     * Agregando componentes al panel.
+     * @param btnRegistrarse
+     * @param lblNombreUsuario
+     * @param lblContrasenia
+     * @param lblLogin
+     */
+    private void agregarComponentes(JButton btnRegistrarse, JLabel lblNombreUsuario, JLabel lblContrasenia, JLabel lblLogin) {
+        getContentPane().add(txtNombreUsuario);
+        getContentPane().add(txtContrasenia);
+        getContentPane().add(lblErrorRegistro);
+        getContentPane().add(btnIniciarSesion);
+        getContentPane().add(btnRegistrarse);
+        getContentPane().add(lblNombreUsuario);
+        getContentPane().add(lblContrasenia);
+        getContentPane().add(lblLogin);
+    }
+
+    /**
+     * Label para mostrar errores al registrarse/iniciar sesion
+     */
+    private void armarLabelDeErrores() {
+        lblErrorRegistro = new JLabel();
+        lblErrorRegistro.setHorizontalAlignment(SwingConstants.CENTER);
+        lblErrorRegistro.setBounds(6, 32, 318, 16);
+        lblErrorRegistro.setVisible(false);
+    }
+
+    /**
+     * Arma el label del login
+     * @return
+     */
+    private JLabel armarLabelLogin() {
+        JLabel lblLogin = new JLabel("Login");
+        lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
+        lblLogin.setBounds(6, 10, 318, 16);
+        return lblLogin;
+    }
+
+    /**
+     * Arma labels para nombre de usuario y contrasenia
+     * @param s
+     * @param y
+     * @param alto
+     * @return
+     */
+    private JLabel armarLabels(String s, int y, int alto) {
+        JLabel lblNombreUsuario = new JLabel(s);
+        lblNombreUsuario.setBounds(27, y, alto, 16);
+        return lblNombreUsuario;
+    }
+
+    /**
+     * Arma el boton de inicio de sesion
+     */
+    private void armarBotonInicioDeSesion() {
+        // Boton de inicio de sesion.
+        btnIniciarSesion = new JButton("Mandale Mecha");
+        btnIniciarSesion.setBounds(168, 120, 140, 29);
+        btnIniciarSesion.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                actionIniciarSesion();
+            }
+        });
+    }
+
+    /**
+     * Arma el boton de registro
+     * @return
+     */
+    private JButton armarBotonDeRegistro() {
+        JButton btnRegistrarse = new JButton("Registrarse");
+        btnRegistrarse.setBounds(27, 120, 117, 29);
+        btnRegistrarse.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new Registro(login, login.manejador);
+
+            }
+        });
+        return btnRegistrarse;
+    }
+
+    /**
+     * Arma el JPasswordField para la contrasenia
+     */
+    private void armarJPasswordFieldContrasenia() {
+        txtContrasenia = new JPasswordField();
+        txtContrasenia.setBounds(158, 74, 149, 26);
+        txtContrasenia.setColumns(10);
+    }
+
+    /**
+     * Arma el TextField para el nombre de usuario
+     */
+    private void armarTextFieldNombreDeUsuario() {
+        txtNombreUsuario = new JTextField();
+        txtNombreUsuario.setBounds(158, 47, 149, 26);
+        txtNombreUsuario.setColumns(10);
+    }
+
+    /**
+     * Propiedades del JDialog para el login.
+     * @param menu
+     */
+    private void armarVentanaLogin(Menu menu) {
+        getContentPane().setLayout(null);
+        setBounds(0, 0, 340, 200);
+        setLocationRelativeTo(menu);
+        setTitle("Login");
+        setVisible(true);
+    }
+
+    /**
 	 * Llama al proceso de inicio de sesion, y muestra un error en caso de fallar. 
 	 * @param nombreUsuario
 	 * @param contrasenia
 	 * @return verdadero o falso segun el exito del inicio de sesion.
 	 */
 	public boolean iniciarSesion(String nombreUsuario, String contrasenia) {
-		do {
-			escritor.enviarLogin(new Usuario(nombreUsuario, contrasenia));
-			if (!respuesta.esRegistroEfectivo()) {
-				lblErrorRegistro.setText(respuesta.getMensaje());
-				txtContrasenia.setText("");
-				lblErrorRegistro.setForeground(Color.RED);
-			}
-		} while (!respuesta.esRegistroEfectivo());
-		return true;
+        this.respuesta = manejador.enviarUsuario(new Usuario(nombreUsuario, contrasenia));
+        if (!respuesta.esRegistroEfectivo()) {
+            lblErrorRegistro.setText("Error al loggear. Verifique los datos");
+            txtContrasenia.setText("");
+            lblErrorRegistro.setForeground(Color.RED);
+            lblErrorRegistro.setVisible(true);
+        }
+		return respuesta.esRegistroEfectivo();
 	}
 	
 	/**
@@ -184,19 +236,5 @@ public class Login extends JDialog implements ObservadorAcceso {
 		txtNombreUsuario.setText(usuarioRegistrado);
 		txtContrasenia.setText("");
 		txtContrasenia.requestFocus();
-	}
-	
-	public boolean isLoggeado() {
-		return loggeado;
-	}
-
-	public void setLoggeado(boolean loggeado) {
-		this.loggeado = loggeado;
-	}
-
-	@Override
-	public boolean notificarRegistro(RegistroUsuario respuesta) {
-		this.respuesta = respuesta;
-		return respuesta.esRegistroEfectivo();
 	}
 }
