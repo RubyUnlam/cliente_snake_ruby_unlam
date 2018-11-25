@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import static java.util.Objects.nonNull;
+
 public class Login extends JDialog {
 
 	private static final long serialVersionUID = 1L;
@@ -165,7 +167,7 @@ public class Login extends JDialog {
 	 */
 	public boolean iniciarSesion(String nombreUsuario, String contrasenia) {
         this.respuesta = manejador.enviarUsuario(new Usuario(nombreUsuario, contrasenia));
-        if (!respuesta.esRegistroEfectivo()) {
+        if (nonNull(this.respuesta) && !respuesta.esRegistroEfectivo()) {
             lblErrorRegistro.setText("Error al loggear. Verifique los datos");
             txtContrasenia.setText("");
             lblErrorRegistro.setForeground(Color.RED);

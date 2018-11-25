@@ -26,7 +26,7 @@ public class ManejadorLogin {
             return gson.fromJson(entrada.readUTF(), RegistroUsuario.class);
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
+            return new RegistroUsuario("Ha ocurrido un error. Intente nuevamente", false);
         }
     }
 }

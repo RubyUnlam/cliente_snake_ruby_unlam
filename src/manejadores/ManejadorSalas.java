@@ -1,5 +1,6 @@
 package manejadores;
 
+import cliente_snake_ruby_unlam.RespuestaCreacionSala;
 import cliente_snake_ruby_unlam.Sala;
 import com.google.gson.Gson;
 
@@ -35,5 +36,18 @@ public class ManejadorSalas {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public RespuestaCreacionSala crearSala(Sala sala){
+        try {
+            salida.writeUTF("crear_sala");
+            salida.writeUTF(gson.toJson(sala));
+            RespuestaCreacionSala respuesta = gson.fromJson(entrada.readUTF(), RespuestaCreacionSala.class);
+            return respuesta;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+
     }
 }

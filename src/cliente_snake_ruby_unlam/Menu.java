@@ -204,7 +204,7 @@ public class Menu extends JFrame {
 	}
 
 	private void abrirCreacionSalas() {
-		new CreacionSala(this);
+		new CreacionSala(this, cliente.getManejadorSalas());
 	}
 
 	public void abrirSalasCreadas() {
@@ -220,11 +220,12 @@ public class Menu extends JFrame {
 		lblUsuario.setVisible(true);
 	}
 
-	public void crearMiSala(Sala sala) {
-		salaActual = sala;		
-		listaSalas.add(salaActual);
+	public void crearMiSala(List<Sala> sala) {
+		listaSalas.removeAll(listaSalas);
+		listaSalas.addAll(sala);
 		btnSalirSala.setEnabled(true);
 		btnJugar.setEnabled(true);
+		salaActual = listaSalas.get(listaSalas.size()-1); //emprolijar eso
 		actualizarJugadoresYDetalles();
 	}
 
