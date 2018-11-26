@@ -165,26 +165,36 @@ public class SalasCreadas extends JDialog {
 
 	private void actualizarSalas() {
 		listaSalas.clear();
-		listaSalas.addAll(manejadorSalas.pedirSalas());
-		if (listaSalas.size() > 0) {
-			for (Sala sala : listaSalas) {
-				listModel.addElement(sala.getNombreSala());
+
+		RespuestaAccionConSala respuesta = manejadorSalas.pedirSalas();
+		if(respuesta.esAccionValida()){
+			listaSalas.addAll(respuesta.getListaSalas());
+			if (listaSalas.size() > 0) {
+				for (Sala sala : listaSalas) {
+					listModel.addElement(sala.getNombreSala());
+				}
+				lstSalas.setEnabled(true);
+				btnConectar.setEnabled(true);
 			}
-			lstSalas.setEnabled(true);
-			btnConectar.setEnabled(true);
+		} else {
+			mostrarMensajeInformativo(respuesta.getMensaje());
 		}
+
 	}
 
 	private void conectarASala() {
 		if (!lstSalas.isSelectionEmpty()) {
-			Sala sala = listaSalas.get(lstSalas.getSelectedIndex());
-			if (!sala.getContrasenia().isEmpty() && pswSala.getPassword().length == 0) {
-				mostrarMensajeInformativo("Debe ingresar password para esta sala");
-			} else if (!String.valueOf(pswSala.getPassword()).equals(sala.getContrasenia())) {
-				mostrarMensajeInformativo("Password erroneo, ingrese nuevamente");
+			String nombreSala = lstSalas.getSelectedValue();
+			RespuestaAccionConSala respuesta = manejadorSalas.unirseASala(new Sala(nombreSala, String.valueOf(pswSala.getPassword())));
+			if(respuesta.esAccionValida()){
+				for (Sala sala : respuesta.getListaSalas()) {
+					if (sala.getNombreSala().equals(nombreSala)) {
+						ventanaMenu.conectadoASala(sala);
+						dispose();
+					}
+				}
 			} else {
-				ventanaMenu.conectadoASala(sala);
-				dispose();
+				mostrarMensajeInformativo(respuesta.getMensaje());
 			}
 		}
 	}

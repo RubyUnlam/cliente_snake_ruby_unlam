@@ -1,6 +1,6 @@
 package cliente_snake_ruby_unlam;
 
-import observables.Lector;
+import manejadores.ManejadorDeJuego;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -150,7 +150,7 @@ public class Menu extends JFrame {
 		btnJugar.setEnabled(false);
 		btnJugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Juego.iniciar(salaActual, cliente, new Lector(cliente.obtenerJugador()));
+				Juego.iniciar(cliente, new ManejadorDeJuego(cliente.obtenerJugador()));
 			}
 		});
 
@@ -220,9 +220,9 @@ public class Menu extends JFrame {
 		lblUsuario.setVisible(true);
 	}
 
-	public void crearMiSala(List<Sala> sala) {
-		listaSalas.removeAll(listaSalas);
-		listaSalas.addAll(sala);
+	public void crearMiSala(List<Sala> salas) {
+		listaSalas.clear();
+		listaSalas.addAll(salas);
 		btnSalirSala.setEnabled(true);
 		btnJugar.setEnabled(true);
 		salaActual = listaSalas.get(listaSalas.size()-1); //emprolijar eso
@@ -241,14 +241,17 @@ public class Menu extends JFrame {
 	}
 	
 	private void actualizarJugadoresYDetalles() {
-		limpiarListaJugadores();
+		actualizarListaJugadores();
 		actualizarDetallesSalaActual();
 		cambiarEstadoDetallesSala(true);
 	}
 	
-	private void limpiarListaJugadores() {
+	private void actualizarListaJugadores() {
 		listModel.removeAllElements();
-		listModel.addElement(usuarioActual);
+		List<Jugador> jugadores = salaActual.getJugadores();
+		for (Jugador jugador: salaActual.getJugadores()){
+			listModel.addElement(jugador.getNombre());
+		}
 	}
 	
 	private void actualizarDetallesSalaActual() {

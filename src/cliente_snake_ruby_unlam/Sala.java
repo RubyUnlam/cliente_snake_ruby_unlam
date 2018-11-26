@@ -1,5 +1,8 @@
 package cliente_snake_ruby_unlam;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Sala {
 
 	private String nombreSala;
@@ -14,8 +17,11 @@ public class Sala {
 
 	private int dificultadIA;
 
-	public Sala() {
+	private List<Jugador> jugadores = new ArrayList<>();
 
+	public Sala(String nombreSala, String contrasenia) {
+		this.nombreSala = nombreSala;
+		this.contrasenia = contrasenia;
 	}
 
 	public Sala(String nombreSala, String contrasenia, int cantidadJugadores, int cantidadIA, String nombreCreador,
@@ -83,4 +89,8 @@ public class Sala {
 	//
 	// private int tiempo;
 
+
+	public List<Jugador> getJugadores() {
+		return jugadores;
+	}
 }

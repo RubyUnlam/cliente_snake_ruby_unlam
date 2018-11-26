@@ -1,6 +1,7 @@
-package observables;
+package manejadores;
 
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Arrays;
@@ -8,15 +9,18 @@ import java.util.List;
 
 import cliente_snake_ruby_unlam.Dibujable;
 import com.google.gson.Gson;
+import observables.ObservadoLectura;
+import observables.ObservadorDibujables;
 
-public class Lector extends Thread implements ObservadoLectura {
+public class ManejadorDeJuego extends Thread implements ObservadoLectura {
 	
 	private Socket socket;
 	private ObservadorDibujables observadorDibujable;
 	private Gson gson = new Gson();
 	private DataInputStream entrada;
+	private DataOutputStream salida;
 
-	public Lector(Socket socket) {
+	public ManejadorDeJuego(Socket socket) {
 		this.socket = socket;
 	}
 	
@@ -24,6 +28,8 @@ public class Lector extends Thread implements ObservadoLectura {
 	public void run() {
 		try {
 			this.entrada = new DataInputStream(socket.getInputStream());
+			this.salida = new DataOutputStream(socket.getOutputStream());
+			salida.writeUTF("jugar");
 
 			while (true) {
 				String json = entrada.readUTF();

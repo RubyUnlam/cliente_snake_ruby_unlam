@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
 public class CreacionSala extends JDialog {
@@ -161,14 +162,14 @@ public class CreacionSala extends JDialog {
                 (int) cmbJugadores.getSelectedItem(), (int) cmbIA.getSelectedItem(),
                 ventanaMenu.getUsuarioActual(), (int) spinner.getValue());
         if (!camposCreacionSalaVacios() && cantidadJugadoresValida() && crearSala(sala)) {
-            RespuestaCreacionSala rta = manejadorSalas.crearSala(sala);
-            if(nonNull(rta) && rta.isFueCreada()){
-                dispose();
-                ventanaMenu.crearMiSala(rta.getListaSalas());
-            } else if(nonNull(rta)){ //TODO Cambiar esto para no preguntar 2 veces si no es null, y tampoco meter todo el código dentro un if.
-                mostrarMensajeInformativo(rta.getMensaje());
-            }
+            RespuestaAccionConSala respuesta = manejadorSalas.crearSala(sala);
 
+            if(respuesta.esAccionValida()){
+                dispose();
+                ventanaMenu.crearMiSala(respuesta.getListaSalas());
+            } else {
+                mostrarMensajeInformativo(respuesta.getMensaje());
+            }
         }
     }
 

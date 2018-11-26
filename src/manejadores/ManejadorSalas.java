@@ -1,6 +1,6 @@
 package manejadores;
 
-import cliente_snake_ruby_unlam.RespuestaCreacionSala;
+import cliente_snake_ruby_unlam.RespuestaAccionConSala;
 import cliente_snake_ruby_unlam.Sala;
 import com.google.gson.Gson;
 
@@ -8,8 +8,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.Arrays;
-import java.util.List;
+
+import static java.util.Objects.nonNull;
 
 public class ManejadorSalas {
 
@@ -22,32 +22,32 @@ public class ManejadorSalas {
         this.entrada = new DataInputStream(socket.getInputStream());
     }
 
-    /**
-     * Devuelve la lista de salas. Cuidado! está lista es inmutable,
-     * no agregar ni remover elementos.
-     * @return
-     */
-    public List<Sala> pedirSalas() {
+    public RespuestaAccionConSala pedirSalas() {
+        return realizarAccion(null, "ver_salas");
+    }
+
+    public RespuestaAccionConSala crearSala(Sala sala){
+        return realizarAccion(sala, "crear_sala");
+    }
+
+    public RespuestaAccionConSala unirseASala(Sala sala){
+        return realizarAccion(sala, "unirse_a_sala");
+    }
+
+    private RespuestaAccionConSala realizarAccion(Sala sala, String accion) {
         try {
-            salida.writeUTF("ver_salas");
-            List<Sala> salas = Arrays.asList(gson.fromJson(entrada.readUTF(), Sala[].class));
-            return salas;
+            salida.writeUTF(accion);
+            if (nonNull(sala)) {
+                salida.writeUTF(gson.toJson(sala));
+            }
+            return gson.fromJson(entrada.readUTF(), RespuestaAccionConSala.class);
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
+            return obtenerRespuestaDeError();
         }
     }
 
-    public RespuestaCreacionSala crearSala(Sala sala){
-        try {
-            salida.writeUTF("crear_sala");
-            salida.writeUTF(gson.toJson(sala));
-            RespuestaCreacionSala respuesta = gson.fromJson(entrada.readUTF(), RespuestaCreacionSala.class);
-            return respuesta;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-
+    private RespuestaAccionConSala obtenerRespuestaDeError() {
+        return new RespuestaAccionConSala(false, "Ha ocurrido un error. Intente nuevamente");
     }
 }
