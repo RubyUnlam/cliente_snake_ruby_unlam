@@ -9,7 +9,7 @@ import static utilidades.Constantes.ANCHO_VENTANA;
 
 public class Juego {
 
-	public static void iniciar(Cliente cliente, ManejadorDeJuego manejadorDeJuego) {
+	public static void iniciar(Cliente cliente) {
 
 		JFrame ventana = new JFrame("Snake");
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -19,6 +19,7 @@ public class Juego {
 
 		Ui ui = new Ui(cliente.obtenerControlador());
 
+		ManejadorDeJuego manejadorDeJuego = cliente.obtenerManejadorDeJuego();
 		manejadorDeJuego.agregarObservadorDibujables(ui);
 		manejadorDeJuego.start();
 

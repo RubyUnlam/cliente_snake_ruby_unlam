@@ -14,37 +14,32 @@ import observables.ObservadorDibujables;
 
 public class ManejadorDeJuego extends Thread implements ObservadoLectura {
 	
-	private Socket socket;
 	private ObservadorDibujables observadorDibujable;
 	private Gson gson = new Gson();
-	private DataInputStream entrada;
-	private DataOutputStream salida;
+	private ManejadorES manejadorES;
 
-	public ManejadorDeJuego(Socket socket) {
-		this.socket = socket;
+	public ManejadorDeJuego(ManejadorES manejadorES) {
+		this.manejadorES = manejadorES;
 	}
 	
 	@Override
 	public void run() {
 		try {
-			this.entrada = new DataInputStream(socket.getInputStream());
-			this.salida = new DataOutputStream(socket.getOutputStream());
-			salida.writeUTF("jugar");
-
+			manejadorES.getSalida().writeUTF("jugar");
 			while (true) {
-				String json = entrada.readUTF();
+				String json = manejadorES.getEntrada().readUTF();
 				List<Dibujable> dibujables = Arrays.asList(gson.fromJson(json, Dibujable[].class));
 				enviarADibujar(dibujables);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-            try {
-				entrada.close();
-				socket.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+//            try {
+//				entrada.close();
+//				socket.close();
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
 		}
 
 	}

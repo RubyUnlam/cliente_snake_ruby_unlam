@@ -1,9 +1,9 @@
 package cliente_snake_ruby_unlam;
 
-import manejadores.ManejadorMovimientos;
-import manejadores.ManejadorLogin;
-import manejadores.ManejadorSalas;
+import manejadores.*;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -13,7 +13,10 @@ public class Cliente {
 	private ManejadorMovimientos manejadorMovimientos;
     private ManejadorLogin manejadorLogin;
     private ManejadorSalas manejadorSalas;
+    private ManejadorDeJuego manejadorDeJuego;
+    private ManejadorES manejadorES;
     private Socket socket;
+
 
     public Cliente(String ip, int puerto) {
         try {
@@ -21,9 +24,12 @@ public class Cliente {
 
             System.out.print("Connection accepted");
 
-            this.manejadorMovimientos = new ManejadorMovimientos(this.socket);
-            this.manejadorLogin = new ManejadorLogin(socket);
-            this.manejadorSalas = new ManejadorSalas(socket);
+            this.manejadorES = new ManejadorES(socket);
+
+            this.manejadorMovimientos = new ManejadorMovimientos(manejadorES);
+            this.manejadorLogin = new ManejadorLogin(manejadorES);
+            this.manejadorSalas = new ManejadorSalas(manejadorES);
+            this.manejadorDeJuego = new ManejadorDeJuego(manejadorES);
 
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -36,8 +42,8 @@ public class Cliente {
     	return new Controlador(manejadorMovimientos);
     }
 
-    public Socket obtenerJugador() {
-        return socket;
+    public ManejadorDeJuego obtenerManejadorDeJuego() {
+        return manejadorDeJuego;
     }
 
     public ManejadorMovimientos obtenerEscritor(){

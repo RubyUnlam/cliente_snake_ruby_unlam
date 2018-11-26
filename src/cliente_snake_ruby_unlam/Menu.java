@@ -150,7 +150,7 @@ public class Menu extends JFrame {
 		btnJugar.setEnabled(false);
 		btnJugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Juego.iniciar(cliente, new ManejadorDeJuego(cliente.obtenerJugador()));
+				Juego.iniciar(cliente);
 			}
 		});
 

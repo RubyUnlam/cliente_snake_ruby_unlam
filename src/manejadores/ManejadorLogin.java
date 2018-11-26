@@ -11,19 +11,18 @@ import java.net.Socket;
 
 public class ManejadorLogin {
 
-    private DataOutputStream salida;
-    private DataInputStream entrada;
+    private ManejadorES manejadorES;
     private Gson gson = new Gson();
 
-    public ManejadorLogin(Socket socket) throws IOException {
-        this.salida = new DataOutputStream(socket.getOutputStream());
-        this.entrada = new DataInputStream(socket.getInputStream());
+    public ManejadorLogin(ManejadorES manejadorES) throws IOException {
+        this.manejadorES = manejadorES;
     }
 
     public RegistroUsuario enviarUsuario(Usuario usuario) {
         try {
-            salida.writeUTF(gson.toJson(usuario));
-            return gson.fromJson(entrada.readUTF(), RegistroUsuario.class);
+            manejadorES.getSalida().writeUTF(gson.toJson(usuario));
+            RegistroUsuario registroUsuario = gson.fromJson(manejadorES.getEntrada().readUTF(), RegistroUsuario.class);
+            return registroUsuario;
         } catch (IOException e) {
             e.printStackTrace();
             return new RegistroUsuario("Ha ocurrido un error. Intente nuevamente", false);

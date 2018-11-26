@@ -6,23 +6,16 @@ import java.net.Socket;
 
 public class ManejadorMovimientos {
 
-	private Socket socket;
+	private ManejadorES manejadorES;
 
-	public ManejadorMovimientos(Socket socket) throws IOException {
-		this.socket = socket;
+	public ManejadorMovimientos(ManejadorES manejadorES) {
+		this.manejadorES = manejadorES;
 	}
 
 	public void enviarMovimiento(String direccion) {
-		DataOutputStream salida = null;
-		try {
-			salida = new DataOutputStream(socket.getOutputStream());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		try {
 			System.out.println(direccion);
-			salida.writeUTF(direccion);
-			System.out.println("enviado");
+			manejadorES.getSalida().writeUTF(direccion);
         } catch (IOException e) {
             e.printStackTrace();
         }

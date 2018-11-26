@@ -13,13 +13,11 @@ import static java.util.Objects.nonNull;
 
 public class ManejadorSalas {
 
-    private DataOutputStream salida;
-    private DataInputStream entrada;
+    private ManejadorES manejadorES;
     private Gson gson = new Gson();
 
-    public ManejadorSalas(Socket socket) throws IOException {
-        this.salida = new DataOutputStream(socket.getOutputStream());
-        this.entrada = new DataInputStream(socket.getInputStream());
+    public ManejadorSalas(ManejadorES manejadorES) {
+        this.manejadorES = manejadorES;
     }
 
     public RespuestaAccionConSala pedirSalas() {
@@ -36,11 +34,11 @@ public class ManejadorSalas {
 
     private RespuestaAccionConSala realizarAccion(Sala sala, String accion) {
         try {
-            salida.writeUTF(accion);
+            manejadorES.getSalida().writeUTF(accion);
             if (nonNull(sala)) {
-                salida.writeUTF(gson.toJson(sala));
+                manejadorES.getSalida().writeUTF(gson.toJson(sala));
             }
-            return gson.fromJson(entrada.readUTF(), RespuestaAccionConSala.class);
+            return gson.fromJson(manejadorES.getEntrada().readUTF(), RespuestaAccionConSala.class);
         } catch (IOException e) {
             e.printStackTrace();
             return obtenerRespuestaDeError();
