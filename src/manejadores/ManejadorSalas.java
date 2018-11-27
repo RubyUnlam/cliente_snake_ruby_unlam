@@ -4,10 +4,7 @@ import cliente_snake_ruby_unlam.RespuestaAccionConSala;
 import cliente_snake_ruby_unlam.Sala;
 import com.google.gson.Gson;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.Socket;
 
 import static java.util.Objects.nonNull;
 

@@ -4,17 +4,14 @@ import cliente_snake_ruby_unlam.RegistroUsuario;
 import cliente_snake_ruby_unlam.Usuario;
 import com.google.gson.Gson;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.Socket;
 
 public class ManejadorLogin {
 
     private ManejadorES manejadorES;
     private Gson gson = new Gson();
 
-    public ManejadorLogin(ManejadorES manejadorES) throws IOException {
+    public ManejadorLogin(ManejadorES manejadorES) {
         this.manejadorES = manejadorES;
     }
 
