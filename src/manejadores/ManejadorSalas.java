@@ -44,7 +44,6 @@ public class ManejadorSalas {
                 manejadorES.getSalida().writeUTF(gson.toJson(sala));
             }
             String json = manejadorES.getEntrada().readUTF();
-            System.out.println(json);
             return gson.fromJson(json, RespuestaAccionConSala.class);
         } catch (IOException e) {
             e.printStackTrace();

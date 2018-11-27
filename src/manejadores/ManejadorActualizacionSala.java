@@ -6,6 +6,8 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 
+import static java.util.Objects.nonNull;
+
 public class ManejadorActualizacionSala extends Thread {
 
     private ManejadorES manejadorES;
@@ -18,10 +20,15 @@ public class ManejadorActualizacionSala extends Thread {
 
     @Override
     public void run() {
-        while (true) {
+        boolean continuar = true;
+        while (continuar) {
             try {
                 Sala sala = gson.fromJson(manejadorES.getEntrada().readUTF(), Sala.class);
-                menu.conectadoASala(sala);
+                if (nonNull(sala)){
+                    menu.conectadoASala(sala);
+                } else {
+                    continuar = false;
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

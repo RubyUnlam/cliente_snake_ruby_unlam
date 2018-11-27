@@ -238,6 +238,7 @@ public class Menu extends JFrame {
 	}
 	
 	public void salirSala() {
+		cliente.getManejadorSalas().salirDeSala();
 		listModel.removeAllElements();
 		cambiarEstadoDetallesSala(false);
 	}
