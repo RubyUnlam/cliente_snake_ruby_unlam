@@ -15,7 +15,7 @@ import static java.util.Objects.nonNull;
 public class CreacionSala extends JDialog {
 
     private static final long serialVersionUID = 3146453246362725770L;
-    public static final Integer[] CANTIDAD_DE_JUGADORES = {1, 2, 3, 4};
+    public static final Integer[] CANTIDAD_DE_JUGADORES = {0, 1, 2, 3, 4};
 
     private Menu ventanaMenu;
 
@@ -129,7 +129,7 @@ public class CreacionSala extends JDialog {
 
     private void crearComboJugadores() {
         cmbJugadores = new JComboBox<Integer>();
-        cmbJugadores.setModel(new DefaultComboBoxModel<Integer>(CANTIDAD_DE_JUGADORES));
+        cmbJugadores.setModel(new DefaultComboBoxModel<Integer>(Arrays.copyOfRange(CANTIDAD_DE_JUGADORES, 1, 5)));
         cmbJugadores.setBounds(168, 85, 64, 27);
 
         //Reduce la cantidad de IA que se puede elegir al seleccionar cantidad de usuarios
@@ -151,7 +151,7 @@ public class CreacionSala extends JDialog {
 
     private void crearComboIA() {
         cmbIA = new JComboBox<Integer>();
-        cmbIA.setModel(new DefaultComboBoxModel<Integer>(Arrays.copyOfRange(CANTIDAD_DE_JUGADORES, 0, 3)));
+        cmbIA.setModel(new DefaultComboBoxModel<Integer>(Arrays.copyOfRange(CANTIDAD_DE_JUGADORES, 0, 4)));
         cmbIA.setBounds(168, 113, 64, 27);
     }
 
