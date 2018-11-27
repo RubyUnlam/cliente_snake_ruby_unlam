@@ -194,6 +194,7 @@ public class SalasCreadas extends JDialog {
 					if (sala.getNombreSala().equals(nombreSala)) {
 						ventanaMenu.conectadoASala(sala);
 						manejadorActualizacionSala.start();
+						ventanaMenu.habilitarInteraccionSalas(false);
 						dispose();
 					}
 				}

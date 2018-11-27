@@ -247,6 +247,7 @@ public class Menu extends JFrame {
 		cliente.getManejadorSalas().salirDeSala();
 		listModel.removeAllElements();
 		cambiarEstadoDetallesSala(false);
+		habilitarInteraccionSalas(true);
 	}
 	
 	private void actualizarJugadoresYDetalles() {
@@ -286,6 +287,11 @@ public class Menu extends JFrame {
 
 	public void deshabiliarInicioSesion(){
 		btnIniciarSesion.setEnabled(false);
+	}
+
+	public void habilitarInteraccionSalas(Boolean b){
+		btnCrearSala.setEnabled(b);
+		btnVerSalasCreadas.setEnabled(b);
 	}
 
 	public String getUsuarioActual() {

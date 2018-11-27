@@ -170,8 +170,8 @@ public class CreacionSala extends JDialog {
             if(respuesta.esAccionValida()){
                 dispose();
                 ventanaMenu.crearMiSala(respuesta.getListaSalas());
-                manejadorSalas.unirseASala(sala);
                 manejadorActualizacionSala.start();
+                ventanaMenu.habilitarInteraccionSalas(false);
             } else {
                 mostrarMensajeInformativo(respuesta.getMensaje());
             }
