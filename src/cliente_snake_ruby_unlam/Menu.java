@@ -1,5 +1,6 @@
 package cliente_snake_ruby_unlam;
 
+import manejadores.ManejadorActualizacionSala;
 import manejadores.ManejadorDeJuego;
 
 import javax.swing.*;
@@ -44,7 +45,6 @@ public class Menu extends JFrame {
 
 	public Menu(Cliente cliente) {
 		this.cliente = cliente;
-		this.cliente.getManejadorActualizacionSala().agregarMenu(this);
 		setResizable(false);
 		setTitle("Menu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -206,11 +206,17 @@ public class Menu extends JFrame {
 	}
 
 	private void abrirCreacionSalas() {
-		new CreacionSala(this, cliente.getManejadorSalas(), cliente.getManejadorActualizacionSala());
+		new CreacionSala(this, cliente.getManejadorSalas(), obtenerManejadorActualizacionSala());
 	}
 
 	public void abrirSalasCreadas() {
-		new SalasCreadas(this, cliente.getManejadorSalas(), cliente.getManejadorActualizacionSala());
+		new SalasCreadas(this, cliente.getManejadorSalas(), obtenerManejadorActualizacionSala());
+	}
+
+	private ManejadorActualizacionSala obtenerManejadorActualizacionSala() {
+		ManejadorActualizacionSala manejadorActualizacionSala = cliente.getManejadorActualizacionSala();
+		manejadorActualizacionSala.agregarMenu(this);
+		return manejadorActualizacionSala;
 	}
 
 	public void loggeado(String usuario) {
