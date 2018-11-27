@@ -173,6 +173,9 @@ public class Login extends JDialog {
             lblErrorRegistro.setForeground(Color.RED);
             lblErrorRegistro.setVisible(true);
         }
+        if(respuesta.esRegistroEfectivo()){
+            ventanaMenu.deshabiliarInicioSesion();
+        }
 		return respuesta.esRegistroEfectivo();
 	}
 	

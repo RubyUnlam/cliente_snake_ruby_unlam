@@ -284,6 +284,10 @@ public class Menu extends JFrame {
 		btnSalirSala.setEnabled(estado);
 	}
 
+	public void deshabiliarInicioSesion(){
+		btnIniciarSesion.setEnabled(false);
+	}
+
 	public String getUsuarioActual() {
 		return usuarioActual;
 	}
