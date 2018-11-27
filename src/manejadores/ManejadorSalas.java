@@ -21,12 +21,20 @@ public class ManejadorSalas {
         return realizarAccion(null, "ver_salas");
     }
 
-    public RespuestaAccionConSala crearSala(Sala sala){
+    public RespuestaAccionConSala crearSala(Sala sala) {
         return realizarAccion(sala, "crear_sala");
     }
 
-    public RespuestaAccionConSala unirseASala(Sala sala){
+    public RespuestaAccionConSala unirseASala(Sala sala) {
         return realizarAccion(sala, "unirse_a_sala");
+    }
+
+    public void salirDeSala() {
+        try {
+            manejadorES.getSalida().writeUTF("salir_de_sala");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private RespuestaAccionConSala realizarAccion(Sala sala, String accion) {
@@ -35,7 +43,9 @@ public class ManejadorSalas {
             if (nonNull(sala)) {
                 manejadorES.getSalida().writeUTF(gson.toJson(sala));
             }
-            return gson.fromJson(manejadorES.getEntrada().readUTF(), RespuestaAccionConSala.class);
+            String json = manejadorES.getEntrada().readUTF();
+            System.out.println(json);
+            return gson.fromJson(json, RespuestaAccionConSala.class);
         } catch (IOException e) {
             e.printStackTrace();
             return obtenerRespuestaDeError();

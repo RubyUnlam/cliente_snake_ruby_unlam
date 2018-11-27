@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class Menu extends JFrame {
 
@@ -43,6 +44,7 @@ public class Menu extends JFrame {
 
 	public Menu(Cliente cliente) {
 		this.cliente = cliente;
+		this.cliente.getManejadorActualizacionSala().agregarMenu(this);
 		setResizable(false);
 		setTitle("Menu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -204,11 +206,11 @@ public class Menu extends JFrame {
 	}
 
 	private void abrirCreacionSalas() {
-		new CreacionSala(this, cliente.getManejadorSalas());
+		new CreacionSala(this, cliente.getManejadorSalas(), cliente.getManejadorActualizacionSala());
 	}
 
 	public void abrirSalasCreadas() {
-		new SalasCreadas(this, cliente.getManejadorSalas());
+		new SalasCreadas(this, cliente.getManejadorSalas(), cliente.getManejadorActualizacionSala());
 	}
 
 	public void loggeado(String usuario) {
@@ -248,7 +250,6 @@ public class Menu extends JFrame {
 	
 	private void actualizarListaJugadores() {
 		listModel.removeAllElements();
-		List<Jugador> jugadores = salaActual.getJugadores();
 		for (Jugador jugador: salaActual.getJugadores()){
 			listModel.addElement(jugador.getNombre());
 		}

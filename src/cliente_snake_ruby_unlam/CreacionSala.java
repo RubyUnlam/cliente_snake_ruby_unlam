@@ -1,5 +1,6 @@
 package cliente_snake_ruby_unlam;
 
+import manejadores.ManejadorActualizacionSala;
 import manejadores.ManejadorSalas;
 
 import javax.swing.*;
@@ -27,12 +28,14 @@ public class CreacionSala extends JDialog {
     private JComboBox<Integer> cmbJugadores;
     private JSpinner spinner;
     private ManejadorSalas manejadorSalas;
+    private ManejadorActualizacionSala manejadorActualizacionSala;
 
     /**
      * Create the dialog.
      */
-    public CreacionSala(Menu menu, ManejadorSalas manejadorSalas) {
+    public CreacionSala(Menu menu, ManejadorSalas manejadorSalas, ManejadorActualizacionSala manejadorActualizacionSala) {
         this.manejadorSalas = manejadorSalas;
+        this.manejadorActualizacionSala = manejadorActualizacionSala;
         ventanaMenu = menu;
 
         setBounds(100, 100, 380, 300);
@@ -167,6 +170,8 @@ public class CreacionSala extends JDialog {
             if(respuesta.esAccionValida()){
                 dispose();
                 ventanaMenu.crearMiSala(respuesta.getListaSalas());
+                manejadorSalas.unirseASala(sala);
+                manejadorActualizacionSala.start();
             } else {
                 mostrarMensajeInformativo(respuesta.getMensaje());
             }

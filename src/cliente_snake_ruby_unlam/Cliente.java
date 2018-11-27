@@ -13,6 +13,7 @@ public class Cliente {
 	private ManejadorMovimientos manejadorMovimientos;
     private ManejadorLogin manejadorLogin;
     private ManejadorSalas manejadorSalas;
+    private ManejadorActualizacionSala manejadorActualizacionSala;
     private ManejadorDeJuego manejadorDeJuego;
     private ManejadorES manejadorES;
     private Socket socket;
@@ -30,6 +31,7 @@ public class Cliente {
             this.manejadorLogin = new ManejadorLogin(manejadorES);
             this.manejadorSalas = new ManejadorSalas(manejadorES);
             this.manejadorDeJuego = new ManejadorDeJuego(manejadorES);
+            this.manejadorActualizacionSala = new ManejadorActualizacionSala(manejadorES);
 
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -56,5 +58,9 @@ public class Cliente {
 
     public ManejadorSalas getManejadorSalas() {
         return manejadorSalas;
+    }
+
+    public ManejadorActualizacionSala getManejadorActualizacionSala() {
+        return manejadorActualizacionSala;
     }
 }

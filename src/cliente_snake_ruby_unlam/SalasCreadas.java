@@ -1,5 +1,6 @@
 package cliente_snake_ruby_unlam;
 
+import manejadores.ManejadorActualizacionSala;
 import manejadores.ManejadorSalas;
 
 import javax.swing.*;
@@ -18,6 +19,7 @@ public class SalasCreadas extends JDialog {
 	private Menu ventanaMenu;
 	private List<Sala> listaSalas = new ArrayList<>();
 	private ManejadorSalas manejadorSalas;
+	private ManejadorActualizacionSala manejadorActualizacionSala;
 
 	private DefaultListModel<String> listModel = new DefaultListModel<>();
 
@@ -36,9 +38,10 @@ public class SalasCreadas extends JDialog {
 	private JPasswordField pswSala;
 	private JButton btnConectar;
 
-	public SalasCreadas(Menu menu, ManejadorSalas manejadorSalas) {
+	public SalasCreadas(Menu menu, ManejadorSalas manejadorSalas, ManejadorActualizacionSala manejadorActualizacionSala) {
 		ventanaMenu = menu;
 		this.manejadorSalas = manejadorSalas;
+		this.manejadorActualizacionSala = manejadorActualizacionSala;
 		setBounds(100, 100, 450, 315);
 		setLocationRelativeTo(menu);
 		
@@ -190,6 +193,7 @@ public class SalasCreadas extends JDialog {
 				for (Sala sala : respuesta.getListaSalas()) {
 					if (sala.getNombreSala().equals(nombreSala)) {
 						ventanaMenu.conectadoASala(sala);
+						manejadorActualizacionSala.start();
 						dispose();
 					}
 				}

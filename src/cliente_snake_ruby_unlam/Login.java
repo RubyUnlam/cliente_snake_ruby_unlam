@@ -184,6 +184,7 @@ public class Login extends JDialog {
 		String contrasenia = String.valueOf(txtContrasenia.getPassword());
 		if (!camposLoginVacios() && iniciarSesion(txtNombreUsuario.getText(), contrasenia)) {
 			cerrarDialogo();
+			//TODO DESHABILITAR INICIAR SESION
 		}
 	}
 	
