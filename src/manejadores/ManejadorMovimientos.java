@@ -12,7 +12,6 @@ public class ManejadorMovimientos {
 
 	public void enviarMovimiento(String direccion) {
 		try {
-			System.out.println(direccion);
 			manejadorES.getSalida().writeUTF(direccion);
         } catch (IOException e) {
             e.printStackTrace();

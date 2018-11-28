@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import cliente_snake_ruby_unlam.ActualizacionDelJuego;
 import cliente_snake_ruby_unlam.Dibujable;
 import com.google.gson.Gson;
 import observables.ObservadoLectura;
@@ -18,34 +19,35 @@ public class ManejadorDeJuego extends Thread implements ObservadoLectura {
 	public ManejadorDeJuego(ManejadorES manejadorES) {
 		this.manejadorES = manejadorES;
 	}
+
+	public void comunicarInicioDeJuego() {
+		try {
+			manejadorES.getSalida().writeUTF("jugar");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	@Override
 	public void run() {
 		try {
-			manejadorES.getSalida().writeUTF("jugar");
-			while (true) {
+			boolean finDelJuego = false;
+			while (!finDelJuego) {
 				String json = manejadorES.getEntrada().readUTF();
-				List<Dibujable> dibujables = Arrays.asList(gson.fromJson(json, Dibujable[].class));
-				enviarADibujar(dibujables);
+				ActualizacionDelJuego actualizacion = gson.fromJson(json, ActualizacionDelJuego.class);
+				finDelJuego = actualizacion.terminoElJuego();
+				enviarADibujar(actualizacion);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
-		} finally {
-//            try {
-//				entrada.close();
-//				socket.close();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
 		}
-
 	}
 
-	private void enviarADibujar(List<Dibujable> dibujables) {
+	private void enviarADibujar(ActualizacionDelJuego actualizacion) {
 		new Thread() {
 			@Override
 			public void run() {
-				observadorDibujable.notificarUbicaciones(dibujables);
+				observadorDibujable.notificarUbicaciones(actualizacion);
 			}
 		}.start();
 	}

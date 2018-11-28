@@ -22,10 +22,7 @@ public class Cliente {
         try {
             this.socket = new Socket(ip, puerto);
 
-            System.out.print("Connection accepted");
-
             this.manejadorES = new ManejadorES(socket);
-
             this.manejadorMovimientos = new ManejadorMovimientos(manejadorES);
             this.manejadorLogin = new ManejadorLogin(manejadorES);
             this.manejadorSalas = new ManejadorSalas(manejadorES);
@@ -46,10 +43,6 @@ public class Cliente {
         return manejadorDeJuego;
     }
 
-    public ManejadorMovimientos obtenerEscritor(){
-        return this.manejadorMovimientos;
-    }
-
     public ManejadorLogin getManejadorLogin() {
         return manejadorLogin;
     }
@@ -60,5 +53,9 @@ public class Cliente {
 
     public ManejadorActualizacionSala getManejadorActualizacionSala() {
         return new ManejadorActualizacionSala(manejadorES);
+    }
+
+    public ManejadorES getManejadorES() {
+        return manejadorES;
     }
 }

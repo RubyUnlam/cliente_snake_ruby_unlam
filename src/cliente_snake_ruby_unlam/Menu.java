@@ -8,9 +8,11 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.CountDownLatch;
 
 public class Menu extends JFrame {
 
@@ -152,7 +154,8 @@ public class Menu extends JFrame {
 		btnJugar.setEnabled(false);
 		btnJugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Juego.iniciar(cliente);
+				System.out.println("jugar");
+				Juego.iniciar(cliente, Menu.this);
 			}
 		});
 
@@ -170,6 +173,7 @@ public class Menu extends JFrame {
 		btnVerSalasCreadas.setBounds(204, 82, 200, 70);
 		btnVerSalasCreadas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("Ver salas");
 				abrirSalasCreadas();
 			}
 		});
@@ -294,12 +298,25 @@ public class Menu extends JFrame {
 		btnVerSalasCreadas.setEnabled(b);
 	}
 
+	@Override
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+
 	public String getUsuarioActual() {
 		return usuarioActual;
 	}
 	
 	public List<Sala> getListaSalas() {
 		return listaSalas;
+	}
+
+	public void finalizarJuego() {
+		try {
+			cliente.getManejadorES().getSalida().writeUTF("finalizar");
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 	}
 	
 	/**

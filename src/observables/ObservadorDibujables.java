@@ -1,10 +1,8 @@
 package observables;
 
-import cliente_snake_ruby_unlam.Dibujable;
-
-import java.util.List;
+import cliente_snake_ruby_unlam.ActualizacionDelJuego;
 
 public interface ObservadorDibujables {
 
-	void notificarUbicaciones(List<Dibujable> dibujables);
+	void notificarUbicaciones(ActualizacionDelJuego actualizacion);
 }

@@ -4,12 +4,15 @@ import manejadores.ManejadorDeJuego;
 
 import javax.swing.JFrame;
 
+import java.io.IOException;
+import java.util.concurrent.CountDownLatch;
+
 import static utilidades.Constantes.ALTURA_VENTANA;
 import static utilidades.Constantes.ANCHO_VENTANA;
 
 public class Juego {
 
-	public static void iniciar(Cliente cliente) {
+	public static void iniciar(Cliente cliente, Menu menu) {
 
 		JFrame ventana = new JFrame("Snake");
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -17,14 +20,20 @@ public class Juego {
 		ventana.setResizable(false);
 		ventana.setLocationRelativeTo(null);
 
-		Ui ui = new Ui(cliente.obtenerControlador());
+		Ui ui = new Ui(cliente.obtenerControlador(), ventana, menu);
 
 		ManejadorDeJuego manejadorDeJuego = cliente.obtenerManejadorDeJuego();
+		manejadorDeJuego.comunicarInicioDeJuego();
 		manejadorDeJuego.agregarObservadorDibujables(ui);
-		manejadorDeJuego.start();
 
+		try {
+			cliente.getManejadorES().getEntrada().readUTF();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		manejadorDeJuego.start();
 		ventana.setContentPane(ui);
 		ventana.setVisible(true);
-
 	}
 }

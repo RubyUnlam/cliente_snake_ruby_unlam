@@ -1,11 +1,13 @@
 package cliente_snake_ruby_unlam;
 
+import manejadores.ManejadorES;
 import observables.ObservadorDibujables;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 public class Ui extends JPanel implements ObservadorDibujables {
 
@@ -13,16 +15,25 @@ public class Ui extends JPanel implements ObservadorDibujables {
     private ImageIcon fondoDefault;
     private String fondoPath = "src/imagenes/fondo.png"; //TODO HACERLO VARIABLE
     private List<Dibujable> aDibujar = new ArrayList<>();
+    private String ganador;
+    private JFrame ventana;
+    private boolean terminoElJuego;
+    private ActualizacionDelJuego actualizacionDelJuego;
+    private Menu menu;
 
-    Ui(Controlador controlador) {
+    Ui(Controlador controlador, JFrame ventana, Menu menu) {
+        this.ventana = ventana;
+        this.menu = menu;
         addKeyListener(controlador);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
     }
 
     @Override
-    public void notificarUbicaciones(List<Dibujable> dibujables) {
-        aDibujar.addAll(dibujables);
+    public void notificarUbicaciones(ActualizacionDelJuego actualizacion) {
+        this.actualizacionDelJuego = actualizacion;
+        aDibujar.addAll(actualizacion.obtenerDibujables());
+        ganador = actualizacion.obtenerGanador();
         repaint();
     }
 
@@ -33,6 +44,15 @@ public class Ui extends JPanel implements ObservadorDibujables {
             dibujar(g);
         }
         g.dispose();
+        if (terminoElJuego) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            ventana.setVisible(false);
+            new GanadorDialog(actualizacionDelJuego, menu);
+        }
     }
 
     /**
@@ -53,6 +73,13 @@ public class Ui extends JPanel implements ObservadorDibujables {
             }
         }
         aDibujar.clear();
+
+        if (!"".equals(ganador)) {
+            g.setColor(Color.RED);
+            g.setFont(new Font("ArialBlack", Font.PLAIN, 30));
+            g.drawString("El ganador es " + ganador, 800 / 3, 600 / 2);
+            terminoElJuego = true;
+        }
     }
 
 
