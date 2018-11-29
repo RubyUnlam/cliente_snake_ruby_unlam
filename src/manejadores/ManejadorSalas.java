@@ -53,6 +53,6 @@ public class ManejadorSalas {
     }
 
     private RespuestaAccionConSala obtenerRespuestaDeError() {
-        return new RespuestaAccionConSala(false, "Ha ocusarrido un error. Intente nuevamente");
+        return new RespuestaAccionConSala(false, "Ha ocurrido un error. Intente nuevamente");
     }
 }
