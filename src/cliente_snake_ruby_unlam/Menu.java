@@ -15,7 +15,8 @@ import java.util.concurrent.CountDownLatch;
 public class Menu extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	public static final String FINALIZAR = "finalizar";
+	private final String FINALIZAR = "finalizar";
+	private final String CAMBIAR_COLOR = "cambiar_color";
 
 	private String usuarioActual;
 	private Sala salaActual;
@@ -27,6 +28,7 @@ public class Menu extends JFrame {
 	private JPanel contentPane;
 	private JPanel pnlDetallesSala;
 	private JButton btnIniciarSesion;
+	private JButton btnSeleccionarColor;
 	private JButton btnJugar;
 	private JButton btnCrearSala;
 	private JButton btnVerSalasCreadas;
@@ -150,6 +152,21 @@ public class Menu extends JFrame {
 			}
 		});
 
+		btnSeleccionarColor = new JButton("Seleccionar color");
+		btnSeleccionarColor.setBounds(6, 390, 398, 23);
+		btnSeleccionarColor.setEnabled(false);
+		btnSeleccionarColor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent actionEvent) {
+				Color color = JColorChooser.showDialog(null, "Seleccionar color", Color.BLUE);
+				try {
+					cliente.getManejadorES().enviarString(CAMBIAR_COLOR);
+					cliente.getManejadorES().enviar(color);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
 		btnJugar = new JButton("Jugar");
 		btnJugar.setBounds(54, 365, 106, 23);
 		btnJugar.setEnabled(false);
@@ -198,6 +215,7 @@ public class Menu extends JFrame {
 		contentPane.add(btnCrearSala);
 		contentPane.add(btnVerSalasCreadas);
 		contentPane.add(btnIniciarSesion);
+		contentPane.add(btnSeleccionarColor);
 		contentPane.add(btnJugar);
 		contentPane.add(lblJugadoresEnSala);
 		contentPane.add(lblConfiguracionJuego);
@@ -228,6 +246,7 @@ public class Menu extends JFrame {
 		listaSalas = new ArrayList<>();
 		btnVerSalasCreadas.setEnabled(true);
 		btnCrearSala.setEnabled(true);
+		btnSeleccionarColor.setEnabled(true);
 		usuarioActual = usuario;
 		lblUsuario.setText("Sesion iniciada. Usuario: " + usuarioActual);
 		lblUsuario.setVisible(true);
@@ -288,6 +307,7 @@ public class Menu extends JFrame {
 		pnlDetallesSala.setEnabled(estado);
 		btnJugar.setEnabled(estado);
 		btnSalirSala.setEnabled(estado);
+		btnSeleccionarColor.setEnabled(estado);
 	}
 
 	public void deshabiliarInicioSesion(){
@@ -297,6 +317,7 @@ public class Menu extends JFrame {
 	public void habilitarInteraccionSalas(Boolean b){
 		btnCrearSala.setEnabled(b);
 		btnVerSalasCreadas.setEnabled(b);
+		btnSeleccionarColor.setEnabled(b);
 	}
 
 	@Override
