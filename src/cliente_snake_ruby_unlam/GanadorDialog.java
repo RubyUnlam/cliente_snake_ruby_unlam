@@ -3,7 +3,6 @@ package cliente_snake_ruby_unlam;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 public class GanadorDialog extends JDialog {
 

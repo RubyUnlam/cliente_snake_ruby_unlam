@@ -340,12 +340,5 @@ public class Menu extends JFrame {
 			e1.printStackTrace();
 		}
 	}
-	
-	/**
-	 * Se inicia el menu del juego y el SessionFactory de la aplicacion
-	 * 
-	 */
-	public static void main(String[] args) {
-		new Menu(new Cliente("localhost", 12000)).setVisible(true);
-	} //IP DE MI PC "192.168.0.8"
+
 }
