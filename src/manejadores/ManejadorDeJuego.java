@@ -11,9 +11,9 @@ import observables.ObservadoLectura;
 import observables.ObservadorDibujables;
 
 public class ManejadorDeJuego extends Thread implements ObservadoLectura {
-	
+
+	private final String JUGAR = "jugar";
 	private ObservadorDibujables observadorDibujable;
-	private Gson gson = new Gson();
 	private ManejadorES manejadorES;
 
 	public ManejadorDeJuego(ManejadorES manejadorES) {
@@ -22,7 +22,7 @@ public class ManejadorDeJuego extends Thread implements ObservadoLectura {
 
 	public void comunicarInicioDeJuego() {
 		try {
-			manejadorES.getSalida().writeUTF("jugar");
+			manejadorES.enviarString(JUGAR);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -33,8 +33,7 @@ public class ManejadorDeJuego extends Thread implements ObservadoLectura {
 		try {
 			boolean finDelJuego = false;
 			while (!finDelJuego) {
-				String json = manejadorES.getEntrada().readUTF();
-				ActualizacionDelJuego actualizacion = gson.fromJson(json, ActualizacionDelJuego.class);
+				ActualizacionDelJuego actualizacion = manejadorES.escuchar(ActualizacionDelJuego.class);
 				finDelJuego = actualizacion.terminoElJuego();
 				enviarADibujar(actualizacion);
 			}

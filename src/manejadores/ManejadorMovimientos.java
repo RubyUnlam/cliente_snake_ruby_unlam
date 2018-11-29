@@ -12,7 +12,7 @@ public class ManejadorMovimientos {
 
 	public void enviarMovimiento(String direccion) {
 		try {
-			manejadorES.getSalida().writeUTF(direccion);
+			manejadorES.enviarString(direccion);
         } catch (IOException e) {
             e.printStackTrace();
         }
