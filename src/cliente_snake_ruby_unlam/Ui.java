@@ -1,13 +1,11 @@
 package cliente_snake_ruby_unlam;
 
-import manejadores.ManejadorES;
 import observables.ObservadorDibujables;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
 
 public class Ui extends JPanel implements ObservadorDibujables {
 
@@ -75,9 +73,6 @@ public class Ui extends JPanel implements ObservadorDibujables {
         aDibujar.clear();
 
         if (!"".equals(ganador)) {
-            g.setColor(Color.RED);
-            g.setFont(new Font("ArialBlack", Font.PLAIN, 30));
-            g.drawString("El ganador es " + ganador, 800 / 3, 600 / 2);
             terminoElJuego = true;
         }
     }

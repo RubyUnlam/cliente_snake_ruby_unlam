@@ -12,7 +12,7 @@ import static utilidades.Constantes.ANCHO_VENTANA;
 
 public class Juego {
 
-	public static void iniciar(Cliente cliente, Menu menu) {
+	public static void iniciar(Cliente cliente, Menu menu, CountDownLatch countDownLatch) {
 
 		JFrame ventana = new JFrame("Snake");
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,8 +27,8 @@ public class Juego {
 		manejadorDeJuego.agregarObservadorDibujables(ui);
 
 		try {
-			cliente.getManejadorES().getEntrada().readUTF();
-		} catch (IOException e) {
+			countDownLatch.await();
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 

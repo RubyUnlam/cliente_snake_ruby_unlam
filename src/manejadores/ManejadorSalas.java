@@ -43,8 +43,7 @@ public class ManejadorSalas {
             if (nonNull(sala)) {
                 manejadorES.getSalida().writeUTF(gson.toJson(sala));
             }
-            String json = manejadorES.getEntrada().readUTF();
-            return gson.fromJson(json, RespuestaAccionConSala.class);
+            return gson.fromJson(manejadorES.getEntrada().readUTF(), RespuestaAccionConSala.class);
         } catch (IOException e) {
             e.printStackTrace();
             return obtenerRespuestaDeError();

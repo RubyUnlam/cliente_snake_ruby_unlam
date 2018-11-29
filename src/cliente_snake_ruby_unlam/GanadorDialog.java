@@ -31,6 +31,7 @@ public class GanadorDialog extends JDialog {
      */
     private void armarVentanaLogin() {
         getContentPane().setLayout(null);
+        setLocationRelativeTo(menu);
         setBounds(0, 0, 340, 200);
         setTitle("Ganador");
         setVisible(true);
@@ -44,6 +45,8 @@ public class GanadorDialog extends JDialog {
         btnIniciarSesion.setBounds(340 / 2, 200 - (200 / 4), 140, 29);
         btnIniciarSesion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                menu.finalizarJuego();
+                menu.finalizarJuego();
                 menu.finalizarJuego();
                 menu.salirSala();
                 dispose();

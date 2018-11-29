@@ -26,7 +26,6 @@ public class Cliente {
             this.manejadorMovimientos = new ManejadorMovimientos(manejadorES);
             this.manejadorLogin = new ManejadorLogin(manejadorES);
             this.manejadorSalas = new ManejadorSalas(manejadorES);
-            this.manejadorDeJuego = new ManejadorDeJuego(manejadorES);
 
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -40,7 +39,7 @@ public class Cliente {
     }
 
     public ManejadorDeJuego obtenerManejadorDeJuego() {
-        return manejadorDeJuego;
+        return new ManejadorDeJuego(manejadorES);
     }
 
     public ManejadorLogin getManejadorLogin() {
