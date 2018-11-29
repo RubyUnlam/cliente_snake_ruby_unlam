@@ -173,6 +173,7 @@ public class Menu extends JFrame {
 		btnJugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Juego.iniciar(cliente, Menu.this, countDownLatch);
+
 			}
 		});
 
@@ -317,7 +318,7 @@ public class Menu extends JFrame {
 	public void habilitarInteraccionSalas(Boolean b){
 		btnCrearSala.setEnabled(b);
 		btnVerSalasCreadas.setEnabled(b);
-		btnSeleccionarColor.setEnabled(b);
+		//btnSeleccionarColor.setEnabled(b);
 	}
 
 	@Override

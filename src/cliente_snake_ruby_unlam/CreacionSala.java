@@ -16,6 +16,7 @@ public class CreacionSala extends JDialog {
 
     private static final long serialVersionUID = 3146453246362725770L;
     public static final Integer[] CANTIDAD_DE_JUGADORES = {0, 1, 2, 3, 4};
+    public static final String[] FORMAS_DE_VICTORIA = {"Puntaje", "Supervivencia"};
 
     private Menu ventanaMenu;
 
@@ -26,9 +27,11 @@ public class CreacionSala extends JDialog {
     private JLabel lblInformativo;
     private JComboBox<Integer> cmbIA;
     private JComboBox<Integer> cmbJugadores;
+    private JComboBox<String> cmbVictoria;
     private JSpinner spinner;
     private ManejadorSalas manejadorSalas;
     private ManejadorActualizacionSala manejadorActualizacionSala;
+    private JTextField txtPuntajeMax;
 
     /**
      * Create the dialog.
@@ -38,7 +41,7 @@ public class CreacionSala extends JDialog {
         this.manejadorActualizacionSala = manejadorActualizacionSala;
         ventanaMenu = menu;
 
-        setBounds(100, 100, 380, 300);
+        setBounds(100, 100, 380, 400);
         setLocationRelativeTo(menu);
 
         JLabel lblNombreSala = new JLabel("Nombre de la sala");
@@ -54,30 +57,33 @@ public class CreacionSala extends JDialog {
         lblCantidadDeIa.setBounds(6, 117, 111, 16);
 
         JLabel lblTiempo = new JLabel("Tiempo");
-        lblTiempo.setBounds(6, 145, 61, 16);
+        lblTiempo.setBounds(6, 173, 70, 16);
 
-        JLabel lblMapa = new JLabel("Mapa");
-        lblMapa.setBounds(6, 173, 61, 16);
+        JLabel lblCondicionFinPartida = new JLabel("Victoria por");
+        lblCondicionFinPartida.setBounds(6, 145, 70, 16);
 
         JLabel lblDificultad = new JLabel("Dificultad");
         lblDificultad.setBounds(233, 117, 69, 16);
+
+        JLabel lblPuntaje = new JLabel("Puntaje a alcanzar");
+        lblPuntaje.setBounds(6, 200, 120, 20);
 
         txtNombreSala = new JTextField();
         txtNombreSala.setBounds(168, 28, 182, 26);
         txtNombreSala.setColumns(10);
 
-        txtMapa = new JTextField();
-        txtMapa.setColumns(10);
-        txtMapa.setBounds(168, 168, 182, 26);
-        txtMapa.setEnabled(false);
-
         txtTiempo = new JTextField();
         txtTiempo.setColumns(10);
-        txtTiempo.setBounds(168, 140, 182, 26);
-        txtTiempo.setEnabled(false);
+        txtTiempo.setBounds(168, 168, 182, 26);
+        txtTiempo.setEnabled(true);
+
+        txtPuntajeMax = new JTextField();
+        txtPuntajeMax.setColumns(10);
+        txtPuntajeMax.setBounds(168, 200, 182, 26);
+        txtPuntajeMax.setEnabled(true);
 
         JButton btnCrearSala = new JButton("Crear sala");
-        btnCrearSala.setBounds(115, 202, 117, 30);
+        btnCrearSala.setBounds(115, 250, 117, 30);
         btnCrearSala.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 crearSala();
@@ -98,6 +104,7 @@ public class CreacionSala extends JDialog {
 
         crearComboJugadores();
         crearComboIA();
+        crearComboFormaVictoria();
 
         spinner = new JSpinner();
         spinner.setBounds(296, 112, 54, 26);
@@ -110,20 +117,28 @@ public class CreacionSala extends JDialog {
         getContentPane().add(lblCantidadDeJugadores);
         getContentPane().add(lblCantidadDeIa);
         getContentPane().add(lblTiempo);
-        getContentPane().add(lblMapa);
+        getContentPane().add(lblCondicionFinPartida);
         getContentPane().add(btnCrearSala);
         getContentPane().add(lblCreacionDeSala);
         getContentPane().add(lblDificultad);
+        getContentPane().add(lblPuntaje);
         getContentPane().add(txtNombreSala);
-        getContentPane().add(txtMapa);
+        getContentPane().add(cmbVictoria);
         getContentPane().add(txtTiempo);
         getContentPane().add(txtContrasenia);
         getContentPane().add(lblInformativo);
         getContentPane().add(cmbIA);
         getContentPane().add(cmbJugadores);
         getContentPane().add(spinner);
+        getContentPane().add(txtPuntajeMax);
 
         setVisible(true);
+    }
+
+    private void crearComboFormaVictoria() {
+        cmbVictoria = new JComboBox<String>();
+        cmbVictoria.setModel(new DefaultComboBoxModel<String>(FORMAS_DE_VICTORIA));
+        cmbVictoria.setBounds(168, 140, 182, 26);
     }
 
 
@@ -131,22 +146,6 @@ public class CreacionSala extends JDialog {
         cmbJugadores = new JComboBox<Integer>();
         cmbJugadores.setModel(new DefaultComboBoxModel<Integer>(Arrays.copyOfRange(CANTIDAD_DE_JUGADORES, 1, 5)));
         cmbJugadores.setBounds(168, 85, 64, 27);
-
-        //Reduce la cantidad de IA que se puede elegir al seleccionar cantidad de usuarios
-//		cmbJugadores.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				if ("comboBoxChanged".equals(e.getActionCommand())) {
-//					Integer opcionSeleccionada = (Integer) cmbJugadores.getSelectedItem();
-//					if (nonNull(opcionSeleccionada) && opcionSeleccionada != 4){
-//                        cmbIA.setModel(new DefaultComboBoxModel<Integer>(Arrays.copyOfRange(CANTIDAD_DE_JUGADORES, 0, 4 - opcionSeleccionada)));
-//                    } else {
-//					    cmbIA.setModel(new DefaultComboBoxModel<Integer>(new Integer[]{0}));
-//                    }
-//
-//				}
-//			}
-//		});
     }
 
     private void crearComboIA() {
@@ -163,8 +162,9 @@ public class CreacionSala extends JDialog {
         String password = String.valueOf(txtContrasenia.getPassword());
         Sala sala = new Sala(txtNombreSala.getText(), password,
                 (int) cmbJugadores.getSelectedItem(), (int) cmbIA.getSelectedItem(),
-                ventanaMenu.getUsuarioActual(), (int) spinner.getValue());
-        if (!camposCreacionSalaVacios() && cantidadJugadoresValida() && crearSala(sala)) {
+                ventanaMenu.getUsuarioActual(), (int) spinner.getValue(), cmbVictoria.getSelectedItem().toString());
+
+        if (!camposCreacionSalaVacios() && cantidadJugadoresValida() && crearSala(sala) && condicionesDeVictoriaValidas(sala)) {
             RespuestaAccionConSala respuesta = manejadorSalas.crearSala(sala);
 
             if(respuesta.esAccionValida()){
@@ -179,6 +179,57 @@ public class CreacionSala extends JDialog {
     }
 
     /**
+     * Dado un modo de juego (puntaje o supervivencia) verifica si la condición de fin
+     * de ese modo de juego es correcta.
+     * @param sala
+     * @return
+     */
+
+    private boolean condicionesDeVictoriaValidas(Sala sala){
+        return sala.getModoDeJuego().equals("Puntaje") ? esPuntajeValido(sala) : esTiempoValido(sala);
+    } //TODO CAMBIAR POR UN SWITCH SI AGREGAMOS MÁS MODOS DE JUEGO
+
+    /**
+     * Verfica que el puntaje ingresado sea un numero mayor a 0. De serlo, setea el valor en la sala.
+     * @param sala
+     * @return
+     */
+
+    private boolean esPuntajeValido(Sala sala){
+        try{
+            int puntaje = Integer.parseInt(txtPuntajeMax.getText());
+            if(puntaje > 0){
+                sala.setPuntajeAAlcanzar(puntaje);
+                return true;
+            }
+            mostrarMensajeInformativo("El puntaje ingresado no es valido");
+            return false;
+        } catch(NumberFormatException e){
+            mostrarMensajeInformativo("El puntaje ingresado no es valido");
+            return false;
+        }
+    }//TODO MEJORAR ESTO
+
+    /**
+     * Verifica que el tiempo ingresado sea un numero mayor a 0. De serlo, setea el valor en la sala
+     * @return
+     */
+    private boolean esTiempoValido(Sala sala) {
+        try{
+            int tiempo = Integer.parseInt(txtTiempo.getText());
+            if(tiempo > 0){
+                sala.setTiempo(tiempo*60); //lo paso a segundos
+                return true;
+            }
+            mostrarMensajeInformativo("El tiempo ingresado no es valido");
+            return false;
+        } catch(NumberFormatException e){
+            mostrarMensajeInformativo("El tiempo ingresado no es valido");
+            return false;
+        }
+    } //TODO MEJORAR ESTO
+
+    /**
      * Valida que los campos de nombre de sala, contrasenia, y cantidad de jugadores
      * no esten vacios.
      * @return
@@ -188,7 +239,6 @@ public class CreacionSala extends JDialog {
             mostrarMensajeInformativo("Nombre de sala es obligatorio");
             return true;
         }
-        // TODO: validacion de tiempo y mapas cuando se agreguen.
         return false;
     }
 
