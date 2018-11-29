@@ -2,7 +2,6 @@ package manejadores;
 
 import cliente_snake_ruby_unlam.RespuestaAccionConSala;
 import cliente_snake_ruby_unlam.Sala;
-import com.google.gson.Gson;
 
 import java.io.IOException;
 
@@ -10,28 +9,31 @@ import static java.util.Objects.nonNull;
 
 public class ManejadorSalas {
 
+    private final String VER_SALAS = "ver_salas";
+    private final String CREAR_SALA = "crear_sala";
+    private final String UNIRSE_A_SALA = "unirse_a_sala";
+    private final String SALIR_DE_SALA = "salir_de_sala";
     private ManejadorES manejadorES;
-    private Gson gson = new Gson();
 
     public ManejadorSalas(ManejadorES manejadorES) {
         this.manejadorES = manejadorES;
     }
 
     public RespuestaAccionConSala pedirSalas() {
-        return realizarAccion(null, "ver_salas");
+        return realizarAccion(null, VER_SALAS);
     }
 
     public RespuestaAccionConSala crearSala(Sala sala) {
-        return realizarAccion(sala, "crear_sala");
+        return realizarAccion(sala, CREAR_SALA);
     }
 
     public RespuestaAccionConSala unirseASala(Sala sala) {
-        return realizarAccion(sala, "unirse_a_sala");
+        return realizarAccion(sala, UNIRSE_A_SALA);
     }
 
     public void salirDeSala() {
         try {
-            manejadorES.getSalida().writeUTF("salir_de_sala");
+            manejadorES.enviarString(SALIR_DE_SALA);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -39,11 +41,11 @@ public class ManejadorSalas {
 
     private RespuestaAccionConSala realizarAccion(Sala sala, String accion) {
         try {
-            manejadorES.getSalida().writeUTF(accion);
+            manejadorES.enviarString(accion);
             if (nonNull(sala)) {
-                manejadorES.getSalida().writeUTF(gson.toJson(sala));
+                manejadorES.enviar(sala);
             }
-            return gson.fromJson(manejadorES.getEntrada().readUTF(), RespuestaAccionConSala.class);
+            return manejadorES.escuchar(RespuestaAccionConSala.class);
         } catch (IOException e) {
             e.printStackTrace();
             return obtenerRespuestaDeError();
@@ -51,6 +53,6 @@ public class ManejadorSalas {
     }
 
     private RespuestaAccionConSala obtenerRespuestaDeError() {
-        return new RespuestaAccionConSala(false, "Ha ocurrido un error. Intente nuevamente");
+        return new RespuestaAccionConSala(false, "Ha ocusarrido un error. Intente nuevamente");
     }
 }

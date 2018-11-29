@@ -14,7 +14,6 @@ public class ManejadorActualizacionSala extends Thread {
     private ManejadorES manejadorES;
     private Menu menu;
     private CountDownLatch countDownLatch;
-    private Gson gson = new Gson();
 
     public ManejadorActualizacionSala(ManejadorES manejadorES) {
         this.manejadorES = manejadorES;
@@ -25,7 +24,7 @@ public class ManejadorActualizacionSala extends Thread {
         boolean continuar = true;
         while (continuar) {
             try {
-                Sala sala = gson.fromJson(manejadorES.getEntrada().readUTF(), Sala.class);
+                Sala sala = manejadorES.escuchar(Sala.class);
                 if (nonNull(sala)) { // Si la sala no es null hubo un cambio, si es null significa que esta por comenzar el juego y debo salir del manejador
                     menu.conectadoASala(sala);
                 } else {

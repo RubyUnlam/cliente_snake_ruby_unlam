@@ -15,6 +15,7 @@ import java.util.concurrent.CountDownLatch;
 public class Menu extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	public static final String FINALIZAR = "finalizar";
 
 	private String usuarioActual;
 	private Sala salaActual;
@@ -313,7 +314,7 @@ public class Menu extends JFrame {
 
 	public void finalizarJuego() {
 		try {
-			cliente.getManejadorES().getSalida().writeUTF("finalizar");
+			cliente.getManejadorES().enviarString(FINALIZAR);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
