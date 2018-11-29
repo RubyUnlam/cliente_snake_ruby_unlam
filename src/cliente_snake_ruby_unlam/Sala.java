@@ -17,6 +17,12 @@ public class Sala {
 
 	private int dificultadIA;
 
+	private int tiempo = 300; //tiempo default, 5 minutos
+
+	private String modoDeJuego;
+
+	private int puntajeAAlcanzar;
+
 	private List<Jugador> jugadores = new ArrayList<>();
 
 	public Sala(String nombreSala, String contrasenia) {
@@ -25,13 +31,14 @@ public class Sala {
 	}
 
 	public Sala(String nombreSala, String contrasenia, int cantidadJugadores, int cantidadIA, String nombreCreador,
-                int dificultadIA) {
+                int dificultadIA, String modoDeJuego) {
 		this.nombreSala = nombreSala;
 		this.contrasenia = contrasenia;
 		this.cantidadJugadores = cantidadJugadores;
 		this.cantidadIA = cantidadIA;
 		this.nombreCreador = nombreCreador;
 		this.dificultadIA = dificultadIA;
+		this.modoDeJuego = modoDeJuego;
 	}
 
 	public String getNombreSala() {
@@ -93,4 +100,27 @@ public class Sala {
 	public List<Jugador> getJugadores() {
 		return jugadores;
 	}
+
+
+	public void setTiempo(int tiempo) {
+		this.tiempo = tiempo;
+	}
+
+	public int getTiempo() {
+		return tiempo;
+	}
+
+	public String getModoDeJuego() {
+		return modoDeJuego;
+	}
+
+	public int getPuntajeAAlcanzar() {
+		return puntajeAAlcanzar;
+	}
+
+	public void setPuntajeAAlcanzar(int puntajeAAlcanzar) {
+		this.puntajeAAlcanzar = puntajeAAlcanzar;
+	}
+
+
 }

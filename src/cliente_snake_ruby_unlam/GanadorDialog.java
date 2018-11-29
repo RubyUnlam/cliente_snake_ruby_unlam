@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 public class GanadorDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-    private JButton btnIniciarSesion;
+    private JButton btnConfirmar;
     private Menu menu;
 
 	/**
@@ -16,12 +16,13 @@ public class GanadorDialog extends JDialog {
 	 */
 	public GanadorDialog(ActualizacionDelJuego actualizacionDelJuego, Menu menu) {
 	    this.menu = menu;
+        setLocationRelativeTo(menu);
         armarVentanaLogin();
         JLabel lblNombreUsuario = new JLabel("El ganador es " + actualizacionDelJuego.obtenerGanador());
-        lblNombreUsuario.setBounds(340 / 2, 340 / 4, 140, 29);
+        lblNombreUsuario.setBounds(50, 50, 200, 29);
         armarBotonSalir();
         getContentPane().add(lblNombreUsuario);
-        getContentPane().add(btnIniciarSesion);
+        getContentPane().add(btnConfirmar);
 	}
 
     /**
@@ -31,7 +32,7 @@ public class GanadorDialog extends JDialog {
     private void armarVentanaLogin() {
         getContentPane().setLayout(null);
         setLocationRelativeTo(null);
-        setBounds(0, 0, 340, 200);
+        setBounds(0, 0, 260, 200);
         setTitle("Ganador");
         setVisible(true);
     }
@@ -40,9 +41,9 @@ public class GanadorDialog extends JDialog {
      * Arma el boton de inicio de sesion
      */
     private void armarBotonSalir() {
-        btnIniciarSesion = new JButton("Entendido");
-        btnIniciarSesion.setBounds(340 / 2, 200 - (200 / 4), 140, 29);
-        btnIniciarSesion.addActionListener(new ActionListener() {
+        btnConfirmar = new JButton("Entendido");
+        btnConfirmar.setBounds(50, 100, 140, 29);
+        btnConfirmar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 menu.finalizarJuego();
                 menu.salirSala();

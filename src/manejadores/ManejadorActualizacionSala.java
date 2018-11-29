@@ -25,7 +25,7 @@ public class ManejadorActualizacionSala extends Thread {
         while (continuar) {
             try {
                 Sala sala = manejadorES.escuchar(Sala.class);
-                if (nonNull(sala)) { // Si la sala no es null hubo un cambio, si es null significa que esta por comenzar el juego y debo salir del manejador
+                if (nonNull(sala)) { // Si la sala no es null hubo un cambio, si es null significa que esta por comenzar el juego y debo salir del manejador o que salí de la sala
                     menu.conectadoASala(sala);
                 } else {
                     continuar = false;
