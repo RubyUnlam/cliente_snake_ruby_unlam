@@ -15,8 +15,10 @@ import static java.util.Objects.nonNull;
 public class CreacionSala extends JDialog {
 
     private static final long serialVersionUID = 3146453246362725770L;
-    public static final Integer[] CANTIDAD_DE_JUGADORES = {0, 1, 2, 3, 4};
-    public static final String[] FORMAS_DE_VICTORIA = {"Puntaje", "Supervivencia"};
+    private static final Integer[] CANTIDAD_DE_JUGADORES = {0, 1, 2, 3, 4};
+    private static final String[] FORMAS_DE_VICTORIA = {"Puntaje", "Supervivencia"};
+    private static final String PUNTAJE = "Puntaje";
+    private static final String SUPERVIVENCIA = "Supervivencia";
 
     private Menu ventanaMenu;
 
@@ -184,9 +186,8 @@ public class CreacionSala extends JDialog {
      * @param sala
      * @return
      */
-
     private boolean condicionesDeVictoriaValidas(Sala sala){
-        return sala.getModoDeJuego().equals("Puntaje") ? esPuntajeValido(sala) : esTiempoValido(sala);
+        return PUNTAJE.equals(sala.getModoDeJuego()) ? esPuntajeValido(sala) : esTiempoValido(sala);
     } //TODO CAMBIAR POR UN SWITCH SI AGREGAMOS MÁS MODOS DE JUEGO
 
     /**
@@ -194,7 +195,6 @@ public class CreacionSala extends JDialog {
      * @param sala
      * @return
      */
-
     private boolean esPuntajeValido(Sala sala){
         try{
             int puntaje = Integer.parseInt(txtPuntajeMax.getText());
@@ -218,7 +218,7 @@ public class CreacionSala extends JDialog {
         try{
             int tiempo = Integer.parseInt(txtTiempo.getText());
             if(tiempo > 0){
-                sala.setTiempo(tiempo*60); //lo paso a segundos
+                sala.setTiempo(tiempo);
                 return true;
             }
             mostrarMensajeInformativo("El tiempo ingresado no es valido");
