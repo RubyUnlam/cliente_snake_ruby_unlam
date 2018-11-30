@@ -164,6 +164,7 @@ public class Menu extends JFrame {
 			{
 				e.getWindow().dispose();
 				cliente.cerrarConexion();
+				System.exit(0);
 			}
 		});
 
@@ -283,14 +284,13 @@ public class Menu extends JFrame {
 		listaSalas.addAll(salas);
 		btnSalirSala.setEnabled(true);
 		btnJugar.setEnabled(true);
-		salaActual = listaSalas.get(listaSalas.size()-1); //emprolijar eso
+		salaActual = listaSalas.get(listaSalas.size()-1);
 		actualizarJugadoresYDetalles();
 	}
 
 	public void conectadoASala(Sala sala) {
 		salaActual = sala;
 		actualizarJugadoresYDetalles();
-		// TODO: Agregar logica para recibir otros jugadores con cliente servidor
 	}
 	
 	public void salirSala() {
@@ -344,7 +344,6 @@ public class Menu extends JFrame {
 	public void habilitarInteraccionSalas(Boolean b){
 		btnCrearSala.setEnabled(b);
 		btnVerSalasCreadas.setEnabled(b);
-		//btnSeleccionarColor.setEnabled(b);
 	}
 
 	@Override
