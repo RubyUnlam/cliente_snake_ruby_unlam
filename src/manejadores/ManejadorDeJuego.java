@@ -1,20 +1,23 @@
 package manejadores;
 
+
+import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
 import cliente_snake_ruby_unlam.ActualizacionDelJuego;
-import cliente_snake_ruby_unlam.Dibujable;
-import com.google.gson.Gson;
 import observables.ObservadoLectura;
 import observables.ObservadorDibujables;
+
+import javax.sound.sampled.*;
+
 
 public class ManejadorDeJuego extends Thread implements ObservadoLectura {
 
 	private final String JUGAR = "jugar";
 	private ObservadorDibujables observadorDibujable;
 	private ManejadorES manejadorES;
+
+	private String archivoMusicaDeJuego = "src\\sonidos\\musicaDeFondo.wav";
 
 	public ManejadorDeJuego(ManejadorES manejadorES) {
 		this.manejadorES = manejadorES;
@@ -32,12 +35,32 @@ public class ManejadorDeJuego extends Thread implements ObservadoLectura {
 	public void run() {
 		try {
 			boolean finDelJuego = false;
+
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(archivoMusicaDeJuego));
+			AudioFormat format = audioInputStream.getFormat();
+			DataLine.Info info = new DataLine.Info(Clip.class, format);
+
+			Clip musicaDelJuego = (Clip)AudioSystem.getLine(info);
+			musicaDelJuego.open(audioInputStream);
+
+			FloatControl gainControl = (FloatControl) musicaDelJuego.getControl(FloatControl.Type.MASTER_GAIN);
+			gainControl.setValue(-20.0f); // Reduce el volumen 20 db
+
+			musicaDelJuego.start();
+
 			while (!finDelJuego) {
 				ActualizacionDelJuego actualizacion = manejadorES.escuchar(ActualizacionDelJuego.class);
 				finDelJuego = actualizacion.terminoElJuego();
 				enviarADibujar(actualizacion);
 			}
-		} catch (IOException e) {
+
+			musicaDelJuego.stop();
+
+		} catch (IOException  e) {
+			e.printStackTrace();
+		} catch (UnsupportedAudioFileException e) {
+			e.printStackTrace();
+		} catch (LineUnavailableException e) {
 			e.printStackTrace();
 		}
 	}
