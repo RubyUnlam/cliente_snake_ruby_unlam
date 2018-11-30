@@ -40,11 +40,9 @@ public class Login extends JDialog {
         armarLabelDeErrores();
         agregarComponentes(btnRegistrarse, lblNombreUsuario, lblContrasenia, lblLogin);
 
-        addWindowListener(new WindowAdapter()
-        {
+        addWindowListener(new WindowAdapter(){
             @Override
-            public void windowClosing(WindowEvent e)
-            {
+            public void windowClosing(WindowEvent e){
                 ventanaMenu.setVisible(true);
                 e.getWindow().dispose();
             }

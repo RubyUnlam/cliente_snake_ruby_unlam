@@ -157,11 +157,9 @@ public class Menu extends JFrame {
 			}
 		});
 
-		addWindowListener(new WindowAdapter()
-		{
+		addWindowListener(new WindowAdapter(){
 			@Override
-			public void windowClosing(WindowEvent e)
-			{
+			public void windowClosing(WindowEvent e){
 				e.getWindow().dispose();
 				cliente.cerrarConexion();
 				System.exit(0);
