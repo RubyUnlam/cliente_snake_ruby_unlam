@@ -311,6 +311,7 @@ public class Menu extends JFrame {
 		btnSeleccionarColor.setEnabled(estado);
 	}
 
+
 	public void deshabiliarInicioSesion(){
 		btnIniciarSesion.setEnabled(false);
 	}
