@@ -2,7 +2,7 @@ package cliente_snake_ruby_unlam;
 
 import java.util.List;
 
-public class ActualizacionDelJuego {
+public class  ActualizacionDelJuego {
 
     private boolean terminado;
     private List<Dibujable> dibujables;
