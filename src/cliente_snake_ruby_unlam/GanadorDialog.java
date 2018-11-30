@@ -48,6 +48,7 @@ public class GanadorDialog extends JDialog {
         btnConfirmar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 menu.finalizarJuego();
+                menu.setVisible(true);
                 menu.salirSala();
                 dispose();
             }

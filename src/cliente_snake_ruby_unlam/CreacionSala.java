@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Arrays;
 
 import static java.util.Objects.isNull;
@@ -43,6 +45,7 @@ public class CreacionSala extends JDialog {
         this.manejadorActualizacionSala = manejadorActualizacionSala;
         ventanaMenu = menu;
 
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setBounds(100, 100, 380, 400);
         setLocationRelativeTo(menu);
 
@@ -134,6 +137,14 @@ public class CreacionSala extends JDialog {
         getContentPane().add(spinner);
         getContentPane().add(txtPuntajeMax);
 
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent e) {
+                menu.setVisible(true);
+                e.getWindow().dispose();
+            }
+        });
+
         setVisible(true);
     }
 
@@ -170,6 +181,7 @@ public class CreacionSala extends JDialog {
             RespuestaAccionConSala respuesta = manejadorSalas.crearSala(sala);
 
             if(respuesta.esAccionValida()){
+                ventanaMenu.setVisible(true);
                 dispose();
                 ventanaMenu.crearMiSala(respuesta.getListaSalas());
                 manejadorActualizacionSala.start();
