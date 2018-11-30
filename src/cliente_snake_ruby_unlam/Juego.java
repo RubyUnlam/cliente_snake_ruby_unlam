@@ -15,7 +15,7 @@ public class Juego {
 	public static void iniciar(Cliente cliente, Menu menu, CountDownLatch countDownLatch) {
 
 		JFrame ventana = new JFrame("Snake");
-		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ventana.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		ventana.setBounds(0, 0, ANCHO_VENTANA, ALTURA_VENTANA);
 		ventana.setResizable(false);
 		ventana.setLocationRelativeTo(null);
@@ -33,6 +33,7 @@ public class Juego {
 		}
 
 		manejadorDeJuego.start();
+		menu.setVisible(false);
 		ventana.setContentPane(ui);
 		ventana.setVisible(true);
 	}

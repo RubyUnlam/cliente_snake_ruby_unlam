@@ -151,8 +151,18 @@ public class Menu extends JFrame {
 		btnIniciarSesion = new JButton("Iniciar Sesion");
 		btnIniciarSesion.setBounds(6, 15, 398, 23);
 		btnIniciarSesion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent arg0){
+				setVisible(false);
 				abrirLogin();
+			}
+		});
+
+		addWindowListener(new WindowAdapter(){
+			@Override
+			public void windowClosing(WindowEvent e){
+				e.getWindow().dispose();
+				cliente.cerrarConexion();
+				System.exit(0);
 			}
 		});
 
@@ -177,7 +187,6 @@ public class Menu extends JFrame {
 		btnJugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Juego.iniciar(cliente, Menu.this, countDownLatch);
-
 			}
 		});
 
@@ -186,6 +195,7 @@ public class Menu extends JFrame {
 		btnCrearSala.setEnabled(false);
 		btnCrearSala.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
 				abrirCreacionSalas();
 			}
 		});
@@ -195,6 +205,7 @@ public class Menu extends JFrame {
 		btnVerSalasCreadas.setBounds(204, 82, 200, 70);
 		btnVerSalasCreadas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
 				abrirSalasCreadas();
 			}
 		});
@@ -271,14 +282,13 @@ public class Menu extends JFrame {
 		listaSalas.addAll(salas);
 		btnSalirSala.setEnabled(true);
 		btnJugar.setEnabled(true);
-		salaActual = listaSalas.get(listaSalas.size()-1); //emprolijar eso
+		salaActual = listaSalas.get(listaSalas.size()-1);
 		actualizarJugadoresYDetalles();
 	}
 
 	public void conectadoASala(Sala sala) {
 		salaActual = sala;
 		actualizarJugadoresYDetalles();
-		// TODO: Agregar logica para recibir otros jugadores con cliente servidor
 	}
 	
 	public void salirSala() {
@@ -332,7 +342,6 @@ public class Menu extends JFrame {
 	public void habilitarInteraccionSalas(Boolean b){
 		btnCrearSala.setEnabled(b);
 		btnVerSalasCreadas.setEnabled(b);
-		//btnSeleccionarColor.setEnabled(b);
 	}
 
 	@Override

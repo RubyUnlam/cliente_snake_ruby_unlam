@@ -4,10 +4,7 @@ import manejadores.ManejadorLogin;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
 import static java.util.Objects.nonNull;
 
@@ -42,6 +39,14 @@ public class Login extends JDialog {
         JLabel lblLogin = armarLabelLogin();
         armarLabelDeErrores();
         agregarComponentes(btnRegistrarse, lblNombreUsuario, lblContrasenia, lblLogin);
+
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent e){
+                ventanaMenu.setVisible(true);
+                e.getWindow().dispose();
+            }
+        });
 
         iniciarSesionConEnter();
 		
@@ -186,6 +191,7 @@ public class Login extends JDialog {
 	private void actionIniciarSesion() {
 		String contrasenia = String.valueOf(txtContrasenia.getPassword());
 		if (!camposLoginVacios() && iniciarSesion(txtNombreUsuario.getText(), contrasenia)) {
+            ventanaMenu.setVisible(true);
 			cerrarDialogo();
 		}
 	}

@@ -5,10 +5,7 @@ import manejadores.ManejadorSalas;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -163,6 +160,14 @@ public class SalasCreadas extends JDialog {
 		
 		actualizarSalas();
 
+		addWindowListener(new WindowAdapter(){
+			@Override
+			public void windowClosing(WindowEvent e) {
+				menu.setVisible(true);
+				e.getWindow().dispose();
+			}
+		});
+
 		setVisible(true);
 	}
 
@@ -192,6 +197,7 @@ public class SalasCreadas extends JDialog {
 			if(respuesta.esAccionValida()){
 				for (Sala sala : respuesta.getListaSalas()) {
 					if (sala.getNombreSala().equals(nombreSala)) {
+						ventanaMenu.setVisible(true);
 						ventanaMenu.conectadoASala(sala);
 						manejadorActualizacionSala.start();
 						ventanaMenu.habilitarInteraccionSalas(false);
