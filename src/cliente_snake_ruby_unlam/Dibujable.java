@@ -13,6 +13,8 @@ public class Dibujable {
 	
 	private Color color;
 	private List<Ubicacion> zonaDeDibujo;
+	private String nombreJugador;
+	private int puntaje;
 
 	public Color obtenerColor() {
 		return color;
@@ -21,6 +23,9 @@ public class Dibujable {
 	public List<Ubicacion> obtenerZonaDeDibujo() {
 		return zonaDeDibujo;
 	}
-	
+
+	public String getNombreJugador(){ return nombreJugador;}
+
+	public int getPuntaje(){ return puntaje;}
 	
 }

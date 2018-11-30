@@ -16,6 +16,7 @@ public class Cliente {
     private ManejadorDeJuego manejadorDeJuego;
     private ManejadorES manejadorES;
     private Socket socket;
+    private static final String SALIR = "salir";
 
 
     public Cliente(String ip, int puerto) {
@@ -52,6 +53,19 @@ public class Cliente {
 
     public ManejadorActualizacionSala getManejadorActualizacionSala() {
         return new ManejadorActualizacionSala(manejadorES);
+    }
+
+    public void cerrarConexion(){
+        try {
+            manejadorES.enviarString(SALIR);
+            Thread.sleep(1000); //le doy tiempo al sv de que cierre el socket antes de yo cerrar el mio
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
     }
 
     public ManejadorES getManejadorES() {
