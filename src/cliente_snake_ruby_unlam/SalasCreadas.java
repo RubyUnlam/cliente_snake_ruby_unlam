@@ -24,6 +24,8 @@ public class SalasCreadas extends JDialog {
 	private JLabel lblValorCantidadIA;
 	private JLabel lblDificultadIA;
 	private JLabel lblValorCreador;
+	private JLabel lblValorEstadoSala;
+	private JLabel lblEstadoSala;
 	private JLabel lblCantidadMaxJugadores;
 	private JLabel lblDificultad;
 	private JLabel lblCantidadIA;
@@ -127,6 +129,19 @@ public class SalasCreadas extends JDialog {
 		lblValorCreador.setBounds(6, 121, 188, 24);
 		pnlDetallesSala.add(lblValorCreador);
 
+		lblValorEstadoSala = new JLabel("");
+		lblValorEstadoSala.setHorizontalAlignment(SwingConstants.CENTER);
+		lblValorEstadoSala.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		lblValorEstadoSala.setBounds(6, 158, 188, 24);
+		pnlDetallesSala.add(lblValorEstadoSala);
+
+		lblEstadoSala = new JLabel("Estado de la sala");
+		lblEstadoSala.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEstadoSala.setFont(new Font("Lucida Grande", Font.BOLD, 10));
+		lblEstadoSala.setBounds(6, 140, 188, 24);
+		lblEstadoSala.setVisible(false);
+		pnlDetallesSala.add(lblEstadoSala);
+
 		btnConectar = new JButton("Conectar");
 		btnConectar.setEnabled(false);
 		btnConectar.setBounds(289, 236, 117, 29);
@@ -219,6 +234,8 @@ public class SalasCreadas extends JDialog {
 		if (lstSalas.isEnabled()) {
 			Sala sala = listaSalas.get(lstSalas.getSelectedIndex());
 
+			String estadoSala = sala.isSalaInactiva() ? "Inactiva"  : "Activa";
+
 			lblPasswordSala.setEnabled(false);
 			pswSala.setEnabled(false);
 			pswSala.setText("");
@@ -232,6 +249,8 @@ public class SalasCreadas extends JDialog {
 			lblCantidadMaxJugadores.setVisible(true);
 			lblCantidadIA.setVisible(true);
 			lblCreador.setVisible(true);
+			lblEstadoSala.setVisible(true);
+			lblValorEstadoSala.setText(estadoSala);
 			
 			if (!sala.getContrasenia().isEmpty()) {
 				pedirPassword();
