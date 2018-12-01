@@ -25,6 +25,8 @@ public class Sala {
 
 	private boolean salaInactiva;
 
+	private String mapa;
+
 	private List<Jugador> jugadores = new ArrayList<>();
 
 	public Sala(String nombreSala, String contrasenia) {
@@ -33,7 +35,7 @@ public class Sala {
 	}
 
 	public Sala(String nombreSala, String contrasenia, int cantidadJugadores, int cantidadIA, String nombreCreador,
-                int dificultadIA, String modoDeJuego) {
+                int dificultadIA, String modoDeJuego, String mapa) {
 		this.nombreSala = nombreSala;
 		this.contrasenia = contrasenia;
 		this.cantidadJugadores = cantidadJugadores;
@@ -41,6 +43,7 @@ public class Sala {
 		this.nombreCreador = nombreCreador;
 		this.dificultadIA = dificultadIA;
 		this.modoDeJuego = modoDeJuego;
+		this.mapa = mapa;
 	}
 
 	public String getNombreSala() {
@@ -97,12 +100,6 @@ public class Sala {
 		return true;
 	}
 
-	// TODO: Cuando haya distintos tipos de mapa y tiempo, agregar lo siguiente
-	// private int mapa;
-	//
-	// private int tiempo;
-
-
 	public List<Jugador> getJugadores() {
 		return jugadores;
 	}
@@ -128,4 +125,7 @@ public class Sala {
 		this.puntajeAAlcanzar = puntajeAAlcanzar;
 	}
 
+	public String getMapa() {
+		return mapa;
+	}
 }

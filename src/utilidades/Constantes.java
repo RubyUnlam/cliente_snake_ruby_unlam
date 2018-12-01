@@ -7,6 +7,7 @@ public class Constantes {
 	public static final String DERECHA = "derecha";
 	public static final String FINALIZAR = "finalizar";
 	public static final String FUENTE = "Comic Sans MS";
+	public static final String FONDO_PATH = "src/imagenes/%s.jpeg";
 	public static final int ALTURA_VENTANA = 600;
 	public static final int ANCHO_VENTANA = 980;
 	public static final int SANGRIA = ANCHO_VENTANA - 150;

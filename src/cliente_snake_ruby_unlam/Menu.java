@@ -186,7 +186,7 @@ public class Menu extends JFrame {
 		btnJugar.setEnabled(false);
 		btnJugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Juego.iniciar(cliente, Menu.this, countDownLatch);
+				Juego.iniciar(cliente, Menu.this, countDownLatch, salaActual.getMapa());
 			}
 		});
 
@@ -364,5 +364,4 @@ public class Menu extends JFrame {
 			e1.printStackTrace();
 		}
 	}
-
 }
