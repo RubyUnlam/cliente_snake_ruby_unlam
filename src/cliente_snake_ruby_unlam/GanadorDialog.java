@@ -18,7 +18,7 @@ public class GanadorDialog extends JDialog {
 	    this.menu = menu;
         setLocationRelativeTo(menu);
         armarVentanaLogin();
-        JLabel lblNombreUsuario = new JLabel("El ganador es " + actualizacionDelJuego.obtenerGanador());
+        JLabel lblNombreUsuario = new JLabel(actualizacionDelJuego.obtenerGanador());
         lblNombreUsuario.setBounds(50, 50, 200, 29);
         armarBotonSalir();
         getContentPane().add(lblNombreUsuario);
