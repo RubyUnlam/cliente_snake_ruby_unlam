@@ -65,7 +65,7 @@ public class ManejadorDeJuego extends Thread implements ObservadoLectura {
             }
         }
 
-        if (nonNull(musicaDelJuego)){
+        if (nonNull(musicaDelJuego)) {
             musicaDelJuego.stop();
         }
 

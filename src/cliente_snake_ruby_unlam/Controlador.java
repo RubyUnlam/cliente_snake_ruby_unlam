@@ -29,6 +29,8 @@ public class Controlador implements KeyListener {
 			manejadorMovimientos.enviarMovimiento("derecha");
 		} else if (teclaPresionada == keyEventLEFT) {
 			manejadorMovimientos.enviarMovimiento("izquierda");
+		} else if (teclaPresionada == KeyEvent.VK_ESCAPE) {
+			manejadorMovimientos.enviarMovimiento("finalizar");
 		}
 		
 	}

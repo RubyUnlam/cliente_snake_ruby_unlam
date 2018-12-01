@@ -29,10 +29,16 @@ public class Ui extends JPanel implements ObservadorDibujables {
 
     @Override
     public void notificarUbicaciones(ActualizacionDelJuego actualizacion) {
-        this.actualizacionDelJuego = actualizacion;
-        aDibujar.addAll(actualizacion.obtenerDibujables());
-        ganador = actualizacion.obtenerGanador();
-        repaint();
+        if (actualizacion.quiereSalir()) {
+            ventana.setVisible(false);
+            menu.salirSala();
+            menu.setVisible(true);
+        } else {
+            this.actualizacionDelJuego = actualizacion;
+            aDibujar.addAll(actualizacion.obtenerDibujables());
+            ganador = actualizacion.obtenerGanador();
+            repaint();
+        }
     }
 
     public void paint(Graphics g){
