@@ -222,6 +222,8 @@ public class CreacionSala extends JDialog {
         Object tipoDeJuego = cmbVictoria.getSelectedItem();
         cambiarModelAlCombo(cmbJugadores, 1, 5);
         cambiarModelAlCombo(cmbIA, 0, 4);
+        spinner.setValue(50);
+        spinner.setEnabled(true);
         if (PUNTAJE.equals(tipoDeJuego)) {
             txtTiempo.setEnabled(false);
             txtPuntajeMax.setEnabled(true);
@@ -235,6 +237,8 @@ public class CreacionSala extends JDialog {
             txtPuntajeMax.setEnabled(false);
             txtPuntajeMax.setText("");
             txtTiempo.setText("");
+            spinner.setValue(100);
+            spinner.setEnabled(false);
             cambiarModelAlCombo(cmbJugadores, 0, 1);
             cambiarModelAlCombo(cmbIA, 4, 5);
         }
