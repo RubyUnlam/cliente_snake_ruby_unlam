@@ -5,12 +5,12 @@ public class Constantes {
 	public static final String ABAJO = "abajo";
 	public static final String IZQUIERDA = "izquierda";
 	public static final String DERECHA = "derecha";
-	public static final int MIRAR_ARRIBA = -1;
-	public static final int MIRAR_IZQUIERDA = -1;
-	public static final int MIRAR_ABAJO = 1;
-	public static final int MIRAR_DERECHA = 1;
-	public static final int NO_MIRAR = 0;
+	public static final String FINALIZAR = "finalizar";
+	public static final String FUENTE = "Comic Sans MS";
 	public static final int ALTURA_VENTANA = 600;
-	public static final int ANCHO_VENTANA = 800;
-	public static final int VELOCIDAD = 20;
+	public static final int ANCHO_VENTANA = 980;
+	public static final int SANGRIA_NOMBRE = ANCHO_VENTANA - 150;
+	public static final int SANGRIA_PUNTAJE = SANGRIA_NOMBRE + 70;
+	public static final int ALTURA_INICIAL_TEXTO = 50;
+	public static final int TAMANIO_FUENTE = 22;
 }

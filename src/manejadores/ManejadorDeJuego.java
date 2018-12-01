@@ -58,7 +58,7 @@ public class ManejadorDeJuego extends Thread implements ObservadoLectura {
         while (!finDelJuego) {
             try {
                 ActualizacionDelJuego actualizacion = manejadorES.escuchar(ActualizacionDelJuego.class);
-                finDelJuego = actualizacion.terminoElJuego();
+                finDelJuego = actualizacion.quiereSalir() || actualizacion.terminoElJuego();
                 enviarADibujar(actualizacion);
             } catch (IOException e) {
                 e.printStackTrace();

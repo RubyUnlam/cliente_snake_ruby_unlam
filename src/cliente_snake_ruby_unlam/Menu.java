@@ -15,11 +15,11 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import static utilidades.Constantes.FINALIZAR;
 
 public class Menu extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private final String FINALIZAR = "finalizar";
 	private final String CAMBIAR_COLOR = "cambiar_color";
 
 	private String usuarioActual;

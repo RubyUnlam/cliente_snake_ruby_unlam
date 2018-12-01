@@ -7,11 +7,14 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.Objects.nonNull;
+import static utilidades.Constantes.*;
+
 public class Ui extends JPanel implements ObservadorDibujables {
 
     private static final long serialVersionUID = 1L;
     private ImageIcon fondoDefault;
-    private String fondoPath = "src/imagenes/fondo.png"; //TODO HACERLO VARIABLE
+    private String fondoPath = "src/imagenes/fondo.jpeg"; //TODO HACERLO VARIABLE
     private List<Dibujable> aDibujar = new ArrayList<>();
     private String ganador;
     private JFrame ventana;
@@ -64,22 +67,55 @@ public class Ui extends JPanel implements ObservadorDibujables {
      * aDibujar y luego limpia la lista
      */
     private void dibujar(Graphics g) {
+        int alturaNombreN = 1;
         for (Dibujable dibujable : aDibujar) {
-            List<Ubicacion> ubicaciones = dibujable.obtenerZonaDeDibujo();
-            if (!ubicaciones.isEmpty()) {
-                Color colorActual = dibujable.obtenerColor();
-                g.setColor(colorActual.darker());
-                g.fillOval(ubicaciones.get(0).getX(), ubicaciones.get(0).getY(), 20, 20);
-                for (int i = 1; i < ubicaciones.size(); i++) {
-                    g.setColor(colorActual);
-                    g.fillOval(ubicaciones.get(i).getX(), ubicaciones.get(i).getY(), 20, 20);
-                }
-            }
+
+            Color colorActual = dibujable.obtenerColor();
+            dibujarPuntaje(g, alturaNombreN++, dibujable, colorActual);
+
+            dibujarUbicaciones(g, dibujable, colorActual);
         }
         aDibujar.clear();
 
         if (!"".equals(ganador)) {
             terminoElJuego = true;
+        }
+    }
+
+    /**
+     * Dado un dibujable y su color dibuja todas las ubicaciones que tenga.
+     * @param g
+     * @param dibujable
+     * @param colorActual
+     */
+    private void dibujarUbicaciones(Graphics g, Dibujable dibujable, Color colorActual) {
+        List<Ubicacion> ubicaciones = dibujable.obtenerZonaDeDibujo();
+        if (!ubicaciones.isEmpty()) {
+            g.setColor(colorActual.darker());
+            g.fillOval(ubicaciones.get(0).getX(), ubicaciones.get(0).getY(), 20, 20);
+            for (int i = 1; i < ubicaciones.size(); i++) {
+                g.setColor(colorActual);
+                g.fillOval(ubicaciones.get(i).getX(), ubicaciones.get(i).getY(), 20, 20);
+            }
+        }
+    }
+
+    /**
+     * Dado un dibujable, si tiene un nombre dibuja ese nombre junto con su puntaje.
+     * Chequea si tiene nombre porque el dibujable podría ser un comestible y este no tiene ni
+     * nombre ni puntaje
+     * @param g
+     * @param alturaNombreN
+     * @param dibujable
+     * @param colorActual
+     */
+    private void dibujarPuntaje(Graphics g, int alturaNombreN, Dibujable dibujable, Color colorActual) {
+        String nombreJugador = dibujable.getNombreJugador();
+        if (nonNull(nombreJugador) && !nombreJugador.isEmpty()) {
+            g.setColor(colorActual);
+            g.setFont(new Font(FUENTE, Font.BOLD,TAMANIO_FUENTE));
+            g.drawString(nombreJugador, SANGRIA_NOMBRE, ALTURA_INICIAL_TEXTO * alturaNombreN);
+            g.drawString(dibujable.getPuntaje().toString(), SANGRIA_PUNTAJE, ALTURA_INICIAL_TEXTO * alturaNombreN);
         }
     }
 
