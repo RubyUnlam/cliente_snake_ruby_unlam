@@ -108,7 +108,7 @@ public class Ui extends JPanel implements ObservadorDibujables {
      * @param dibujable
      * @param colorActual
      */
-    private int dibujarPuntaje(Graphics g, int alturaNombreN, Dibujable dibujable, Color colorActual) {
+    private void dibujarPuntaje(Graphics g, int alturaNombreN, Dibujable dibujable, Color colorActual) {
         String nombreJugador = dibujable.getNombreJugador();
         if (nonNull(nombreJugador) && !nombreJugador.isEmpty()) {
             g.setColor(colorActual);
@@ -117,7 +117,6 @@ public class Ui extends JPanel implements ObservadorDibujables {
             g.setColor(colorActual.darker());
             g.drawString(dibujable.getPuntaje().toString(), SANGRIA, alturaNombreN + ALTURA_PUNTACION);
         }
-        return alturaNombreN;
     }
 
 }
