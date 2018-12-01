@@ -22,6 +22,7 @@ public class Registro extends JDialog {
 	private Login ventanaLogin;
 	private RegistroUsuario respuesta = new RegistroUsuario("", false);;
 	private ManejadorLogin manejador;
+	private final String REGISTRAR = "registrar";
 
 	/**
 	 * Cuadro de dialogo para el registro de usuarios.
@@ -130,7 +131,7 @@ public class Registro extends JDialog {
 	 * @return verdadero o falso segun el exito del registro.
 	 */
 	public boolean registrarUsuario(String nombreUsuario, char[] contrasenia, String email) {
-		this.respuesta = manejador.enviarUsuario(new Usuario(nombreUsuario, String.valueOf(contrasenia), email));
+		this.respuesta = manejador.enviarUsuario(new Usuario(nombreUsuario, String.valueOf(contrasenia), email), REGISTRAR);
 		if (!respuesta.esRegistroEfectivo()) {
 			lblInformativo.setText(respuesta.getMensaje());
 			txtContrasenia.setText("");
