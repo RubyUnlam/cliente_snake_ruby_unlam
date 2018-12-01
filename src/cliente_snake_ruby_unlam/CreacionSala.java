@@ -18,9 +18,9 @@ public class CreacionSala extends JDialog {
 
     private static final long serialVersionUID = 3146453246362725770L;
     private static final Integer[] CANTIDAD_DE_JUGADORES = {0, 1, 2, 3, 4};
-    private static final String[] FORMAS_DE_VICTORIA = {"Puntaje", "Supervivencia"};
     private static final String PUNTAJE = "Puntaje";
     private static final String SUPERVIVENCIA = "Supervivencia";
+    private static final String[] FORMAS_DE_VICTORIA = {PUNTAJE, SUPERVIVENCIA};
 
     private Menu ventanaMenu;
 
@@ -80,7 +80,7 @@ public class CreacionSala extends JDialog {
         txtTiempo = new JTextField();
         txtTiempo.setColumns(10);
         txtTiempo.setBounds(168, 168, 182, 26);
-        txtTiempo.setEnabled(true);
+        txtTiempo.setEnabled(false);
 
         txtPuntajeMax = new JTextField();
         txtPuntajeMax.setColumns(10);
@@ -105,7 +105,6 @@ public class CreacionSala extends JDialog {
         lblInformativo = new JLabel("");
         lblInformativo.setHorizontalAlignment(SwingConstants.CENTER);
         lblInformativo.setBounds(6, 14, 344, 16);
-
 
         crearComboJugadores();
         crearComboIA();
@@ -152,6 +151,24 @@ public class CreacionSala extends JDialog {
         cmbVictoria = new JComboBox<String>();
         cmbVictoria.setModel(new DefaultComboBoxModel<String>(FORMAS_DE_VICTORIA));
         cmbVictoria.setBounds(168, 140, 182, 26);
+        cmbVictoria.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                deshabilitarSegunOpcion(evt);
+            }
+        });
+    }
+
+    private void deshabilitarSegunOpcion(ActionEvent evt) {
+        if (cmbVictoria.getSelectedItem().equals(PUNTAJE)) {
+            txtTiempo.setEnabled(false);
+            txtPuntajeMax.setEnabled(true);
+            txtTiempo.setText("");
+        } else {
+            txtTiempo.setEnabled(true);
+            txtPuntajeMax.setEnabled(false);
+            txtPuntajeMax.setText("");
+
+        }
     }
 
 
@@ -216,7 +233,7 @@ public class CreacionSala extends JDialog {
             }
             mostrarMensajeInformativo("El puntaje ingresado no es valido");
             return false;
-        } catch(NumberFormatException e){
+        } catch(NumberFormatException e) {
             mostrarMensajeInformativo("El puntaje ingresado no es valido");
             return false;
         }
