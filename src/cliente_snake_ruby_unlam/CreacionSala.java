@@ -126,7 +126,7 @@ public class CreacionSala extends JDialog {
         lblMapa.setBounds(x, 230, 150, 16);
 
         lblCondicionFinPartida = new JLabel("Victoria por");
-        lblCondicionFinPartida.setBounds(x, 145, 70, 16);
+        lblCondicionFinPartida.setBounds(x, 145, 90, 16);
 
         lblPuntaje = new JLabel("Puntaje a alcanzar");
         lblPuntaje.setBounds(x, 200, 120, 20);
@@ -250,7 +250,7 @@ public class CreacionSala extends JDialog {
     }
 
     /**
-     * Crea el comboBox para seleccionar la cantidad maxima de jugadores.
+     * Crea el comboBox para seleccionar el mapa.
      */
     private void crearComboMapas() {
         cmbMapas = new JComboBox<String>();
