@@ -91,10 +91,10 @@ public class Ui extends JPanel implements ObservadorDibujables {
     private void dibujarUbicaciones(Graphics g, Dibujable dibujable, Color colorActual) {
         List<Ubicacion> ubicaciones = dibujable.obtenerZonaDeDibujo();
         if (!ubicaciones.isEmpty()) {
-            g.setColor(colorActual.darker());
+            g.setColor(colorActual);
             g.fillOval(ubicaciones.get(0).getX(), ubicaciones.get(0).getY(), 20, 20);
             for (int i = 1; i < ubicaciones.size(); i++) {
-                g.setColor(colorActual);
+                g.setColor(colorActual.darker());
                 g.fillOval(ubicaciones.get(i).getX(), ubicaciones.get(i).getY(), 20, 20);
             }
         }
