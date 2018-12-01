@@ -67,13 +67,12 @@ public class Ui extends JPanel implements ObservadorDibujables {
      * aDibujar y luego limpia la lista
      */
     private void dibujar(Graphics g) {
-        int alturaNombreN = 1;
+        int alturaNombreN = ALTURA_INICIAL_TEXTO;
         for (Dibujable dibujable : aDibujar) {
-
             Color colorActual = dibujable.obtenerColor();
-            dibujarPuntaje(g, alturaNombreN++, dibujable, colorActual);
-
+            dibujarPuntaje(g, alturaNombreN, dibujable, colorActual);
             dibujarUbicaciones(g, dibujable, colorActual);
+            alturaNombreN += ALTURA_INICIAL_TEXTO + ALTURA_PUNTACION;
         }
         aDibujar.clear();
 
@@ -109,15 +108,16 @@ public class Ui extends JPanel implements ObservadorDibujables {
      * @param dibujable
      * @param colorActual
      */
-    private void dibujarPuntaje(Graphics g, int alturaNombreN, Dibujable dibujable, Color colorActual) {
+    private int dibujarPuntaje(Graphics g, int alturaNombreN, Dibujable dibujable, Color colorActual) {
         String nombreJugador = dibujable.getNombreJugador();
         if (nonNull(nombreJugador) && !nombreJugador.isEmpty()) {
             g.setColor(colorActual);
-            g.setFont(new Font(FUENTE, Font.BOLD,TAMANIO_FUENTE));
-            g.drawString(nombreJugador, SANGRIA_NOMBRE, ALTURA_INICIAL_TEXTO * alturaNombreN);
-            g.drawString(dibujable.getPuntaje().toString(), SANGRIA_PUNTAJE, ALTURA_INICIAL_TEXTO * alturaNombreN);
+            g.setFont(new Font(FUENTE, Font.BOLD, TAMANIO_FUENTE));
+            g.drawString(nombreJugador, SANGRIA, alturaNombreN);
+            g.setColor(colorActual.darker());
+            g.drawString(dibujable.getPuntaje().toString(), SANGRIA, alturaNombreN + ALTURA_PUNTACION);
         }
+        return alturaNombreN;
     }
-
 
 }

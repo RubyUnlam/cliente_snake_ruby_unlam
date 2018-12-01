@@ -9,8 +9,8 @@ public class Constantes {
 	public static final String FUENTE = "Comic Sans MS";
 	public static final int ALTURA_VENTANA = 600;
 	public static final int ANCHO_VENTANA = 980;
-	public static final int SANGRIA_NOMBRE = ANCHO_VENTANA - 150;
-	public static final int SANGRIA_PUNTAJE = SANGRIA_NOMBRE + 70;
+	public static final int SANGRIA = ANCHO_VENTANA - 150;
 	public static final int ALTURA_INICIAL_TEXTO = 50;
+	public static final int ALTURA_PUNTACION = 25;
 	public static final int TAMANIO_FUENTE = 22;
 }
