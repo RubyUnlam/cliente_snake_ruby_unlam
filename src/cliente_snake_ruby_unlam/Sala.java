@@ -109,18 +109,6 @@ public class Sala {
 		this.tiempo = tiempo;
 	}
 
-	public int getTiempo() {
-		return tiempo;
-	}
-
-	public String getModoDeJuego() {
-		return modoDeJuego;
-	}
-
-	public int getPuntajeAAlcanzar() {
-		return puntajeAAlcanzar;
-	}
-
 	public void setPuntajeAAlcanzar(int puntajeAAlcanzar) {
 		this.puntajeAAlcanzar = puntajeAAlcanzar;
 	}
