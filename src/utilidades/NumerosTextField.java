@@ -12,7 +12,7 @@ public class NumerosTextField extends JTextField {
 
     private static final long serialVersionUID = 1L;
 
-    List<Integer> teclasPermitidas = new ArrayList<Integer>(){{
+    List<Integer> teclasPermitidas = new ArrayList<Integer>() {{
         add(KeyEvent.VK_BACK_SPACE);
         add(KeyEvent.VK_LEFT);
         add(KeyEvent.VK_RIGHT);

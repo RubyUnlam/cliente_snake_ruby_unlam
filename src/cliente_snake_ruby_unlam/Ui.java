@@ -34,11 +34,12 @@ public class Ui extends JPanel implements ObservadorDibujables {
 
     /**
      * Inicializa el fondo con el mapa recibido o el clasico.
+     *
      * @param mapa
      * @return
      */
     private ImageIcon inicializarFondo(String mapa) {
-        String mapaFinal = nonNull(mapa) ?  mapa : CLASICO;
+        String mapaFinal = nonNull(mapa) ? mapa : CLASICO;
         return new ImageIcon(String.format(FONDO_PATH, mapaFinal));
     }
 
@@ -56,7 +57,7 @@ public class Ui extends JPanel implements ObservadorDibujables {
         }
     }
 
-    public void paint(Graphics g){
+    public void paint(Graphics g) {
         fondo.paintIcon(this, g, 0, 0);
         if (!aDibujar.isEmpty()) {
             dibujar(g);
@@ -94,6 +95,7 @@ public class Ui extends JPanel implements ObservadorDibujables {
 
     /**
      * Dado un dibujable y su color dibuja todas las ubicaciones que tenga.
+     *
      * @param g
      * @param dibujable
      * @param colorActual
@@ -114,6 +116,7 @@ public class Ui extends JPanel implements ObservadorDibujables {
      * Dado un dibujable, si tiene un nombre dibuja ese nombre junto con su puntaje.
      * Chequea si tiene nombre porque el dibujable podría ser un comestible y este no tiene ni
      * nombre ni puntaje
+     *
      * @param g
      * @param alturaNombreN
      * @param dibujable

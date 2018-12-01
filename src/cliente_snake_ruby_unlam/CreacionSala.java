@@ -93,7 +93,7 @@ public class CreacionSala extends JDialog {
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setBounds(100, 100, 380, 400);
         setLocationRelativeTo(menu);
-        addWindowListener(new WindowAdapter(){
+        addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 menu.setVisible(true);
@@ -104,6 +104,7 @@ public class CreacionSala extends JDialog {
 
     /**
      * Creacion de todos los labels a la misma distancia del borde de la ventana.
+     *
      * @param x Distancia al borde de la ventana.
      */
     private void crearDeLabels(int x) {
@@ -142,6 +143,7 @@ public class CreacionSala extends JDialog {
 
     /**
      * Crea TextFields a la misma distancia del borde de la ventana.
+     *
      * @param x Distancia al borde de la ventana.
      */
     private void crearTextFields(int x) {
@@ -232,7 +234,7 @@ public class CreacionSala extends JDialog {
             txtTiempo.setEnabled(true);
             txtPuntajeMax.setEnabled(false);
             txtPuntajeMax.setText("");
-        } else if (CARNICERIA.equals(tipoDeJuego)){
+        } else if (CARNICERIA.equals(tipoDeJuego)) {
             txtTiempo.setEnabled(false);
             txtPuntajeMax.setEnabled(false);
             txtPuntajeMax.setText("");
@@ -273,6 +275,7 @@ public class CreacionSala extends JDialog {
 
     /**
      * Dado un combo le setea como modelo el rango especificado de la constante de jugadores
+     *
      * @param combo
      * @param inicio
      * @param fin
@@ -314,18 +317,20 @@ public class CreacionSala extends JDialog {
     /**
      * Dado un modo de juego (puntaje o supervivencia) verifica si la condición de fin
      * de ese modo de juego es correcta.
+     *
      * @return
      */
-    private boolean condicionesDeVictoriaValidas(){
+    private boolean condicionesDeVictoriaValidas() {
         Object selectedItem = cmbVictoria.getSelectedItem();
         if (CARNICERIA.equals(selectedItem)) {
             return true;
         }
         return PUNTAJE.equals(selectedItem) ? esPuntajeValido() : esTiempoValido();
-    } //TODO CAMBIAR POR UN SWITCH SI AGREGAMOS MÁS MODOS DE JUEGO
+    }
 
     /**
      * Verfica que el puntaje no este vacio.
+     *
      * @return
      */
     private boolean esPuntajeValido() {
@@ -338,6 +343,7 @@ public class CreacionSala extends JDialog {
 
     /**
      * Verifica que el tiempo ingresado no este vacio.
+     *
      * @return
      */
     private boolean esTiempoValido() {
@@ -351,6 +357,7 @@ public class CreacionSala extends JDialog {
     /**
      * Valida que los campos de nombre de sala, contrasenia, y cantidad de jugadores
      * no esten vacios.
+     *
      * @return
      */
     private boolean camposCreacionSalaVacios() {
@@ -363,6 +370,7 @@ public class CreacionSala extends JDialog {
 
     /**
      * Valida que la cantidad maxima de jugadres sea valida
+     *
      * @return
      */
     private boolean cantidadJugadoresValida() {
@@ -376,6 +384,7 @@ public class CreacionSala extends JDialog {
 
     /**
      * Verifica si existe ya una sala con el mismo nombre que la que se quiere crear.
+     *
      * @param sala
      * @return
      */
@@ -390,19 +399,21 @@ public class CreacionSala extends JDialog {
 
     /**
      * Agrega las condiciones de victoria dependiendo de cual fue elegida
+     *
      * @param sala
      */
     private void agregarCondicionDeVictoria(Sala sala) {
         Object selectedItem = cmbVictoria.getSelectedItem();
         if (PUNTAJE.equals(selectedItem)) {
             agregarPuntaje(sala);
-        } else if (SUPERVIVENCIA.equals(selectedItem) ){
+        } else if (SUPERVIVENCIA.equals(selectedItem)) {
             agregarTiempo(sala);
         }
     }
 
     /**
      * Agrega el puntaje maximo a la sala.
+     *
      * @param sala
      */
     public void agregarPuntaje(Sala sala) {
@@ -411,6 +422,7 @@ public class CreacionSala extends JDialog {
 
     /**
      * Agrega el tiempo a la sala.
+     *
      * @param sala
      */
     public void agregarTiempo(Sala sala) {
@@ -419,6 +431,7 @@ public class CreacionSala extends JDialog {
 
     /**
      * Muestra mensaje de error o informativo.
+     *
      * @param mensaje
      */
     public void mostrarMensajeInformativo(String mensaje) {

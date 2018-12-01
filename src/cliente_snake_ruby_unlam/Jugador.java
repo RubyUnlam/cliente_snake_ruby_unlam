@@ -1,7 +1,6 @@
 package cliente_snake_ruby_unlam;
 
 import java.awt.*;
-import java.net.Socket;
 
 public class Jugador {
 

@@ -10,24 +10,25 @@ import static java.util.Objects.nonNull;
 
 public class Login extends JDialog {
 
-	private static final long serialVersionUID = 1L;
-	private JTextField txtNombreUsuario;
-	private JPasswordField txtContrasenia;
-	private JLabel lblErrorRegistro;
-	private JButton btnIniciarSesion;
-	private Menu ventanaMenu;
-	private boolean loggeado = false;
-	Login login = this;
-	private RegistroUsuario respuesta = new RegistroUsuario("", false);;
-	private ManejadorLogin manejador;
-	private final String LOGGEAR = "loggear";
+    private static final long serialVersionUID = 1L;
+    private JTextField txtNombreUsuario;
+    private JPasswordField txtContrasenia;
+    private JLabel lblErrorRegistro;
+    private JButton btnIniciarSesion;
+    private Menu ventanaMenu;
+    private boolean loggeado = false;
+    Login login = this;
+    private RegistroUsuario respuesta = new RegistroUsuario("", false);
+    private ManejadorLogin manejador;
+    private final String LOGGEAR = "loggear";
 
-	/**
-	 * Cuadro de dialogo para el inicio de sesion o registro de usuarios. 
-	 * @param menu para poder acceder a los componentes del JFrame principal.
-	 */
-	public Login(Menu menu, ManejadorLogin manejador) {
-		this.manejador = manejador;
+    /**
+     * Cuadro de dialogo para el inicio de sesion o registro de usuarios.
+     *
+     * @param menu para poder acceder a los componentes del JFrame principal.
+     */
+    public Login(Menu menu, ManejadorLogin manejador) {
+        this.manejador = manejador;
 
         ventanaMenu = menu;
         armarVentanaLogin(menu);
@@ -41,20 +42,21 @@ public class Login extends JDialog {
         armarLabelDeErrores();
         agregarComponentes(btnRegistrarse, lblNombreUsuario, lblContrasenia, lblLogin);
 
-        addWindowListener(new WindowAdapter(){
+        addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(WindowEvent e){
+            public void windowClosing(WindowEvent e) {
                 ventanaMenu.setVisible(true);
                 e.getWindow().dispose();
             }
         });
 
         iniciarSesionConEnter();
-		
-	}
+
+    }
 
     /**
      * Agregando componentes al panel.
+     *
      * @param btnRegistrarse
      * @param lblNombreUsuario
      * @param lblContrasenia
@@ -83,6 +85,7 @@ public class Login extends JDialog {
 
     /**
      * Arma el label del login
+     *
      * @return
      */
     private JLabel armarLabelLogin() {
@@ -94,6 +97,7 @@ public class Login extends JDialog {
 
     /**
      * Arma labels para nombre de usuario y contrasenia
+     *
      * @param s
      * @param y
      * @param alto
@@ -121,6 +125,7 @@ public class Login extends JDialog {
 
     /**
      * Arma el boton de registro
+     *
      * @return
      */
     private JButton armarBotonDeRegistro() {
@@ -155,6 +160,7 @@ public class Login extends JDialog {
 
     /**
      * Propiedades del JDialog para el login.
+     *
      * @param menu
      */
     private void armarVentanaLogin(Menu menu) {
@@ -166,12 +172,13 @@ public class Login extends JDialog {
     }
 
     /**
-	 * Llama al proceso de inicio de sesion, y muestra un error en caso de fallar. 
-	 * @param nombreUsuario
-	 * @param contrasenia
-	 * @return verdadero o falso segun el exito del inicio de sesion.
-	 */
-	public boolean iniciarSesion(String nombreUsuario, String contrasenia) {
+     * Llama al proceso de inicio de sesion, y muestra un error en caso de fallar.
+     *
+     * @param nombreUsuario
+     * @param contrasenia
+     * @return verdadero o falso segun el exito del inicio de sesion.
+     */
+    public boolean iniciarSesion(String nombreUsuario, String contrasenia) {
         this.respuesta = manejador.enviarUsuario(new Usuario(nombreUsuario, contrasenia), LOGGEAR);
         if (nonNull(this.respuesta) && !respuesta.esRegistroEfectivo()) {
             lblErrorRegistro.setText(respuesta.getMensaje());
@@ -179,74 +186,75 @@ public class Login extends JDialog {
             lblErrorRegistro.setForeground(Color.RED);
             lblErrorRegistro.setVisible(true);
         }
-        if(respuesta.esRegistroEfectivo()){
+        if (respuesta.esRegistroEfectivo()) {
             ventanaMenu.deshabiliarInicioSesion();
         }
-		return respuesta.esRegistroEfectivo();
-	}
-	
-	/**
-	 * Inicia la validacion del usuario y la contrasenia, y llama al proceso de inicio de sesion. Cierra el dialogo 
-	 * al iniciar correctamente la sesion.
-	 */
-	private void actionIniciarSesion() {
-		String contrasenia = String.valueOf(txtContrasenia.getPassword());
-		if (!camposLoginVacios() && iniciarSesion(txtNombreUsuario.getText(), contrasenia)) {
+        return respuesta.esRegistroEfectivo();
+    }
+
+    /**
+     * Inicia la validacion del usuario y la contrasenia, y llama al proceso de inicio de sesion. Cierra el dialogo
+     * al iniciar correctamente la sesion.
+     */
+    private void actionIniciarSesion() {
+        String contrasenia = String.valueOf(txtContrasenia.getPassword());
+        if (!camposLoginVacios() && iniciarSesion(txtNombreUsuario.getText(), contrasenia)) {
             ventanaMenu.setVisible(true);
-			cerrarDialogo();
-		}
-	}
-	
-	/**
-	 * Valida que los campos de nombre de usuario y contrasenia no esten vacios.
-	 * @return
-	 */
-	private boolean camposLoginVacios() {
-		if(txtNombreUsuario.getText().isEmpty() || txtContrasenia.getPassword().length == 0) {
-			lblErrorRegistro.setText("Rellene todos los campos");
-			lblErrorRegistro.setForeground(Color.RED);
-			lblErrorRegistro.setVisible(true);
-			return true;
-		}
-		return false;
-	}
-	
-	/**
-	 * Cierra la ventana del login y cambia el texto de bienvenida del menu principal.
-	 */
-	private void cerrarDialogo() {
-		ventanaMenu.loggeado(txtNombreUsuario.getText());
-		dispose();
-	}
-	
-	/**
-	 * Ejecuta el inicio de sesion al pulsar la tecla Enter en los JTextField.
-	 */
-	private void iniciarSesionConEnter() {
-		txtContrasenia.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					btnIniciarSesion.doClick();					
-				}
-			}
-		});
-		txtNombreUsuario.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					btnIniciarSesion.doClick();					
-				}			
-			}
-		});
-	}
-	
-	public void actualizarUsuario(String usuarioRegistrado) {
-		lblErrorRegistro.setText("Usuario registrado. Ingrese su password");
-		lblErrorRegistro.setForeground(Color.BLUE);
-		lblErrorRegistro.setVisible(true);
-		txtNombreUsuario.setText(usuarioRegistrado);
-		txtContrasenia.setText("");
-		txtContrasenia.requestFocus();
-	}
+            cerrarDialogo();
+        }
+    }
+
+    /**
+     * Valida que los campos de nombre de usuario y contrasenia no esten vacios.
+     *
+     * @return
+     */
+    private boolean camposLoginVacios() {
+        if (txtNombreUsuario.getText().isEmpty() || txtContrasenia.getPassword().length == 0) {
+            lblErrorRegistro.setText("Rellene todos los campos");
+            lblErrorRegistro.setForeground(Color.RED);
+            lblErrorRegistro.setVisible(true);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Cierra la ventana del login y cambia el texto de bienvenida del menu principal.
+     */
+    private void cerrarDialogo() {
+        ventanaMenu.loggeado(txtNombreUsuario.getText());
+        dispose();
+    }
+
+    /**
+     * Ejecuta el inicio de sesion al pulsar la tecla Enter en los JTextField.
+     */
+    private void iniciarSesionConEnter() {
+        txtContrasenia.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnIniciarSesion.doClick();
+                }
+            }
+        });
+        txtNombreUsuario.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnIniciarSesion.doClick();
+                }
+            }
+        });
+    }
+
+    public void actualizarUsuario(String usuarioRegistrado) {
+        lblErrorRegistro.setText("Usuario registrado. Ingrese su password");
+        lblErrorRegistro.setForeground(Color.BLUE);
+        lblErrorRegistro.setVisible(true);
+        txtNombreUsuario.setText(usuarioRegistrado);
+        txtContrasenia.setText("");
+        txtContrasenia.requestFocus();
+    }
 }

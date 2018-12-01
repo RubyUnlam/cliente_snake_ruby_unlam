@@ -2,15 +2,13 @@ package cliente_snake_ruby_unlam;
 
 import manejadores.*;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class Cliente {
 
-	private ManejadorMovimientos manejadorMovimientos;
+    private ManejadorMovimientos manejadorMovimientos;
     private ManejadorLogin manejadorLogin;
     private ManejadorSalas manejadorSalas;
     private ManejadorES manejadorES;
@@ -33,9 +31,9 @@ public class Cliente {
             e.printStackTrace();
         }
     }
-    
+
     public Controlador obtenerControlador() {
-    	return new Controlador(manejadorMovimientos);
+        return new Controlador(manejadorMovimientos);
     }
 
     public ManejadorDeJuego obtenerManejadorDeJuego() {
@@ -54,14 +52,14 @@ public class Cliente {
         return new ManejadorActualizacionSala(manejadorES);
     }
 
-    public void cerrarConexion(){
+    public void cerrarConexion() {
         try {
             manejadorES.enviarString(SALIR);
             Thread.sleep(1000); //le doy tiempo al sv de que cierre el socket antes de yo cerrar el mio
             socket.close();
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 

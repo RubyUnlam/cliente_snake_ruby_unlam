@@ -2,7 +2,6 @@ package manejadores;
 
 import cliente_snake_ruby_unlam.Menu;
 import cliente_snake_ruby_unlam.Sala;
-import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
