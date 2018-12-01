@@ -13,8 +13,8 @@ import static utilidades.Constantes.*;
 public class Ui extends JPanel implements ObservadorDibujables {
 
     private static final long serialVersionUID = 1L;
-    private ImageIcon fondoDefault;
-    private String fondoPath = "src/imagenes/fondo.jpeg"; //TODO HACERLO VARIABLE
+    public static final String CLASICO = "Clasico";
+    private ImageIcon fondo;
     private List<Dibujable> aDibujar = new ArrayList<>();
     private String ganador;
     private JFrame ventana;
@@ -22,12 +22,23 @@ public class Ui extends JPanel implements ObservadorDibujables {
     private ActualizacionDelJuego actualizacionDelJuego;
     private Menu menu;
 
-    Ui(Controlador controlador, JFrame ventana, Menu menu) {
+    Ui(Controlador controlador, JFrame ventana, Menu menu, String mapa) {
         this.ventana = ventana;
         this.menu = menu;
         addKeyListener(controlador);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
+        this.fondo = inicializarFondo(mapa);
+    }
+
+    /**
+     * Inicializa el fondo con el mapa recibido o el clasico.
+     * @param mapa
+     * @return
+     */
+    private ImageIcon inicializarFondo(String mapa) {
+        String mapaFinal = nonNull(mapa) ?  mapa : CLASICO;
+        return new ImageIcon(String.format(FONDO_PATH, mapaFinal));
     }
 
     @Override
@@ -45,8 +56,7 @@ public class Ui extends JPanel implements ObservadorDibujables {
     }
 
     public void paint(Graphics g){
-        fondoDefault = new ImageIcon(fondoPath);
-        fondoDefault.paintIcon(this, g, 0, 0);
+        fondo.paintIcon(this, g, 0, 0);
         if (!aDibujar.isEmpty()) {
             dibujar(g);
         }

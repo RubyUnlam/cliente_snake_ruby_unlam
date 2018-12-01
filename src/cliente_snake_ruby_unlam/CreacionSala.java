@@ -22,11 +22,13 @@ public class CreacionSala extends JDialog {
     private static final String SUPERVIVENCIA = "Supervivencia";
     private static final String CARNICERIA = "CarnicerIA";
     private static final String[] FORMAS_DE_VICTORIA = {PUNTAJE, SUPERVIVENCIA, CARNICERIA};
+    private static final String[] MAPAS = {"Clasico", "Pradera", "Desierto", "Oceano"};
     private static final Integer[] CANTIDAD_DE_JUGADORES = {0, 1, 2, 3, 4};
 
     private JComboBox<Integer> cmbIA;
     private JComboBox<Integer> cmbJugadores;
     private JComboBox<String> cmbVictoria;
+    private JComboBox<String> cmbMapas;
     private JSpinner spinner;
     private ManejadorSalas manejadorSalas;
     private ManejadorActualizacionSala manejadorActualizacionSala;
@@ -45,6 +47,7 @@ public class CreacionSala extends JDialog {
     private JLabel lblCreacionDeSala;
     private JLabel lblDificultad;
     private JLabel lblPuntaje;
+    private JLabel lblMapa;
     private JButton btnCrearSala;
 
     /**
@@ -59,6 +62,7 @@ public class CreacionSala extends JDialog {
         crearTextFields(168);
         crearComboJugadores();
         crearComboIA();
+        crearComboMapas();
         crearComboFormaVictoria();
         agregarDificultadIA();
         crearBotones();
@@ -74,7 +78,7 @@ public class CreacionSala extends JDialog {
         lblDificultad.setBounds(233, 117, 69, 16);
 
         btnCrearSala = new JButton("Crear sala");
-        btnCrearSala.setBounds(115, 250, 117, 30);
+        btnCrearSala.setBounds(115, 260, 117, 30);
         btnCrearSala.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 crearSala();
@@ -115,11 +119,14 @@ public class CreacionSala extends JDialog {
         lblCantidadDeIa = new JLabel("Cantidad de IA");
         lblCantidadDeIa.setBounds(x, 117, 111, 16);
 
-        lblTiempo = new JLabel("Tiempo");
-        lblTiempo.setBounds(x, 173, 70, 16);
+        lblTiempo = new JLabel("Tiempo (en segundos)");
+        lblTiempo.setBounds(x, 173, 150, 16);
+
+        lblMapa = new JLabel("Mapa");
+        lblMapa.setBounds(x, 230, 150, 16);
 
         lblCondicionFinPartida = new JLabel("Victoria por");
-        lblCondicionFinPartida.setBounds(x, 145, 70, 16);
+        lblCondicionFinPartida.setBounds(x, 145, 90, 16);
 
         lblPuntaje = new JLabel("Puntaje a alcanzar");
         lblPuntaje.setBounds(x, 200, 120, 20);
@@ -188,6 +195,8 @@ public class CreacionSala extends JDialog {
         getContentPane().add(cmbVictoria);
         getContentPane().add(cmbIA);
         getContentPane().add(cmbJugadores);
+        getContentPane().add(cmbMapas);
+        getContentPane().add(lblMapa);
         getContentPane().add(txtPuntajeMax);
         getContentPane().add(spinner);
     }
@@ -241,6 +250,15 @@ public class CreacionSala extends JDialog {
     }
 
     /**
+     * Crea el comboBox para seleccionar el mapa.
+     */
+    private void crearComboMapas() {
+        cmbMapas = new JComboBox<String>();
+        cmbMapas.setBounds(168, 230, 182, 27);
+        cmbMapas.setModel(new DefaultComboBoxModel<String>(MAPAS));
+    }
+
+    /**
      * Crea el comboBox para seleccionar la cantidad maxima de IAs.
      */
     private void crearComboIA() {
@@ -268,7 +286,8 @@ public class CreacionSala extends JDialog {
         String password = String.valueOf(txtContrasenia.getPassword());
         Sala sala = new Sala(txtNombreSala.getText(), password,
                 (int) cmbJugadores.getSelectedItem(), (int) cmbIA.getSelectedItem(),
-                ventanaMenu.getUsuarioActual(), (int) spinner.getValue(), cmbVictoria.getSelectedItem().toString());
+                ventanaMenu.getUsuarioActual(), (int) spinner.getValue(), cmbVictoria.getSelectedItem().toString(),
+                (String) cmbMapas.getSelectedItem());
 
         if (!camposCreacionSalaVacios() && cantidadJugadoresValida() && crearSala(sala) && condicionesDeVictoriaValidas()) {
 
