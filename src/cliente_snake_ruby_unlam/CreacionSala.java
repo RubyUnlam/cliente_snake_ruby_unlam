@@ -20,7 +20,8 @@ public class CreacionSala extends JDialog {
 
     private static final String PUNTAJE = "Puntaje";
     private static final String SUPERVIVENCIA = "Supervivencia";
-    private static final String[] FORMAS_DE_VICTORIA = {PUNTAJE, SUPERVIVENCIA};
+    private static final String CARNICERIA = "CarnicerIA";
+    private static final String[] FORMAS_DE_VICTORIA = {PUNTAJE, SUPERVIVENCIA, CARNICERIA};
     private static final Integer[] CANTIDAD_DE_JUGADORES = {0, 1, 2, 3, 4};
 
     private JComboBox<Integer> cmbIA;
@@ -209,14 +210,24 @@ public class CreacionSala extends JDialog {
      * Deshabilita JText de puntaje o tiempo dependiendo del modo de juego elegido.
      */
     private void deshabilitarSegunOpcion() {
-        if (cmbVictoria.getSelectedItem().equals(PUNTAJE)) {
+        Object tipoDeJuego = cmbVictoria.getSelectedItem();
+        cambiarModelAlCombo(cmbJugadores, 1, 5);
+        cambiarModelAlCombo(cmbIA, 0, 4);
+        if (PUNTAJE.equals(tipoDeJuego)) {
             txtTiempo.setEnabled(false);
             txtPuntajeMax.setEnabled(true);
             txtTiempo.setText("");
-        } else {
+        } else if (SUPERVIVENCIA.equals(tipoDeJuego)) {
             txtTiempo.setEnabled(true);
             txtPuntajeMax.setEnabled(false);
             txtPuntajeMax.setText("");
+        } else if (CARNICERIA.equals(tipoDeJuego)){
+            txtTiempo.setEnabled(false);
+            txtPuntajeMax.setEnabled(false);
+            txtPuntajeMax.setText("");
+            txtTiempo.setText("");
+            cambiarModelAlCombo(cmbJugadores, 0, 1);
+            cambiarModelAlCombo(cmbIA, 4, 5);
         }
     }
 
@@ -225,8 +236,8 @@ public class CreacionSala extends JDialog {
      */
     private void crearComboJugadores() {
         cmbJugadores = new JComboBox<Integer>();
-        cmbJugadores.setModel(new DefaultComboBoxModel<Integer>(Arrays.copyOfRange(CANTIDAD_DE_JUGADORES, 1, 5)));
         cmbJugadores.setBounds(168, 85, 64, 27);
+        cambiarModelAlCombo(cmbJugadores, 1, 5);
     }
 
     /**
@@ -234,8 +245,19 @@ public class CreacionSala extends JDialog {
      */
     private void crearComboIA() {
         cmbIA = new JComboBox<Integer>();
-        cmbIA.setModel(new DefaultComboBoxModel<Integer>(Arrays.copyOfRange(CANTIDAD_DE_JUGADORES, 0, 4)));
         cmbIA.setBounds(168, 113, 64, 27);
+        cambiarModelAlCombo(cmbIA, 0, 4);
+    }
+
+    /**
+     * Dado un combo le setea como modelo el rango especificado de la constante de jugadores
+     * @param combo
+     * @param inicio
+     * @param fin
+     */
+    private void cambiarModelAlCombo(JComboBox<Integer> combo, int inicio, int fin) {
+        combo.setModel(new DefaultComboBoxModel<Integer>(Arrays.copyOfRange(CANTIDAD_DE_JUGADORES, inicio, fin)));
+
     }
 
     /**
@@ -272,7 +294,11 @@ public class CreacionSala extends JDialog {
      * @return
      */
     private boolean condicionesDeVictoriaValidas(){
-        return PUNTAJE.equals(cmbVictoria.getSelectedItem()) ? esPuntajeValido() : esTiempoValido();
+        Object selectedItem = cmbVictoria.getSelectedItem();
+        if (CARNICERIA.equals(selectedItem)) {
+            return true;
+        }
+        return PUNTAJE.equals(selectedItem) ? esPuntajeValido() : esTiempoValido();
     } //TODO CAMBIAR POR UN SWITCH SI AGREGAMOS MÁS MODOS DE JUEGO
 
     /**
@@ -344,9 +370,10 @@ public class CreacionSala extends JDialog {
      * @param sala
      */
     private void agregarCondicionDeVictoria(Sala sala) {
-        if (cmbVictoria.getSelectedItem().equals(PUNTAJE)) {
+        Object selectedItem = cmbVictoria.getSelectedItem();
+        if (PUNTAJE.equals(selectedItem)) {
             agregarPuntaje(sala);
-        } else {
+        } else if (SUPERVIVENCIA.equals(selectedItem) ){
             agregarTiempo(sala);
         }
     }
