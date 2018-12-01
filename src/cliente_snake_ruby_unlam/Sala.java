@@ -23,6 +23,8 @@ public class Sala {
 
 	private int puntajeAAlcanzar;
 
+	private boolean salaInactiva;
+
 	private List<Jugador> jugadores = new ArrayList<>();
 
 	public Sala(String nombreSala, String contrasenia) {
@@ -64,7 +66,11 @@ public class Sala {
 	public int getDificultadIA() {
 		return dificultadIA;
 	}
-	
+
+	public boolean isSalaInactiva() {
+		return salaInactiva;
+	}
+
 	// Importante para poder comprobar que no se repitan los nombres de sala
 	@Override
 	public int hashCode() {
