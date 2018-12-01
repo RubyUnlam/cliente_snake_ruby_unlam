@@ -9,6 +9,7 @@ public class GanadorDialog extends JDialog {
 	private static final long serialVersionUID = 1L;
     private JButton btnConfirmar;
     private Menu menu;
+    public JDialog dialog = this;
 
 	/**
 	 * Cuadro de dialogo para el inicio de sesion o registro de usuarios.
@@ -23,6 +24,12 @@ public class GanadorDialog extends JDialog {
         armarBotonSalir();
         getContentPane().add(lblNombreUsuario);
         getContentPane().add(btnConfirmar);
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                dialog.setLocationRelativeTo(menu);
+            }
+        });
 	}
 
     /**
