@@ -4,8 +4,9 @@ import observables.ObservadorDibujables;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import static java.util.Objects.nonNull;
 import static utilidades.Constantes.*;
@@ -15,7 +16,7 @@ public class Ui extends JPanel implements ObservadorDibujables {
     private static final long serialVersionUID = 1L;
     public static final String CLASICO = "Clasico";
     private ImageIcon fondo;
-    private List<Dibujable> aDibujar = new ArrayList<>();
+    private Queue<Dibujable> aDibujar = new ConcurrentLinkedQueue<Dibujable>();
     private String ganador;
     private JFrame ventana;
     private boolean terminoElJuego;
