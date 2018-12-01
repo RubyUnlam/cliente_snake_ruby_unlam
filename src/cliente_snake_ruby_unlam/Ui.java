@@ -29,7 +29,7 @@ public class Ui extends JPanel implements ObservadorDibujables {
 
     @Override
     public void notificarUbicaciones(ActualizacionDelJuego actualizacion) {
-        if (actualizacion.salir()) {
+        if (actualizacion.quiereSalir()) {
             ventana.setVisible(false);
             menu.salirSala();
             menu.setVisible(true);

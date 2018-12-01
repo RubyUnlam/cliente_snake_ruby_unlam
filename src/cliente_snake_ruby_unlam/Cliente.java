@@ -13,10 +13,9 @@ public class Cliente {
 	private ManejadorMovimientos manejadorMovimientos;
     private ManejadorLogin manejadorLogin;
     private ManejadorSalas manejadorSalas;
-    private ManejadorDeJuego manejadorDeJuego;
     private ManejadorES manejadorES;
     private Socket socket;
-    private static final String SALIR = "salir";
+    private final String SALIR = "salir";
 
 
     public Cliente(String ip, int puerto) {

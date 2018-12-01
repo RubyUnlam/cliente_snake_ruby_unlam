@@ -21,7 +21,7 @@ public class  ActualizacionDelJuego {
         return ganador;
     }
 
-    public boolean salir() {
+    public boolean quiereSalir() {
         return salir;
     }
 }
