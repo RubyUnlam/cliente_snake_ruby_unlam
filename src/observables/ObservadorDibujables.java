@@ -4,5 +4,5 @@ import cliente_snake_ruby_unlam.ActualizacionDelJuego;
 
 public interface ObservadorDibujables {
 
-	void notificarUbicaciones(ActualizacionDelJuego actualizacion);
+    void notificarUbicaciones(ActualizacionDelJuego actualizacion);
 }

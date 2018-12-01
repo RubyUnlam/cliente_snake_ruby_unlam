@@ -5,45 +5,45 @@ import java.util.Observable;
 
 public class Ubicacion extends Observable {
 
-	private int x;
-	private int y;
-	
-	public Ubicacion() {
-		this.generarUbicacionAleatoria();
-	}
+    private int x;
+    private int y;
 
-	public Ubicacion(int x, int y) {
-		this.x = x;
-		this.y = y;
-	}
+    public Ubicacion() {
+        this.generarUbicacionAleatoria();
+    }
 
-	public int getX() {
-		return x;
-	}
+    public Ubicacion(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
 
-	public int getY() {
-		return y;
-	}
+    public int getX() {
+        return x;
+    }
 
-	public void setX(int x) {
-		this.x = x;
-	}
+    public int getY() {
+        return y;
+    }
 
-	public void setY(int y) {
-		this.y = y;
-	}
-	
-	public void generarUbicacionAleatoria() {
-		double randomX = Math.random() * 770;
-		double randomY = Math.random() * 550;
-		this.x = (int) (randomX - (randomX % 20));
-		this.y = (int) (randomY - (randomY % 20));
-	}
+    public void setX(int x) {
+        this.x = x;
+    }
 
-	@Override
-	public String toString() {
-		return "Ubicacion [x=" + x + ", y=" + y + "]";
-	}
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public void generarUbicacionAleatoria() {
+        double randomX = Math.random() * 770;
+        double randomY = Math.random() * 550;
+        this.x = (int) (randomX - (randomX % 20));
+        this.y = (int) (randomY - (randomY % 20));
+    }
+
+    @Override
+    public String toString() {
+        return "Ubicacion [x=" + x + ", y=" + y + "]";
+    }
 
     @Override
     public boolean equals(Object o) {

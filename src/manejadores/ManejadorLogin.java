@@ -2,7 +2,6 @@ package manejadores;
 
 import cliente_snake_ruby_unlam.RegistroUsuario;
 import cliente_snake_ruby_unlam.Usuario;
-import com.google.gson.Gson;
 
 import java.io.IOException;
 

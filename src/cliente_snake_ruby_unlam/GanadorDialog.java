@@ -6,17 +6,18 @@ import java.awt.event.ActionListener;
 
 public class GanadorDialog extends JDialog {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
     private JButton btnConfirmar;
     private Menu menu;
     public JDialog dialog = this;
 
-	/**
-	 * Cuadro de dialogo para el inicio de sesion o registro de usuarios.
-	 * @param
-	 */
-	public GanadorDialog(ActualizacionDelJuego actualizacionDelJuego, Menu menu) {
-	    this.menu = menu;
+    /**
+     * Cuadro de dialogo para el inicio de sesion o registro de usuarios.
+     *
+     * @param
+     */
+    public GanadorDialog(ActualizacionDelJuego actualizacionDelJuego, Menu menu) {
+        this.menu = menu;
         setLocationRelativeTo(menu);
         armarVentanaLogin();
         JLabel lblNombreUsuario = new JLabel(actualizacionDelJuego.obtenerGanador());
@@ -30,10 +31,11 @@ public class GanadorDialog extends JDialog {
                 dialog.setLocationRelativeTo(menu);
             }
         });
-	}
+    }
 
     /**
      * Propiedades del JDialog para el login.
+     *
      * @param
      */
     private void armarVentanaLogin() {

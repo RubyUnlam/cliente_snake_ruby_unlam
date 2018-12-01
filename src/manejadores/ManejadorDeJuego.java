@@ -19,7 +19,7 @@ public class ManejadorDeJuego extends Thread implements ObservadoLectura {
     private ObservadorDibujables observadorDibujable;
     private ManejadorES manejadorES;
 
-    private String archivoMusicaDeJuego = "src"+File.separator+"sonidos"+File.separator+"musicaDeFondo.wav";
+    private String archivoMusicaDeJuego = "src" + File.separator + "sonidos" + File.separator + "musicaDeFondo.wav";
 
     public ManejadorDeJuego(ManejadorES manejadorES) {
         this.manejadorES = manejadorES;
