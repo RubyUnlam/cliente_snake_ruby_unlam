@@ -2,40 +2,35 @@ package cliente_snake_ruby_unlam;
 
 import manejadores.ManejadorActualizacionSala;
 import manejadores.ManejadorSalas;
+import utilidades.NumerosTextField;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.util.Arrays;
-
-import static java.util.Objects.isNull;
-import static java.util.Objects.nonNull;
 
 public class CreacionSala extends JDialog {
 
     private static final long serialVersionUID = 3146453246362725770L;
-    private static final Integer[] CANTIDAD_DE_JUGADORES = {0, 1, 2, 3, 4};
+
     private static final String PUNTAJE = "Puntaje";
     private static final String SUPERVIVENCIA = "Supervivencia";
     private static final String[] FORMAS_DE_VICTORIA = {PUNTAJE, SUPERVIVENCIA};
 
-    private Menu ventanaMenu;
+    private static final Integer[] CANTIDAD_DE_JUGADORES = {0, 1, 2, 3, 4};
 
-    private JTextField txtNombreSala;
-    private JTextField txtMapa;
-    private JTextField txtTiempo;
-    private JPasswordField txtContrasenia;
-    private JLabel lblInformativo;
     private JComboBox<Integer> cmbIA;
     private JComboBox<Integer> cmbJugadores;
     private JComboBox<String> cmbVictoria;
     private JSpinner spinner;
     private ManejadorSalas manejadorSalas;
     private ManejadorActualizacionSala manejadorActualizacionSala;
-    private JTextField txtPuntajeMax;
+    private NumerosTextField txtPuntajeMax;
+    private NumerosTextField txtTiempo;
+    private JTextField txtNombreSala;
+    private JPasswordField txtContrasenia;
+    private JLabel lblInformativo;
+    private Menu ventanaMenu;
 
     /**
      * Create the dialog.
@@ -77,12 +72,12 @@ public class CreacionSala extends JDialog {
         txtNombreSala.setBounds(168, 28, 182, 26);
         txtNombreSala.setColumns(10);
 
-        txtTiempo = new JTextField();
+        txtTiempo = new NumerosTextField();
         txtTiempo.setColumns(10);
         txtTiempo.setBounds(168, 168, 182, 26);
         txtTiempo.setEnabled(false);
 
-        txtPuntajeMax = new JTextField();
+        txtPuntajeMax = new NumerosTextField();
         txtPuntajeMax.setColumns(10);
         txtPuntajeMax.setBounds(168, 200, 182, 26);
         txtPuntajeMax.setEnabled(true);
@@ -147,18 +142,24 @@ public class CreacionSala extends JDialog {
         setVisible(true);
     }
 
+    /**
+     * Crea y carga el comboBox con las opciones de victoria.
+     */
     private void crearComboFormaVictoria() {
         cmbVictoria = new JComboBox<String>();
         cmbVictoria.setModel(new DefaultComboBoxModel<String>(FORMAS_DE_VICTORIA));
         cmbVictoria.setBounds(168, 140, 182, 26);
         cmbVictoria.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                deshabilitarSegunOpcion(evt);
+                deshabilitarSegunOpcion();
             }
         });
     }
 
-    private void deshabilitarSegunOpcion(ActionEvent evt) {
+    /**
+     * Deshabilita JText de puntaje o tiempo dependiendo del modo de juego elegido.
+     */
+    private void deshabilitarSegunOpcion() {
         if (cmbVictoria.getSelectedItem().equals(PUNTAJE)) {
             txtTiempo.setEnabled(false);
             txtPuntajeMax.setEnabled(true);
@@ -167,17 +168,21 @@ public class CreacionSala extends JDialog {
             txtTiempo.setEnabled(true);
             txtPuntajeMax.setEnabled(false);
             txtPuntajeMax.setText("");
-
         }
     }
 
-
+    /**
+     * Crea el comboBox para seleccionar la cantidad maxima de jugadores.
+     */
     private void crearComboJugadores() {
         cmbJugadores = new JComboBox<Integer>();
         cmbJugadores.setModel(new DefaultComboBoxModel<Integer>(Arrays.copyOfRange(CANTIDAD_DE_JUGADORES, 1, 5)));
         cmbJugadores.setBounds(168, 85, 64, 27);
     }
 
+    /**
+     * Crea el comboBox para seleccionar la cantidad maxima de IAs.
+     */
     private void crearComboIA() {
         cmbIA = new JComboBox<Integer>();
         cmbIA.setModel(new DefaultComboBoxModel<Integer>(Arrays.copyOfRange(CANTIDAD_DE_JUGADORES, 0, 4)));
@@ -194,10 +199,13 @@ public class CreacionSala extends JDialog {
                 (int) cmbJugadores.getSelectedItem(), (int) cmbIA.getSelectedItem(),
                 ventanaMenu.getUsuarioActual(), (int) spinner.getValue(), cmbVictoria.getSelectedItem().toString());
 
-        if (!camposCreacionSalaVacios() && cantidadJugadoresValida() && crearSala(sala) && condicionesDeVictoriaValidas(sala)) {
+        if (!camposCreacionSalaVacios() && cantidadJugadoresValida() && crearSala(sala) && condicionesDeVictoriaValidas()) {
+
+            agregarCondicionDeVictoria(sala);
+
             RespuestaAccionConSala respuesta = manejadorSalas.crearSala(sala);
 
-            if(respuesta.esAccionValida()){
+            if (respuesta.esAccionValida()) {
                 ventanaMenu.setVisible(true);
                 dispose();
                 ventanaMenu.crearMiSala(respuesta.getListaSalas());
@@ -212,51 +220,35 @@ public class CreacionSala extends JDialog {
     /**
      * Dado un modo de juego (puntaje o supervivencia) verifica si la condición de fin
      * de ese modo de juego es correcta.
-     * @param sala
      * @return
      */
-    private boolean condicionesDeVictoriaValidas(Sala sala){
-        return PUNTAJE.equals(sala.getModoDeJuego()) ? esPuntajeValido(sala) : esTiempoValido(sala);
+    private boolean condicionesDeVictoriaValidas(){
+        return PUNTAJE.equals(cmbVictoria.getSelectedItem()) ? esPuntajeValido() : esTiempoValido();
     } //TODO CAMBIAR POR UN SWITCH SI AGREGAMOS MÁS MODOS DE JUEGO
 
     /**
-     * Verfica que el puntaje ingresado sea un numero mayor a 0. De serlo, setea el valor en la sala.
-     * @param sala
+     * Verfica que el puntaje no este vacio.
      * @return
      */
-    private boolean esPuntajeValido(Sala sala){
-        try{
-            int puntaje = Integer.parseInt(txtPuntajeMax.getText());
-            if(puntaje > 0){
-                sala.setPuntajeAAlcanzar(puntaje);
-                return true;
-            }
-            mostrarMensajeInformativo("El puntaje ingresado no es valido");
-            return false;
-        } catch(NumberFormatException e) {
-            mostrarMensajeInformativo("El puntaje ingresado no es valido");
+    private boolean esPuntajeValido() {
+        if (txtPuntajeMax.getText().isEmpty()) {
+            mostrarMensajeInformativo("El puntaje es obligatorio");
             return false;
         }
-    }//TODO MEJORAR ESTO
+        return true;
+    }
 
     /**
-     * Verifica que el tiempo ingresado sea un numero mayor a 0. De serlo, setea el valor en la sala
+     * Verifica que el tiempo ingresado no este vacio.
      * @return
      */
-    private boolean esTiempoValido(Sala sala) {
-        try{
-            int tiempo = Integer.parseInt(txtTiempo.getText());
-            if(tiempo > 0){
-                sala.setTiempo(tiempo);
-                return true;
-            }
-            mostrarMensajeInformativo("El tiempo ingresado no es valido");
-            return false;
-        } catch(NumberFormatException e){
-            mostrarMensajeInformativo("El tiempo ingresado no es valido");
+    private boolean esTiempoValido() {
+        if (txtTiempo.getText().isEmpty()) {
+            mostrarMensajeInformativo("El tiempo es obligatorio");
             return false;
         }
-    } //TODO MEJORAR ESTO
+        return true;
+    }
 
     /**
      * Valida que los campos de nombre de sala, contrasenia, y cantidad de jugadores
@@ -284,6 +276,11 @@ public class CreacionSala extends JDialog {
         return true;
     }
 
+    /**
+     * Verifica si existe ya una sala con el mismo nombre que la que se quiere crear.
+     * @param sala
+     * @return
+     */
     public boolean crearSala(Sala sala) {
         if (!ventanaMenu.getListaSalas().contains(sala)) {
             return true;
@@ -291,6 +288,34 @@ public class CreacionSala extends JDialog {
             mostrarMensajeInformativo("Error al crear sala. Nombre en uso");
             return false;
         }
+    }
+
+    /**
+     * Agrega las condiciones de victoria dependiendo de cual fue elegida
+     * @param sala
+     */
+    private void agregarCondicionDeVictoria(Sala sala) {
+        if (cmbVictoria.getSelectedItem().equals(PUNTAJE)) {
+            agregarPuntaje(sala);
+        } else {
+            agregarTiempo(sala);
+        }
+    }
+
+    /**
+     * Agrega el puntaje maximo a la sala.
+     * @param sala
+     */
+    public void agregarPuntaje(Sala sala) {
+        sala.setPuntajeAAlcanzar(Integer.valueOf(txtPuntajeMax.getText()));
+    }
+
+    /**
+     * Agrega el tiempo a la sala.
+     * @param sala
+     */
+    public void agregarTiempo(Sala sala) {
+        sala.setTiempo(Integer.valueOf(txtTiempo.getText()));
     }
 
     /**
