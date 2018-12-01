@@ -5,6 +5,8 @@ import manejadores.ManejadorMovimientos;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import static utilidades.Constantes.*;
+
 public class Controlador implements KeyListener {
 
 	private ManejadorMovimientos manejadorMovimientos;
@@ -22,15 +24,15 @@ public class Controlador implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		int teclaPresionada = e.getKeyCode();
 		if (teclaPresionada == keyEventUP) {
-			manejadorMovimientos.enviarMovimiento("arriba");
+			manejadorMovimientos.enviarMovimiento(ARRIBA);
 		} else if (teclaPresionada == keyEventDOWN) {
-			manejadorMovimientos.enviarMovimiento("abajo");
+			manejadorMovimientos.enviarMovimiento(ABAJO);
 		} else if (teclaPresionada == keyEventRIGTH) {
-			manejadorMovimientos.enviarMovimiento("derecha");
+			manejadorMovimientos.enviarMovimiento(DERECHA);
 		} else if (teclaPresionada == keyEventLEFT) {
-			manejadorMovimientos.enviarMovimiento("izquierda");
+			manejadorMovimientos.enviarMovimiento(IZQUIERDA);
 		} else if (teclaPresionada == KeyEvent.VK_ESCAPE) {
-			manejadorMovimientos.enviarMovimiento("finalizar");
+			manejadorMovimientos.enviarMovimiento(FINALIZAR);
 		}
 		
 	}

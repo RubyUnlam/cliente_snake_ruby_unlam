@@ -14,8 +14,9 @@ public class ManejadorLogin {
         this.manejadorES = manejadorES;
     }
 
-    public RegistroUsuario enviarUsuario(Usuario usuario) {
+    public RegistroUsuario enviarUsuario(Usuario usuario, String mensaje) {
         try {
+            manejadorES.enviar(mensaje);
             manejadorES.enviar(usuario);
             return manejadorES.escuchar(RegistroUsuario.class);
         } catch (IOException e) {

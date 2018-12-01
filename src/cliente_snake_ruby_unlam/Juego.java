@@ -4,7 +4,6 @@ import manejadores.ManejadorDeJuego;
 
 import javax.swing.JFrame;
 
-import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 
 import static utilidades.Constantes.ALTURA_VENTANA;
@@ -16,7 +15,7 @@ public class Juego {
 
 		JFrame ventana = new JFrame("Snake");
 		ventana.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		ventana.setBounds(0, 0, ANCHO_VENTANA, ALTURA_VENTANA);
+		ventana.setBounds(0, 0, ANCHO_VENTANA , ALTURA_VENTANA);
 		ventana.setResizable(false);
 		ventana.setLocationRelativeTo(null);
 

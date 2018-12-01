@@ -20,6 +20,7 @@ public class Login extends JDialog {
 	Login login = this;
 	private RegistroUsuario respuesta = new RegistroUsuario("", false);;
 	private ManejadorLogin manejador;
+	private final String LOGGEAR = "loggear";
 
 	/**
 	 * Cuadro de dialogo para el inicio de sesion o registro de usuarios. 
@@ -171,7 +172,7 @@ public class Login extends JDialog {
 	 * @return verdadero o falso segun el exito del inicio de sesion.
 	 */
 	public boolean iniciarSesion(String nombreUsuario, String contrasenia) {
-        this.respuesta = manejador.enviarUsuario(new Usuario(nombreUsuario, contrasenia));
+        this.respuesta = manejador.enviarUsuario(new Usuario(nombreUsuario, contrasenia), LOGGEAR);
         if (nonNull(this.respuesta) && !respuesta.esRegistroEfectivo()) {
             lblErrorRegistro.setText(respuesta.getMensaje());
             txtContrasenia.setText("");
