@@ -173,7 +173,7 @@ public class Login extends JDialog {
 	public boolean iniciarSesion(String nombreUsuario, String contrasenia) {
         this.respuesta = manejador.enviarUsuario(new Usuario(nombreUsuario, contrasenia));
         if (nonNull(this.respuesta) && !respuesta.esRegistroEfectivo()) {
-            lblErrorRegistro.setText("Error al loggear. Verifique los datos");
+            lblErrorRegistro.setText(respuesta.getMensaje());
             txtContrasenia.setText("");
             lblErrorRegistro.setForeground(Color.RED);
             lblErrorRegistro.setVisible(true);
