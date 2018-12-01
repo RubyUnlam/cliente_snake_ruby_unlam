@@ -33,7 +33,11 @@ Ciruela: te parte al medio, la otra mitad la perdés por lo laxante.
 Pera: te la das en la pera y no sentís nada por un rato.
 
 -----------INSTALACIÓN------------
-TODO
+Descargar el servidor,
+
+https://github.com/RubyUnlam/snake_ruby_unlam
+
+Iniciarlo, automaticamente después ya podés abrir este proyecto y jugar!!
 
 
 -----------CRÉDITOS---------------
