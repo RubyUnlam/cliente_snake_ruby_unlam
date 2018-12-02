@@ -13,4 +13,5 @@ public class Constantes {
 	public static final int ALTURA_INICIAL_TEXTO = 50;
 	public static final int ALTURA_PUNTACION = 25;
 	public static final int TAMANIO_FUENTE = 22;
+	public static final int SEGUNDOS_PARA_INICIAR = 3;
 }

@@ -49,6 +49,9 @@ public class Menu extends JFrame {
 	private JLabel lblCantidadIA;
 	private JLabel lblCreador;
 	private JLabel lblNombreSala;
+	private JLabel lblMandaleMecha;
+	public int counter;
+	public Timer timer;
 
 	private CountDownLatch countDownLatch;
 
@@ -190,6 +193,11 @@ public class Menu extends JFrame {
 			}
 		});
 
+		lblMandaleMecha = new JLabel("");
+		lblMandaleMecha.setBounds(200, 365, 106, 23);
+		lblMandaleMecha.setEnabled(true);
+		lblMandaleMecha.setVisible(false);
+
 		btnCrearSala = new JButton("Crear sala");
 		btnCrearSala.setBounds(6, 82, 200, 70);
 		btnCrearSala.setEnabled(false);
@@ -234,6 +242,7 @@ public class Menu extends JFrame {
 		contentPane.add(btnSeleccionarColor);
 		contentPane.add(btnJugar);
 		contentPane.add(lblJugadoresEnSala);
+		contentPane.add(lblMandaleMecha);
 		contentPane.add(lblConfiguracionJuego);
 		setContentPane(contentPane);
 	}
@@ -365,4 +374,23 @@ public class Menu extends JFrame {
 		}
 	}
 
+	public void mandarMecha(int segundos) {
+		counter = segundos;
+		lblMandaleMecha.setVisible(true);
+		timer = new Timer(1000, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (counter > 0) {
+					lblMandaleMecha.setText(String.valueOf(counter) + "...");
+					counter--;
+				} else {
+					timer.stop();
+					lblMandaleMecha.setVisible(false);
+					Juego.iniciarJuego();
+				}
+			}
+		});
+		timer.setRepeats(true);
+		timer.start();
+	}
 }
